@@ -1,6 +1,13 @@
 # mlops-tinystories
 
-A short description of the project.
+## Project description
+
+A replication parts of the [Tiny Stories](https://arxiv.org/abs/2305.07759) paper.
+We will use the original dataset from the paper, which can be found on [Huggingface](https://huggingface.co/datasets/roneneldan/TinyStories).
+We will initially use the architectures from the paper, but may try out other things if we find interesting ideas.
+
+### Open questions
+ - What is meant by "incorporate some third-party framework"? Pytorch is a third-party framework. Does this count? What about the `transformers` library?
 
 ## Project structure
 
