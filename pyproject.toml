@@ -25,4 +25,5 @@ dev = {file = ['requirements_dev.txt']}
 
 [tool.ruff]
 line-length = 120
-select = ["I", "E", "F", "W", "N", "B", "D"]
+select = ["I", "E", "F", "W", "N", "B"]
+ignore = ["D203", "D213"]
