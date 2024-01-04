@@ -1,4 +1,4 @@
-# mlops-tinystories
+# MLOps Tiny Stories
 
 ## Project description
 
