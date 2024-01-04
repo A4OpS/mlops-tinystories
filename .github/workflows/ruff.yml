@@ -1,8 +1,5 @@
 name: Ruff
-on: 
-  pull_request:
-    paths:
-      - '**.py'
+on: pull_request
 jobs:
   ruff:
     runs-on: ubuntu-latest
