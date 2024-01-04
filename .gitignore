@@ -177,3 +177,6 @@ cython_debug/
 #.idea/
 /data
 /models
+
+.ruff_cache/
+lightning_logs
