@@ -8,7 +8,7 @@ from datasets import DatasetDict
 from pytorch_lightning import LightningDataModule
 from torch import Tensor
 from torch.utils.data import DataLoader, TensorDataset
-from transformers import PreTrainedTokenizerFast
+from transformers import AutoTokenizer, PreTrainedTokenizerFast
 
 TOTAL_RATIO = 0.05
 VALIDATION_RATIO = 0.1
@@ -19,8 +19,12 @@ MAX_LENGTH = 256
 
 
 class TinyStories(LightningDataModule):
-    def __init__(self, data_dir: str, tokenizer: PreTrainedTokenizerFast, device: torch.device) -> None:
+    def __init__(self, data_dir: str, device: torch.device) -> None:
         super().__init__()
+
+        self.tokenizer: PreTrainedTokenizerFast = AutoTokenizer.from_pretrained("EleutherAI/gpt-neox-20b")  # type: ignore
+        self.tokenizer.pad_token = self.tokenizer.eos_token
+
         self.data_dir = data_dir
         self.raw_dir = os.path.join(data_dir, "raw")
         if not os.path.exists(self.raw_dir):
@@ -31,7 +35,6 @@ class TinyStories(LightningDataModule):
         self.processed_dir = os.path.join(data_dir, "processed")
         if not os.path.exists(self.processed_dir):
             os.makedirs(self.processed_dir)
-        self.tokenizer = tokenizer
         self.device = device
 
         self.train_texts: Optional[List[str]] = None
