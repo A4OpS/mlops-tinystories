@@ -43,7 +43,6 @@ class TinyStories(LightningDataModule):
         self._tokenizer.pad_token = self.tokenizer.eos_token
         self._tokenizer.pad_token = self.tokenizer.eos_token
         self._vocab_size = self.tokenizer.vocab_size
-        print("Vocabulary size:", self.tokenizer.vocab_size)
 
         self._data_dir = data_dir
         self._raw_dir = os.path.join(data_dir, "raw")
@@ -67,6 +66,10 @@ class TinyStories(LightningDataModule):
     @property
     def tokenizer(self) -> PreTrainedTokenizerFast:
         return self._tokenizer
+
+    @property
+    def vocab_size(self) -> int:
+        return self._vocab_size
 
     def prepare_data(self) -> None:
         print("Preparing data...")
