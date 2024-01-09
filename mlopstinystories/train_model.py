@@ -1,32 +1,32 @@
-import warnings
+from device import get_device
+from pytorch_lightning import Trainer
+from pytorch_lightning.loggers import WandbLogger
 
-import datasets
-from datasets.dataset_dict import DatasetDict
-from transformers import Trainer, TrainingArguments
-
+from data import TinyStories
 from models import TinyStoriesConfig, TinyStoriesModel
 
 if __name__ == "__main__":
-    warnings.filterwarnings("ignore", message="Repo card metadata block was not found. Setting CardData to empty.")
-    raw_data: DatasetDict = datasets.load_dataset("roneneldan/TinyStories")  # type: ignore
+    device = get_device()
+
+    data = TinyStories("data", device.torch())
 
     config = TinyStoriesConfig(
-        num_layers=2, intermediate_size=512, hidden_size=512, num_heads=8, vocab_size=50257, max_position_embeddings=512
+        num_layers=2,
+        intermediate_size=512,
+        hidden_size=512,
+        num_heads=8,
+        vocab_size=data.vocab_size,
+        max_position_embeddings=512,
     )
-    model = TinyStoriesModel(config)
+
+    model = TinyStoriesModel.initialize(config, device.torch())
+    print("Device: ", model.device())
     print(f"Number of parameters: {model.num_params()}")
 
-    training_arguments = TrainingArguments(
-        output_dir="models/test",
-        learning_rate=2e-5,
-        weight_decay=0.01,
-    )
-
     trainer = Trainer(
-        model=model,
-        args=training_arguments,
-        train_dataset=raw_data["train"],  # type: ignore
-        eval_dataset=raw_data["validation"],  # type: ignore
+        logger=WandbLogger(project="mlops-tinystories"), accelerator=device.lightning(), max_epochs=1, max_steps=10
     )
 
-    trainer.train()
+    trainer.fit(model, datamodule=data)
+
+    model.save("model1")
