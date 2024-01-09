@@ -1,10 +1,19 @@
+import os
+import typing
 from dataclasses import dataclass
+from typing import List
 
 import numpy as np
 import torch
 from pytorch_lightning import LightningModule
+from pytorch_lightning.utilities.types import OptimizerLRScheduler
+from torch import LongTensor
 from transformers import GPTNeoConfig, GPTNeoForCausalLM
+from transformers.generation import GenerationConfig
 from transformers.modeling_outputs import CausalLMOutputWithCrossAttentions
+from transformers.utils import ModelOutput
+
+MODELS_DIR = "models"
 
 
 @dataclass
@@ -29,6 +38,9 @@ class TinyStoriesConfig:
 
 
 class TinyStoriesModel(LightningModule):
+    _init_allowed: bool
+    _model: GPTNeoForCausalLM
+
     """TinyStories transformer language model.
 
     Args:
@@ -36,9 +48,28 @@ class TinyStoriesModel(LightningModule):
 
     """
 
-    def __init__(self, config: TinyStoriesConfig) -> None:
+    def __init__(self) -> None:
+        if not hasattr(self, "_init_allowed") or not self._init_allowed:
+            raise NotImplementedError(
+                "Direct instantiation of TinyStoriesModel is not allowed, \
+                    please use one of the provided static methods."
+            )
         super().__init__()
-        self.config = GPTNeoConfig(
+
+    @classmethod
+    def _new(cls, model: GPTNeoForCausalLM) -> "TinyStoriesModel":
+        """Create a new model from the given configuration and model."""
+
+        result = cls.__new__(cls)
+        result._init_allowed = True
+        result.__init__()
+        result._model = model
+        return result
+
+    @staticmethod
+    def initialize(config: TinyStoriesConfig, device: torch.device) -> "TinyStoriesModel":
+        """Initialize the model with the given configuration."""
+        model_config = GPTNeoConfig(
             num_layers=config.num_layers,
             intermediate_size=config.intermediate_size,
             hidden_size=config.hidden_size,
@@ -47,7 +78,54 @@ class TinyStoriesModel(LightningModule):
             max_position_embeddings=config.max_position_embeddings,
             attention_types=[[["global"], config.num_layers]],
         )
-        self.model = GPTNeoForCausalLM(self.config)
+        model = GPTNeoForCausalLM(model_config)
+        model = model.to(device=device)  # type: ignore
+        return TinyStoriesModel._new(model)
+
+    @staticmethod
+    def load(path: str, device: torch.device) -> "TinyStoriesModel":
+        """Load the model from the given path within the models directory."""
+
+        whole_path = os.path.join(MODELS_DIR, path)
+        if not os.path.exists(whole_path):
+            raise ValueError(f"Model {whole_path} does not exist")
+        model = typing.cast(GPTNeoForCausalLM, GPTNeoForCausalLM.from_pretrained(whole_path))
+        model = model.to(device=device)  # type: ignore
+        return TinyStoriesModel._new(model)
+
+    def save(self, path: str) -> None:
+        """Save the model to the given path within the models directory."""
+
+        whole_path = os.path.join(MODELS_DIR, path)
+        path_parent = os.path.dirname(whole_path)
+        if not os.path.exists(path_parent):
+            os.makedirs(path_parent)
+        self._model.save_pretrained(whole_path)
+
+    def device(self) -> torch.device:
+        """Get device of the model.
+
+        Returns:
+        -------
+            Device of the model.
+
+        """
+        return self._model.device
+
+    def generate(self, inputs: torch.Tensor, generation_config: GenerationConfig) -> ModelOutput | LongTensor:
+        """Generate text from the given inputs.
+
+        Args:
+        ----
+            inputs: input tensor of shape [N, in_features]
+            generation_config: generation configuration
+
+        Returns:
+        -------
+            Output tensor of shape [N, out_features]
+
+        """
+        return self._model.generate(inputs, generation_config)
 
     def num_params(self) -> int:
         """Get number of trainable parameters in the model.
@@ -57,7 +135,7 @@ class TinyStoriesModel(LightningModule):
             Number of trainable parameters in the model.
 
         """
-        model_parameters = filter(lambda p: p.requires_grad, self.model.parameters())
+        model_parameters = filter(lambda p: p.requires_grad, self._model.parameters())
         return sum([int(np.prod(p.size())) for p in model_parameters])
 
     def forward(self, x: torch.Tensor) -> CausalLMOutputWithCrossAttentions:
@@ -72,9 +150,9 @@ class TinyStoriesModel(LightningModule):
             Output tensor with shape [N,out_features]
 
         """
-        return self.model(x)
+        return self._model(x)
 
-    def training_step(self, batch: torch.Tensor, batch_idx: int) -> torch.Tensor:
+    def training_step(self, batch_list: List[torch.Tensor], batch_idx: int) -> torch.Tensor:
         """Training step.
 
         Args:
@@ -87,7 +165,10 @@ class TinyStoriesModel(LightningModule):
             Loss tensor.
 
         """
-        outputs = self.model(batch)
+        [batch] = batch_list
+        outputs = self._model(batch[:-1], labels=batch[1:])
         loss = outputs.loss
-        self.log("train_loss", loss, prog_bar=True)
         return loss
+
+    def configure_optimizers(self) -> OptimizerLRScheduler:
+        return torch.optim.Adam(self.parameters(), lr=1e-4)
