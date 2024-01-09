@@ -17,6 +17,7 @@ TEST_RATIO = 0.05
 TOKENIZATION_BATCH_SIZE = 64
 MAX_LENGTH_TEXT = 1024
 MAX_LENGTH = 256
+DATA_LOADER_BATCH_SIZE = 4
 
 
 class TinyStories(LightningDataModule):
@@ -136,33 +137,31 @@ class TinyStories(LightningDataModule):
 
     def setup(self, stage: str) -> None:
         print("Loading data from disk...")
-        info = json.load(open(os.path.join(self._processed_dir, "info.json"), "r"))
-        self.vocab_size = info["vocab_size"]
 
         # Load data from disk
-        self.train_texts = pd.read_pickle(os.path.join(self._processed_dir, "train_texts.pkl"))["text"].tolist()
-        self.validation_texts = pd.read_pickle(os.path.join(self._processed_dir, "validation_texts.pkl"))[
+        self._train_texts = pd.read_pickle(os.path.join(self._processed_dir, "train_texts.pkl"))["text"].tolist()
+        self._validation_texts = pd.read_pickle(os.path.join(self._processed_dir, "validation_texts.pkl"))[
             "text"
         ].tolist()
-        self.test_texts = pd.read_pickle(os.path.join(self._processed_dir, "test_texts.pkl"))["text"].tolist()
+        self._test_texts = pd.read_pickle(os.path.join(self._processed_dir, "test_texts.pkl"))["text"].tolist()
 
-        self.train_tokens = torch.load(os.path.join(self._processed_dir, "train_tokens.pt")).long()
-        self.validation_tokens = torch.load(os.path.join(self._processed_dir, "validation_tokens.pt")).long()
-        self.test_tokens = torch.load(os.path.join(self._processed_dir, "test_tokens.pt")).long()
+        self._train_tokens = torch.load(os.path.join(self._processed_dir, "train_tokens.pt")).long()
+        self._validation_tokens = torch.load(os.path.join(self._processed_dir, "validation_tokens.pt")).long()
+        self._test_tokens = torch.load(os.path.join(self._processed_dir, "test_tokens.pt")).long()
 
-        self.train_set = TensorDataset(self.train_tokens)
-        self.validation_set = TensorDataset(self.validation_tokens)
-        self.test_set = TensorDataset(self.test_tokens)
+        self._train_set = TensorDataset(self._train_tokens)
+        self._validation_set = TensorDataset(self._validation_tokens)
+        self._test_set = TensorDataset(self._test_tokens)
         print("Data loaded.")
 
     def train_dataloader(self) -> DataLoader[List[Tensor]]:
-        if self.train_texts is None or self.train_tokens is None:
+        if self._train_texts is None or self._train_tokens is None:
             raise Exception("Please call setup() before using this dataloader.")
         pin_memory = self._device != torch.device("cpu")
         if pin_memory:
             train_loader: DataLoader[List[Tensor]] = DataLoader(  # type: ignore
-                self.train_set,
-                batch_size=4,
+                self._train_set,
+                batch_size=DATA_LOADER_BATCH_SIZE,
                 shuffle=True,
                 num_workers=torch.get_num_threads(),
                 persistent_workers=True,
@@ -171,8 +170,8 @@ class TinyStories(LightningDataModule):
             )
         else:
             train_loader = DataLoader(  # type: ignore
-                self.train_set,
-                batch_size=4,
+                self._train_set,
+                batch_size=DATA_LOADER_BATCH_SIZE,
                 shuffle=True,
                 num_workers=torch.get_num_threads(),
                 persistent_workers=True,
@@ -181,41 +180,41 @@ class TinyStories(LightningDataModule):
         return train_loader
 
     def val_dataloader(self) -> DataLoader[List[Tensor]]:
-        if self.validation_set is None or self.validation_tokens is None:
+        if self._validation_set is None or self._validation_tokens is None:
             raise Exception("Please call setup() before using this dataloader.")
         pin_memory = self._device != torch.device("cpu")
         if pin_memory:
             validation_loader: DataLoader[List[Tensor]] = DataLoader(  # type: ignore
-                self.validation_set,
-                batch_size=64,
+                self._validation_set,
+                batch_size=DATA_LOADER_BATCH_SIZE,
                 num_workers=torch.get_num_threads(),
                 pin_memory=True,
                 pin_memory_device=str(self._device),
             )
         else:
             validation_loader = DataLoader(  # type: ignore
-                self.validation_set,
-                batch_size=64,
+                self._validation_set,
+                batch_size=DATA_LOADER_BATCH_SIZE,
                 num_workers=torch.get_num_threads(),
             )
         return validation_loader
 
     def test_dataloader(self) -> DataLoader[List[Tensor]]:
-        if self.test_set is None or self.test_tokens is None:
+        if self._test_set is None or self._test_tokens is None:
             raise Exception("Please call setup() before using this dataloader.")
         pin_memory = self._device != torch.device("cpu")
         if pin_memory:
             test_loader: DataLoader[List[Tensor]] = DataLoader(  # type: ignore
-                self.test_set,
-                batch_size=64,
+                self._test_set,
+                batch_size=DATA_LOADER_BATCH_SIZE,
                 num_workers=torch.get_num_threads(),
                 pin_memory=True,
                 pin_memory_device=str(self._device),
             )
         else:
             test_loader = DataLoader(  # type: ignore
-                self.test_set,
-                batch_size=64,
+                self._test_set,
+                batch_size=DATA_LOADER_BATCH_SIZE,
                 num_workers=torch.get_num_threads(),
             )
         return test_loader
