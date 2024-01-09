@@ -180,3 +180,5 @@ cython_debug/
 
 .ruff_cache/
 lightning_logs
+
+wandb/
