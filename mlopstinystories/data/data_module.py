@@ -45,6 +45,7 @@ class TinyStories(LightningDataModule):
         self.test_tokens: Optional[Tensor] = None
 
     def prepare_data(self) -> None:
+        print("Preparing data...")
         # Load data from disk.
         raw_data_path = os.path.join(self.raw_dir, "data.hf")
         if not os.path.exists(raw_data_path):
@@ -94,12 +95,15 @@ class TinyStories(LightningDataModule):
         torch.save(train_tokens.clone(), os.path.join(self.processed_dir, "train_tokens.pt"))
         torch.save(validation_tokens.clone(), os.path.join(self.processed_dir, "validation_tokens.pt"))
         torch.save(test_tokens.clone(), os.path.join(self.processed_dir, "test_tokens.pt"))
+        print("Data prepared.")
 
     def setup(self, stage: str) -> None:
         # Load data from disk
-        self.train_texts = pd.read_pickle(os.path.join(self.processed_dir, "train_texts.pkl"))["texts"].tolist()
-        self.validation_texts = pd.read_pickle(os.path.join(self.processed_dir, "validation_texts.pkl")).tolist()
-        self.test_texts = pd.read_pickle(os.path.join(self.processed_dir, "test_texts.pkl")).tolist()
+        self.train_texts = pd.read_pickle(os.path.join(self.processed_dir, "train_texts.pkl"))["text"].tolist()
+        self.validation_texts = pd.read_pickle(os.path.join(self.processed_dir, "validation_texts.pkl"))[
+            "text"
+        ].tolist()
+        self.test_texts = pd.read_pickle(os.path.join(self.processed_dir, "test_texts.pkl"))["text"].tolist()
 
         self.train_tokens = torch.load(os.path.join(self.processed_dir, "train_tokens.pt"))
         self.validation_tokens = torch.load(os.path.join(self.processed_dir, "validation_tokens.pt"))
@@ -109,12 +113,12 @@ class TinyStories(LightningDataModule):
         self.validation_set = TensorDataset(self.validation_tokens)
         self.test_set = TensorDataset(self.test_tokens)
 
-    def train_dataloader(self) -> DataLoader[Tensor]:
+    def train_dataloader(self) -> DataLoader[List[Tensor]]:
         if self.train_texts is None or self.train_tokens is None:
             raise Exception("Please call setup() before using this dataloader.")
         pin_memory = self.device != torch.device("cpu")
         if pin_memory:
-            train_loader: DataLoader[Tensor] = DataLoader(  # type: ignore
+            train_loader: DataLoader[List[Tensor]] = DataLoader(  # type: ignore
                 self.train_set,
                 batch_size=64,
                 shuffle=True,
@@ -132,12 +136,12 @@ class TinyStories(LightningDataModule):
 
         return train_loader
 
-    def val_dataloader(self) -> DataLoader[Tensor]:
+    def val_dataloader(self) -> DataLoader[List[Tensor]]:
         if self.validation_set is None or self.validation_tokens is None:
             raise Exception("Please call setup() before using this dataloader.")
         pin_memory = self.device != torch.device("cpu")
         if pin_memory:
-            validation_loader: DataLoader[Tensor] = DataLoader(  # type: ignore
+            validation_loader: DataLoader[List[Tensor]] = DataLoader(  # type: ignore
                 self.validation_set,
                 batch_size=64,
                 num_workers=torch.get_num_threads(),
@@ -152,12 +156,12 @@ class TinyStories(LightningDataModule):
             )
         return validation_loader
 
-    def test_dataloader(self) -> DataLoader[Tensor]:
+    def test_dataloader(self) -> DataLoader[List[Tensor]]:
         if self.test_set is None or self.test_tokens is None:
             raise Exception("Please call setup() before using this dataloader.")
         pin_memory = self.device != torch.device("cpu")
         if pin_memory:
-            test_loader: DataLoader[Tensor] = DataLoader(  # type: ignore
+            test_loader: DataLoader[List[Tensor]] = DataLoader(  # type: ignore
                 self.test_set,
                 batch_size=64,
                 num_workers=torch.get_num_threads(),
