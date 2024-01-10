@@ -1,3 +1,7 @@
+name: Ruff
+on: pull_request
+jobs:
+  ruff:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -20,4 +24,3 @@
       - name: Run Ruff
         run: |
           ruff check mlopstinystories
-          
