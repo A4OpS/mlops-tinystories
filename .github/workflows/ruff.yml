@@ -5,15 +5,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
-        uses: actions/checkout@v3
-
-      - run: |
-          cat mlopstinystories/train_model.py
+        uses: actions/checkout@v4
 
       - uses: chartboost/ruff-action@v1
         with:
-          src: "mlopstinystories"
           args: --config pyproject.toml check
-      
-      - run: |
-          cat mlopstinystories/train_model.py
