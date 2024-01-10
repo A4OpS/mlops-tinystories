@@ -6,7 +6,8 @@ from data import TinyStories, TinyStoriesConfig
 from device import get_device
 from models import TinyStoriesModel, TinyStoriesModelConfig
 
-if __name__ == "__main__":
+
+def main():
     device = get_device()
 
     data_config = TinyStoriesConfig()
@@ -48,3 +49,7 @@ if __name__ == "__main__":
     trainer.fit(model, datamodule=data)
 
     model.save("model1")
+
+
+if __name__ == "__main__":
+    main()
