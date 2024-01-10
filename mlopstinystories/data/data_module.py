@@ -188,6 +188,7 @@ class TinyStories(LightningDataModule):
                 self._validation_set,
                 batch_size=DATA_LOADER_BATCH_SIZE,
                 num_workers=torch.get_num_threads(),
+                persistent_workers=True,
                 pin_memory=True,
                 pin_memory_device=str(self._device),
             )
@@ -196,6 +197,7 @@ class TinyStories(LightningDataModule):
                 self._validation_set,
                 batch_size=DATA_LOADER_BATCH_SIZE,
                 num_workers=torch.get_num_threads(),
+                persistent_workers=True,
             )
         return validation_loader
 
@@ -208,6 +210,7 @@ class TinyStories(LightningDataModule):
                 self._test_set,
                 batch_size=DATA_LOADER_BATCH_SIZE,
                 num_workers=torch.get_num_threads(),
+                persistent_workers=True,
                 pin_memory=True,
                 pin_memory_device=str(self._device),
             )
@@ -216,5 +219,6 @@ class TinyStories(LightningDataModule):
                 self._test_set,
                 batch_size=DATA_LOADER_BATCH_SIZE,
                 num_workers=torch.get_num_threads(),
+                persistent_workers=True,
             )
         return test_loader
