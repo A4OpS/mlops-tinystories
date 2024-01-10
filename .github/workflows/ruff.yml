@@ -13,7 +13,6 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          src: "mlopstinystories"
           python-version: 3.11.5
 
       - name: Install dependencies
