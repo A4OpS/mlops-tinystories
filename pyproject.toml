@@ -28,3 +28,4 @@ line-length = 120
 select = ["I", "E", "F", "W", "N", "B"]
 ignore = ["D203", "D213"]
 lint.isort.known-first-party = ["device"]
+lint.isort.known-third-party = ["pytorch_lightning"]
