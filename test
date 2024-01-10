@@ -1,0 +1,2583 @@
+Resolved settings for: "C:\\Users\\alber\\Documents\\dtu_mlops\\mlops-tinystories\\mlopstinystories\\__init__.py"
+Settings path: "C:\\Users\\alber\\Documents\\dtu_mlops\\mlops-tinystories\\pyproject.toml"
+Settings {
+    cache_dir: "C:\\Users\\alber\\Documents\\dtu_mlops\\mlops-tinystories\\.ruff_cache",
+    fix: false,
+    fix_only: false,
+    unsafe_fixes: Hint,
+    output_format: Text,
+    show_fixes: false,
+    show_source: false,
+    file_resolver: FileResolverSettings {
+        exclude: FilePatternSet {
+            set: GlobSet {
+                len: 26,
+                strats: [
+                    Extension(
+                        ExtensionStrategy(
+                            {},
+                        ),
+                    ),
+                    BasenameLiteral(
+                        BasenameLiteralStrategy(
+                            {},
+                        ),
+                    ),
+                    Literal(
+                        LiteralStrategy(
+                            {
+                                [
+                                    98,
+                                    117,
+                                    105,
+                                    108,
+                                    100,
+                                ]: [
+                                    21,
+                                ],
+                                [
+                                    110,
+                                    111,
+                                    100,
+                                    101,
+                                    95,
+                                    109,
+                                    111,
+                                    100,
+                                    117,
+                                    108,
+                                    101,
+                                    115,
+                                ]: [
+                                    23,
+                                ],
+                                [
+                                    46,
+                                    103,
+                                    105,
+                                    116,
+                                    45,
+                                    114,
+                                    101,
+                                    119,
+                                    114,
+                                    105,
+                                    116,
+                                    101,
+                                ]: [
+                                    4,
+                                ],
+                                [
+                                    46,
+                                    103,
+                                    105,
+                                    116,
+                                ]: [
+                                    3,
+                                ],
+                                [
+                                    95,
+                                    98,
+                                    117,
+                                    105,
+                                    108,
+                                    100,
+                                ]: [
+                                    19,
+                                ],
+                                [
+                                    46,
+                                    98,
+                                    122,
+                                    114,
+                                ]: [
+                                    0,
+                                ],
+                                [
+                                    98,
+                                    117,
+                                    99,
+                                    107,
+                                    45,
+                                    111,
+                                    117,
+                                    116,
+                                ]: [
+                                    20,
+                                ],
+                                [
+                                    46,
+                                    112,
+                                    97,
+                                    110,
+                                    116,
+                                    115,
+                                    46,
+                                    100,
+                                ]: [
+                                    9,
+                                ],
+                                [
+                                    46,
+                                    101,
+                                    103,
+                                    103,
+                                    115,
+                                ]: [
+                                    2,
+                                ],
+                                [
+                                    46,
+                                    112,
+                                    121,
+                                    116,
+                                    121,
+                                    112,
+                                    101,
+                                ]: [
+                                    12,
+                                ],
+                                [
+                                    46,
+                                    114,
+                                    117,
+                                    102,
+                                    102,
+                                    95,
+                                    99,
+                                    97,
+                                    99,
+                                    104,
+                                    101,
+                                ]: [
+                                    13,
+                                ],
+                                [
+                                    118,
+                                    101,
+                                    110,
+                                    118,
+                                ]: [
+                                    25,
+                                ],
+                                [
+                                    95,
+                                    95,
+                                    112,
+                                    121,
+                                    112,
+                                    97,
+                                    99,
+                                    107,
+                                    97,
+                                    103,
+                                    101,
+                                    115,
+                                    95,
+                                    95,
+                                ]: [
+                                    18,
+                                ],
+                                [
+                                    46,
+                                    115,
+                                    118,
+                                    110,
+                                ]: [
+                                    14,
+                                ],
+                                [
+                                    46,
+                                    118,
+                                    115,
+                                    99,
+                                    111,
+                                    100,
+                                    101,
+                                ]: [
+                                    17,
+                                ],
+                                [
+                                    46,
+                                    105,
+                                    112,
+                                    121,
+                                    110,
+                                    98,
+                                    95,
+                                    99,
+                                    104,
+                                    101,
+                                    99,
+                                    107,
+                                    112,
+                                    111,
+                                    105,
+                                    110,
+                                    116,
+                                    115,
+                                ]: [
+                                    6,
+                                ],
+                                [
+                                    46,
+                                    112,
+                                    121,
+                                    101,
+                                    110,
+                                    118,
+                                ]: [
+                                    10,
+                                ],
+                                [
+                                    46,
+                                    112,
+                                    121,
+                                    116,
+                                    101,
+                                    115,
+                                    116,
+                                    95,
+                                    99,
+                                    97,
+                                    99,
+                                    104,
+                                    101,
+                                ]: [
+                                    11,
+                                ],
+                                [
+                                    46,
+                                    104,
+                                    103,
+                                ]: [
+                                    5,
+                                ],
+                                [
+                                    46,
+                                    118,
+                                    101,
+                                    110,
+                                    118,
+                                ]: [
+                                    16,
+                                ],
+                                [
+                                    100,
+                                    105,
+                                    115,
+                                    116,
+                                ]: [
+                                    22,
+                                ],
+                                [
+                                    115,
+                                    105,
+                                    116,
+                                    101,
+                                    45,
+                                    112,
+                                    97,
+                                    99,
+                                    107,
+                                    97,
+                                    103,
+                                    101,
+                                    115,
+                                ]: [
+                                    24,
+                                ],
+                                [
+                                    46,
+                                    109,
+                                    121,
+                                    112,
+                                    121,
+                                    95,
+                                    99,
+                                    97,
+                                    99,
+                                    104,
+                                    101,
+                                ]: [
+                                    7,
+                                ],
+                                [
+                                    46,
+                                    116,
+                                    111,
+                                    120,
+                                ]: [
+                                    15,
+                                ],
+                                [
+                                    46,
+                                    100,
+                                    105,
+                                    114,
+                                    101,
+                                    110,
+                                    118,
+                                ]: [
+                                    1,
+                                ],
+                                [
+                                    46,
+                                    110,
+                                    111,
+                                    120,
+                                ]: [
+                                    8,
+                                ],
+                            },
+                        ),
+                    ),
+                    Suffix(
+                        SuffixStrategy {
+                            matcher: AhoCorasick(
+                                dfa::DFA(
+                                D 000000: \x00 => 0
+                                F 000001:
+                                 >000002: \x00 => 2
+                                  000003: \x00 => 0
+                                match kind: Standard
+                                prefilter: false
+                                state length: 4
+                                pattern length: 0
+                                shortest pattern length: 18446744073709551615
+                                longest pattern length: 0
+                                alphabet length: 1
+                                stride: 1
+                                byte classes: ByteClasses(0 => [0-255])
+                                memory usage: 16
+                                )
+                                ,
+                            ),
+                            map: [],
+                            longest: 0,
+                        },
+                    ),
+                    Prefix(
+                        PrefixStrategy {
+                            matcher: AhoCorasick(
+                                dfa::DFA(
+                                D 000000: \x00 => 0
+                                F 000001:
+                                 >000002: \x00 => 2
+                                  000003: \x00 => 0
+                                match kind: Standard
+                                prefilter: false
+                                state length: 4
+                                pattern length: 0
+                                shortest pattern length: 18446744073709551615
+                                longest pattern length: 0
+                                alphabet length: 1
+                                stride: 1
+                                byte classes: ByteClasses(0 => [0-255])
+                                memory usage: 16
+                                )
+                                ,
+                            ),
+                            map: [],
+                            longest: 0,
+                        },
+                    ),
+                    RequiredExtension(
+                        RequiredExtensionStrategy(
+                            {},
+                        ),
+                    ),
+                    Regex(
+                        RegexSetStrategy {
+                            matcher: Regex {
+                                imp: RegexI {
+                                    strat: Core {
+                                        info: RegexInfo(
+                                            RegexInfoI {
+                                                config: Config {
+                                                    match_kind: Some(
+                                                        All,
+                                                    ),
+                                                    utf8_empty: Some(
+                                                        false,
+                                                    ),
+                                                    autopre: None,
+                                                    pre: None,
+                                                    which_captures: None,
+                                                    nfa_size_limit: Some(
+                                                        Some(
+                                                            10485760,
+                                                        ),
+                                                    ),
+                                                    onepass_size_limit: None,
+                                                    hybrid_cache_capacity: Some(
+                                                        10485760,
+                                                    ),
+                                                    hybrid: None,
+                                                    dfa: None,
+                                                    dfa_size_limit: None,
+                                                    dfa_state_limit: None,
+                                                    onepass: None,
+                                                    backtrack: None,
+                                                    byte_classes: None,
+                                                    line_terminator: None,
+                                                },
+                                                props: [],
+                                                props_union: Properties(
+                                                    PropertiesI {
+                                                        minimum_len: None,
+                                                        maximum_len: None,
+                                                        look_set: ∅,
+                                                        look_set_prefix: ∅,
+                                                        look_set_suffix: ∅,
+                                                        look_set_prefix_any: ∅,
+                                                        look_set_suffix_any: ∅,
+                                                        utf8: true,
+                                                        explicit_captures_len: 0,
+                                                        static_explicit_captures_len: None,
+                                                        literal: false,
+                                                        alternation_literal: true,
+                                                    },
+                                                ),
+                                            },
+                                        ),
+                                        pre: None,
+                                        nfa: thompson::NFA(
+                                        ^000000: FAIL
+                                        
+                                        transition equivalence classes: ByteClasses(0 => [\x00-\xFF], 1 => [EOI])
+                                        )
+                                        ,
+                                        nfarev: Some(
+                                            thompson::NFA(
+                                            ^000000: FAIL
+                                            
+                                            transition equivalence classes: ByteClasses(0 => [\x00-\xFF], 1 => [EOI])
+                                            )
+                                            ,
+                                        ),
+                                        pikevm: PikeVM(
+                                            PikeVMEngine(
+                                                PikeVM {
+                                                    config: Config {
+                                                        match_kind: Some(
+                                                            All,
+                                                        ),
+                                                        pre: Some(
+                                                            None,
+                                                        ),
+                                                    },
+                                                    nfa: thompson::NFA(
+                                                    ^000000: FAIL
+                                                    
+                                                    transition equivalence classes: ByteClasses(0 => [\x00-\xFF], 1 => [EOI])
+                                                    )
+                                                    ,
+                                                },
+                                            ),
+                                        ),
+                                        backtrack: BoundedBacktracker(
+                                            None,
+                                        ),
+                                        onepass: OnePass(
+                                            None,
+                                        ),
+                                        hybrid: Hybrid(
+                                            Some(
+                                                HybridEngine(
+                                                    Regex {
+                                                        forward: DFA {
+                                                            config: Config {
+                                                                match_kind: Some(
+                                                                    All,
+                                                                ),
+                                                                pre: Some(
+                                                                    None,
+                                                                ),
+                                                                starts_for_each_pattern: Some(
+                                                                    true,
+                                                                ),
+                                                                byte_classes: Some(
+                                                                    true,
+                                                                ),
+                                                                unicode_word_boundary: Some(
+                                                                    true,
+                                                                ),
+                                                                quitset: None,
+                                                                specialize_start_states: Some(
+                                                                    false,
+                                                                ),
+                                                                cache_capacity: Some(
+                                                                    10485760,
+                                                                ),
+                                                                skip_cache_capacity_check: Some(
+                                                                    false,
+                                                                ),
+                                                                minimum_cache_clear_count: Some(
+                                                                    Some(
+                                                                        3,
+                                                                    ),
+                                                                ),
+                                                                minimum_bytes_per_state: Some(
+                                                                    Some(
+                                                                        10,
+                                                                    ),
+                                                                ),
+                                                            },
+                                                            nfa: thompson::NFA(
+                                                            ^000000: FAIL
+                                                            
+                                                            transition equivalence classes: ByteClasses(0 => [\x00-\xFF], 1 => [EOI])
+                                                            )
+                                                            ,
+                                                            stride2: 1,
+                                                            start_map: StartByteMap{\x00 => NonWordByte, \x01 => NonWordByte, \x02 => NonWordByte, \x03 => NonWordByte, \x04 => NonWordByte, \x05 => NonWordByte, \x06 => NonWordByte, \x07 => NonWordByte, \x08 => NonWordByte, \t => NonWordByte, \n => LineLF, \x0B => NonWordByte, \x0C => NonWordByte, \r => LineCR, \x0E => NonWordByte, \x0F => NonWordByte, \x10 => NonWordByte, \x11 => NonWordByte, \x12 => NonWordByte, \x13 => NonWordByte, \x14 => NonWordByte, \x15 => NonWordByte, \x16 => NonWordByte, \x17 => NonWordByte, \x18 => NonWordByte, \x19 => NonWordByte, \x1A => NonWordByte, \x1B => NonWordByte, \x1C => NonWordByte, \x1D => NonWordByte, \x1E => NonWordByte, \x1F => NonWordByte, ' ' => NonWordByte, ! => NonWordByte, \" => NonWordByte, # => NonWordByte, $ => NonWordByte, % => NonWordByte, & => NonWordByte, \' => NonWordByte, ( => NonWordByte, ) => NonWordByte, * => NonWordByte, + => NonWordByte, , => NonWordByte, - => NonWordByte, . => NonWordByte, / => NonWordByte, 0 => WordByte, 1 => WordByte, 2 => WordByte, 3 => WordByte, 4 => WordByte, 5 => WordByte, 6 => WordByte, 7 => WordByte, 8 => WordByte, 9 => WordByte, : => NonWordByte, ; => NonWordByte, < => NonWordByte, = => NonWordByte, > => NonWordByte, ? => NonWordByte, @ => NonWordByte, A => WordByte, B => WordByte, C => WordByte, D => WordByte, E => WordByte, F => WordByte, G => WordByte, H => WordByte, I => WordByte, J => WordByte, K => WordByte, L => WordByte, M => WordByte, N => WordByte, O => WordByte, P => WordByte, Q => WordByte, R => WordByte, S => WordByte, T => WordByte, U => WordByte, V => WordByte, W => WordByte, X => WordByte, Y => WordByte, Z => WordByte, [ => NonWordByte, \\ => NonWordByte, ] => NonWordByte, ^ => NonWordByte, _ => WordByte, ` => NonWordByte, a => WordByte, b => WordByte, c => WordByte, d => WordByte, e => WordByte, f => WordByte, g => WordByte, h => WordByte, i => WordByte, j => WordByte, k => WordByte, l => WordByte, m => WordByte, n => WordByte, o => WordByte, p => WordByte, q => WordByte, r => WordByte, s => WordByte, t => WordByte, u => WordByte, v => WordByte, w => WordByte, x => WordByte, y => WordByte, z => WordByte, { => NonWordByte, | => NonWordByte, } => NonWordByte, ~ => NonWordByte, \x7F => NonWordByte, \x80 => NonWordByte, \x81 => NonWordByte, \x82 => NonWordByte, \x83 => NonWordByte, \x84 => NonWordByte, \x85 => NonWordByte, \x86 => NonWordByte, \x87 => NonWordByte, \x88 => NonWordByte, \x89 => NonWordByte, \x8A => NonWordByte, \x8B => NonWordByte, \x8C => NonWordByte, \x8D => NonWordByte, \x8E => NonWordByte, \x8F => NonWordByte, \x90 => NonWordByte, \x91 => NonWordByte, \x92 => NonWordByte, \x93 => NonWordByte, \x94 => NonWordByte, \x95 => NonWordByte, \x96 => NonWordByte, \x97 => NonWordByte, \x98 => NonWordByte, \x99 => NonWordByte, \x9A => NonWordByte, \x9B => NonWordByte, \x9C => NonWordByte, \x9D => NonWordByte, \x9E => NonWordByte, \x9F => NonWordByte, \xA0 => NonWordByte, \xA1 => NonWordByte, \xA2 => NonWordByte, \xA3 => NonWordByte, \xA4 => NonWordByte, \xA5 => NonWordByte, \xA6 => NonWordByte, \xA7 => NonWordByte, \xA8 => NonWordByte, \xA9 => NonWordByte, \xAA => NonWordByte, \xAB => NonWordByte, \xAC => NonWordByte, \xAD => NonWordByte, \xAE => NonWordByte, \xAF => NonWordByte, \xB0 => NonWordByte, \xB1 => NonWordByte, \xB2 => NonWordByte, \xB3 => NonWordByte, \xB4 => NonWordByte, \xB5 => NonWordByte, \xB6 => NonWordByte, \xB7 => NonWordByte, \xB8 => NonWordByte, \xB9 => NonWordByte, \xBA => NonWordByte, \xBB => NonWordByte, \xBC => NonWordByte, \xBD => NonWordByte, \xBE => NonWordByte, \xBF => NonWordByte, \xC0 => NonWordByte, \xC1 => NonWordByte, \xC2 => NonWordByte, \xC3 => NonWordByte, \xC4 => NonWordByte, \xC5 => NonWordByte, \xC6 => NonWordByte, \xC7 => NonWordByte, \xC8 => NonWordByte, \xC9 => NonWordByte, \xCA => NonWordByte, \xCB => NonWordByte, \xCC => NonWordByte, \xCD => NonWordByte, \xCE => NonWordByte, \xCF => NonWordByte, \xD0 => NonWordByte, \xD1 => NonWordByte, \xD2 => NonWordByte, \xD3 => NonWordByte, \xD4 => NonWordByte, \xD5 => NonWordByte, \xD6 => NonWordByte, \xD7 => NonWordByte, \xD8 => NonWordByte, \xD9 => NonWordByte, \xDA => NonWordByte, \xDB => NonWordByte, \xDC => NonWordByte, \xDD => NonWordByte, \xDE => NonWordByte, \xDF => NonWordByte, \xE0 => NonWordByte, \xE1 => NonWordByte, \xE2 => NonWordByte, \xE3 => NonWordByte, \xE4 => NonWordByte, \xE5 => NonWordByte, \xE6 => NonWordByte, \xE7 => NonWordByte, \xE8 => NonWordByte, \xE9 => NonWordByte, \xEA => NonWordByte, \xEB => NonWordByte, \xEC => NonWordByte, \xED => NonWordByte, \xEE => NonWordByte, \xEF => NonWordByte, \xF0 => NonWordByte, \xF1 => NonWordByte, \xF2 => NonWordByte, \xF3 => NonWordByte, \xF4 => NonWordByte, \xF5 => NonWordByte, \xF6 => NonWordByte, \xF7 => NonWordByte, \xF8 => NonWordByte, \xF9 => NonWordByte, \xFA => NonWordByte, \xFB => NonWordByte, \xFC => NonWordByte, \xFD => NonWordByte, \xFE => NonWordByte, \xFF => NonWordByte},
+                                                            classes: ByteClasses(0 => [\x00-\xFF], 1 => [EOI]),
+                                                            quitset: ByteSet {
+                                                                bits: {},
+                                                            },
+                                                            cache_capacity: 10485760,
+                                                        },
+                                                        reverse: DFA {
+                                                            config: Config {
+                                                                match_kind: Some(
+                                                                    All,
+                                                                ),
+                                                                pre: Some(
+                                                                    None,
+                                                                ),
+                                                                starts_for_each_pattern: Some(
+                                                                    true,
+                                                                ),
+                                                                byte_classes: Some(
+                                                                    true,
+                                                                ),
+                                                                unicode_word_boundary: Some(
+                                                                    true,
+                                                                ),
+                                                                quitset: None,
+                                                                specialize_start_states: Some(
+                                                                    false,
+                                                                ),
+                                                                cache_capacity: Some(
+                                                                    10485760,
+                                                                ),
+                                                                skip_cache_capacity_check: Some(
+                                                                    false,
+                                                                ),
+                                                                minimum_cache_clear_count: Some(
+                                                                    Some(
+                                                                        3,
+                                                                    ),
+                                                                ),
+                                                                minimum_bytes_per_state: Some(
+                                                                    Some(
+                                                                        10,
+                                                                    ),
+                                                                ),
+                                                            },
+                                                            nfa: thompson::NFA(
+                                                            ^000000: FAIL
+                                                            
+                                                            transition equivalence classes: ByteClasses(0 => [\x00-\xFF], 1 => [EOI])
+                                                            )
+                                                            ,
+                                                            stride2: 1,
+                                                            start_map: StartByteMap{\x00 => NonWordByte, \x01 => NonWordByte, \x02 => NonWordByte, \x03 => NonWordByte, \x04 => NonWordByte, \x05 => NonWordByte, \x06 => NonWordByte, \x07 => NonWordByte, \x08 => NonWordByte, \t => NonWordByte, \n => LineLF, \x0B => NonWordByte, \x0C => NonWordByte, \r => LineCR, \x0E => NonWordByte, \x0F => NonWordByte, \x10 => NonWordByte, \x11 => NonWordByte, \x12 => NonWordByte, \x13 => NonWordByte, \x14 => NonWordByte, \x15 => NonWordByte, \x16 => NonWordByte, \x17 => NonWordByte, \x18 => NonWordByte, \x19 => NonWordByte, \x1A => NonWordByte, \x1B => NonWordByte, \x1C => NonWordByte, \x1D => NonWordByte, \x1E => NonWordByte, \x1F => NonWordByte, ' ' => NonWordByte, ! => NonWordByte, \" => NonWordByte, # => NonWordByte, $ => NonWordByte, % => NonWordByte, & => NonWordByte, \' => NonWordByte, ( => NonWordByte, ) => NonWordByte, * => NonWordByte, + => NonWordByte, , => NonWordByte, - => NonWordByte, . => NonWordByte, / => NonWordByte, 0 => WordByte, 1 => WordByte, 2 => WordByte, 3 => WordByte, 4 => WordByte, 5 => WordByte, 6 => WordByte, 7 => WordByte, 8 => WordByte, 9 => WordByte, : => NonWordByte, ; => NonWordByte, < => NonWordByte, = => NonWordByte, > => NonWordByte, ? => NonWordByte, @ => NonWordByte, A => WordByte, B => WordByte, C => WordByte, D => WordByte, E => WordByte, F => WordByte, G => WordByte, H => WordByte, I => WordByte, J => WordByte, K => WordByte, L => WordByte, M => WordByte, N => WordByte, O => WordByte, P => WordByte, Q => WordByte, R => WordByte, S => WordByte, T => WordByte, U => WordByte, V => WordByte, W => WordByte, X => WordByte, Y => WordByte, Z => WordByte, [ => NonWordByte, \\ => NonWordByte, ] => NonWordByte, ^ => NonWordByte, _ => WordByte, ` => NonWordByte, a => WordByte, b => WordByte, c => WordByte, d => WordByte, e => WordByte, f => WordByte, g => WordByte, h => WordByte, i => WordByte, j => WordByte, k => WordByte, l => WordByte, m => WordByte, n => WordByte, o => WordByte, p => WordByte, q => WordByte, r => WordByte, s => WordByte, t => WordByte, u => WordByte, v => WordByte, w => WordByte, x => WordByte, y => WordByte, z => WordByte, { => NonWordByte, | => NonWordByte, } => NonWordByte, ~ => NonWordByte, \x7F => NonWordByte, \x80 => NonWordByte, \x81 => NonWordByte, \x82 => NonWordByte, \x83 => NonWordByte, \x84 => NonWordByte, \x85 => NonWordByte, \x86 => NonWordByte, \x87 => NonWordByte, \x88 => NonWordByte, \x89 => NonWordByte, \x8A => NonWordByte, \x8B => NonWordByte, \x8C => NonWordByte, \x8D => NonWordByte, \x8E => NonWordByte, \x8F => NonWordByte, \x90 => NonWordByte, \x91 => NonWordByte, \x92 => NonWordByte, \x93 => NonWordByte, \x94 => NonWordByte, \x95 => NonWordByte, \x96 => NonWordByte, \x97 => NonWordByte, \x98 => NonWordByte, \x99 => NonWordByte, \x9A => NonWordByte, \x9B => NonWordByte, \x9C => NonWordByte, \x9D => NonWordByte, \x9E => NonWordByte, \x9F => NonWordByte, \xA0 => NonWordByte, \xA1 => NonWordByte, \xA2 => NonWordByte, \xA3 => NonWordByte, \xA4 => NonWordByte, \xA5 => NonWordByte, \xA6 => NonWordByte, \xA7 => NonWordByte, \xA8 => NonWordByte, \xA9 => NonWordByte, \xAA => NonWordByte, \xAB => NonWordByte, \xAC => NonWordByte, \xAD => NonWordByte, \xAE => NonWordByte, \xAF => NonWordByte, \xB0 => NonWordByte, \xB1 => NonWordByte, \xB2 => NonWordByte, \xB3 => NonWordByte, \xB4 => NonWordByte, \xB5 => NonWordByte, \xB6 => NonWordByte, \xB7 => NonWordByte, \xB8 => NonWordByte, \xB9 => NonWordByte, \xBA => NonWordByte, \xBB => NonWordByte, \xBC => NonWordByte, \xBD => NonWordByte, \xBE => NonWordByte, \xBF => NonWordByte, \xC0 => NonWordByte, \xC1 => NonWordByte, \xC2 => NonWordByte, \xC3 => NonWordByte, \xC4 => NonWordByte, \xC5 => NonWordByte, \xC6 => NonWordByte, \xC7 => NonWordByte, \xC8 => NonWordByte, \xC9 => NonWordByte, \xCA => NonWordByte, \xCB => NonWordByte, \xCC => NonWordByte, \xCD => NonWordByte, \xCE => NonWordByte, \xCF => NonWordByte, \xD0 => NonWordByte, \xD1 => NonWordByte, \xD2 => NonWordByte, \xD3 => NonWordByte, \xD4 => NonWordByte, \xD5 => NonWordByte, \xD6 => NonWordByte, \xD7 => NonWordByte, \xD8 => NonWordByte, \xD9 => NonWordByte, \xDA => NonWordByte, \xDB => NonWordByte, \xDC => NonWordByte, \xDD => NonWordByte, \xDE => NonWordByte, \xDF => NonWordByte, \xE0 => NonWordByte, \xE1 => NonWordByte, \xE2 => NonWordByte, \xE3 => NonWordByte, \xE4 => NonWordByte, \xE5 => NonWordByte, \xE6 => NonWordByte, \xE7 => NonWordByte, \xE8 => NonWordByte, \xE9 => NonWordByte, \xEA => NonWordByte, \xEB => NonWordByte, \xEC => NonWordByte, \xED => NonWordByte, \xEE => NonWordByte, \xEF => NonWordByte, \xF0 => NonWordByte, \xF1 => NonWordByte, \xF2 => NonWordByte, \xF3 => NonWordByte, \xF4 => NonWordByte, \xF5 => NonWordByte, \xF6 => NonWordByte, \xF7 => NonWordByte, \xF8 => NonWordByte, \xF9 => NonWordByte, \xFA => NonWordByte, \xFB => NonWordByte, \xFC => NonWordByte, \xFD => NonWordByte, \xFE => NonWordByte, \xFF => NonWordByte},
+                                                            classes: ByteClasses(0 => [\x00-\xFF], 1 => [EOI]),
+                                                            quitset: ByteSet {
+                                                                bits: {},
+                                                            },
+                                                            cache_capacity: 10485760,
+                                                        },
+                                                    },
+                                                ),
+                                            ),
+                                        ),
+                                        dfa: DFA(
+                                            None,
+                                        ),
+                                    },
+                                    info: RegexInfo(
+                                        RegexInfoI {
+                                            config: Config {
+                                                match_kind: Some(
+                                                    All,
+                                                ),
+                                                utf8_empty: Some(
+                                                    false,
+                                                ),
+                                                autopre: None,
+                                                pre: None,
+                                                which_captures: None,
+                                                nfa_size_limit: Some(
+                                                    Some(
+                                                        10485760,
+                                                    ),
+                                                ),
+                                                onepass_size_limit: None,
+                                                hybrid_cache_capacity: Some(
+                                                    10485760,
+                                                ),
+                                                hybrid: None,
+                                                dfa: None,
+                                                dfa_size_limit: None,
+                                                dfa_state_limit: None,
+                                                onepass: None,
+                                                backtrack: None,
+                                                byte_classes: None,
+                                                line_terminator: None,
+                                            },
+                                            props: [],
+                                            props_union: Properties(
+                                                PropertiesI {
+                                                    minimum_len: None,
+                                                    maximum_len: None,
+                                                    look_set: ∅,
+                                                    look_set_prefix: ∅,
+                                                    look_set_suffix: ∅,
+                                                    look_set_prefix_any: ∅,
+                                                    look_set_suffix_any: ∅,
+                                                    utf8: true,
+                                                    explicit_captures_len: 0,
+                                                    static_explicit_captures_len: None,
+                                                    literal: false,
+                                                    alternation_literal: true,
+                                                },
+                                            ),
+                                        },
+                                    ),
+                                },
+                                pool: Pool(
+                                    Pool {
+                                        stacks: [
+                                            CacheLine(
+                                                Mutex {
+                                                    data: [],
+                                                    poisoned: false,
+                                                    ..
+                                                },
+                                            ),
+                                            CacheLine(
+                                                Mutex {
+                                                    data: [],
+                                                    poisoned: false,
+                                                    ..
+                                                },
+                                            ),
+                                            CacheLine(
+                                                Mutex {
+                                                    data: [],
+                                                    poisoned: false,
+                                                    ..
+                                                },
+                                            ),
+                                            CacheLine(
+                                                Mutex {
+                                                    data: [],
+                                                    poisoned: false,
+                                                    ..
+                                                },
+                                            ),
+                                            CacheLine(
+                                                Mutex {
+                                                    data: [],
+                                                    poisoned: false,
+                                                    ..
+                                                },
+                                            ),
+                                            CacheLine(
+                                                Mutex {
+                                                    data: [],
+                                                    poisoned: false,
+                                                    ..
+                                                },
+                                            ),
+                                            CacheLine(
+                                                Mutex {
+                                                    data: [],
+                                                    poisoned: false,
+                                                    ..
+                                                },
+                                            ),
+                                            CacheLine(
+                                                Mutex {
+                                                    data: [],
+                                                    poisoned: false,
+                                                    ..
+                                                },
+                                            ),
+                                        ],
+                                        owner: 4,
+                                        owner_val: UnsafeCell { .. },
+                                    },
+                                ),
+                            },
+                            map: [],
+                            patset: Pool(
+                                Pool {
+                                    stacks: [
+                                        CacheLine(
+                                            Mutex {
+                                                data: [],
+                                                poisoned: false,
+                                                ..
+                                            },
+                                        ),
+                                        CacheLine(
+                                            Mutex {
+                                                data: [],
+                                                poisoned: false,
+                                                ..
+                                            },
+                                        ),
+                                        CacheLine(
+                                            Mutex {
+                                                data: [],
+                                                poisoned: false,
+                                                ..
+                                            },
+                                        ),
+                                        CacheLine(
+                                            Mutex {
+                                                data: [],
+                                                poisoned: false,
+                                                ..
+                                            },
+                                        ),
+                                        CacheLine(
+                                            Mutex {
+                                                data: [],
+                                                poisoned: false,
+                                                ..
+                                            },
+                                        ),
+                                        CacheLine(
+                                            Mutex {
+                                                data: [],
+                                                poisoned: false,
+                                                ..
+                                            },
+                                        ),
+                                        CacheLine(
+                                            Mutex {
+                                                data: [],
+                                                poisoned: false,
+                                                ..
+                                            },
+                                        ),
+                                        CacheLine(
+                                            Mutex {
+                                                data: [],
+                                                poisoned: false,
+                                                ..
+                                            },
+                                        ),
+                                    ],
+                                    owner: 0,
+                                    owner_val: UnsafeCell { .. },
+                                },
+                            ),
+                        },
+                    ),
+                ],
+            },
+            cache_key: 10174367008431549887,
+        },
+        extend_exclude: FilePatternSet {
+            set: GlobSet {
+                len: 0,
+                strats: [],
+            },
+            cache_key: 14492805990617963705,
+        },
+        force_exclude: false,
+        include: FilePatternSet {
+            set: GlobSet {
+                len: 3,
+                strats: [
+                    Extension(
+                        ExtensionStrategy(
+                            {
+                                [
+                                    46,
+                                    112,
+                                    121,
+                                    105,
+                                ]: [
+                                    1,
+                                ],
+                                [
+                                    46,
+                                    112,
+                                    121,
+                                ]: [
+                                    0,
+                                ],
+                            },
+                        ),
+                    ),
+                    BasenameLiteral(
+                        BasenameLiteralStrategy(
+                            {
+                                [
+                                    112,
+                                    121,
+                                    112,
+                                    114,
+                                    111,
+                                    106,
+                                    101,
+                                    99,
+                                    116,
+                                    46,
+                                    116,
+                                    111,
+                                    109,
+                                    108,
+                                ]: [
+                                    2,
+                                ],
+                            },
+                        ),
+                    ),
+                    Literal(
+                        LiteralStrategy(
+                            {},
+                        ),
+                    ),
+                    Suffix(
+                        SuffixStrategy {
+                            matcher: AhoCorasick(
+                                dfa::DFA(
+                                D 000000: \x00 => 0
+                                F 000001:
+                                 >000002: \x00 => 2
+                                  000003: \x00 => 0
+                                match kind: Standard
+                                prefilter: false
+                                state length: 4
+                                pattern length: 0
+                                shortest pattern length: 18446744073709551615
+                                longest pattern length: 0
+                                alphabet length: 1
+                                stride: 1
+                                byte classes: ByteClasses(0 => [0-255])
+                                memory usage: 16
+                                )
+                                ,
+                            ),
+                            map: [],
+                            longest: 0,
+                        },
+                    ),
+                    Prefix(
+                        PrefixStrategy {
+                            matcher: AhoCorasick(
+                                dfa::DFA(
+                                D 000000: \x00 => 0
+                                F 000001:
+                                 >000002: \x00 => 2
+                                  000003: \x00 => 0
+                                match kind: Standard
+                                prefilter: false
+                                state length: 4
+                                pattern length: 0
+                                shortest pattern length: 18446744073709551615
+                                longest pattern length: 0
+                                alphabet length: 1
+                                stride: 1
+                                byte classes: ByteClasses(0 => [0-255])
+                                memory usage: 16
+                                )
+                                ,
+                            ),
+                            map: [],
+                            longest: 0,
+                        },
+                    ),
+                    RequiredExtension(
+                        RequiredExtensionStrategy(
+                            {},
+                        ),
+                    ),
+                    Regex(
+                        RegexSetStrategy {
+                            matcher: Regex {
+                                imp: RegexI {
+                                    strat: Core {
+                                        info: RegexInfo(
+                                            RegexInfoI {
+                                                config: Config {
+                                                    match_kind: Some(
+                                                        All,
+                                                    ),
+                                                    utf8_empty: Some(
+                                                        false,
+                                                    ),
+                                                    autopre: None,
+                                                    pre: None,
+                                                    which_captures: None,
+                                                    nfa_size_limit: Some(
+                                                        Some(
+                                                            10485760,
+                                                        ),
+                                                    ),
+                                                    onepass_size_limit: None,
+                                                    hybrid_cache_capacity: Some(
+                                                        10485760,
+                                                    ),
+                                                    hybrid: None,
+                                                    dfa: None,
+                                                    dfa_size_limit: None,
+                                                    dfa_state_limit: None,
+                                                    onepass: None,
+                                                    backtrack: None,
+                                                    byte_classes: None,
+                                                    line_terminator: None,
+                                                },
+                                                props: [],
+                                                props_union: Properties(
+                                                    PropertiesI {
+                                                        minimum_len: None,
+                                                        maximum_len: None,
+                                                        look_set: ∅,
+                                                        look_set_prefix: ∅,
+                                                        look_set_suffix: ∅,
+                                                        look_set_prefix_any: ∅,
+                                                        look_set_suffix_any: ∅,
+                                                        utf8: true,
+                                                        explicit_captures_len: 0,
+                                                        static_explicit_captures_len: None,
+                                                        literal: false,
+                                                        alternation_literal: true,
+                                                    },
+                                                ),
+                                            },
+                                        ),
+                                        pre: None,
+                                        nfa: thompson::NFA(
+                                        ^000000: FAIL
+                                        
+                                        transition equivalence classes: ByteClasses(0 => [\x00-\xFF], 1 => [EOI])
+                                        )
+                                        ,
+                                        nfarev: Some(
+                                            thompson::NFA(
+                                            ^000000: FAIL
+                                            
+                                            transition equivalence classes: ByteClasses(0 => [\x00-\xFF], 1 => [EOI])
+                                            )
+                                            ,
+                                        ),
+                                        pikevm: PikeVM(
+                                            PikeVMEngine(
+                                                PikeVM {
+                                                    config: Config {
+                                                        match_kind: Some(
+                                                            All,
+                                                        ),
+                                                        pre: Some(
+                                                            None,
+                                                        ),
+                                                    },
+                                                    nfa: thompson::NFA(
+                                                    ^000000: FAIL
+                                                    
+                                                    transition equivalence classes: ByteClasses(0 => [\x00-\xFF], 1 => [EOI])
+                                                    )
+                                                    ,
+                                                },
+                                            ),
+                                        ),
+                                        backtrack: BoundedBacktracker(
+                                            None,
+                                        ),
+                                        onepass: OnePass(
+                                            None,
+                                        ),
+                                        hybrid: Hybrid(
+                                            Some(
+                                                HybridEngine(
+                                                    Regex {
+                                                        forward: DFA {
+                                                            config: Config {
+                                                                match_kind: Some(
+                                                                    All,
+                                                                ),
+                                                                pre: Some(
+                                                                    None,
+                                                                ),
+                                                                starts_for_each_pattern: Some(
+                                                                    true,
+                                                                ),
+                                                                byte_classes: Some(
+                                                                    true,
+                                                                ),
+                                                                unicode_word_boundary: Some(
+                                                                    true,
+                                                                ),
+                                                                quitset: None,
+                                                                specialize_start_states: Some(
+                                                                    false,
+                                                                ),
+                                                                cache_capacity: Some(
+                                                                    10485760,
+                                                                ),
+                                                                skip_cache_capacity_check: Some(
+                                                                    false,
+                                                                ),
+                                                                minimum_cache_clear_count: Some(
+                                                                    Some(
+                                                                        3,
+                                                                    ),
+                                                                ),
+                                                                minimum_bytes_per_state: Some(
+                                                                    Some(
+                                                                        10,
+                                                                    ),
+                                                                ),
+                                                            },
+                                                            nfa: thompson::NFA(
+                                                            ^000000: FAIL
+                                                            
+                                                            transition equivalence classes: ByteClasses(0 => [\x00-\xFF], 1 => [EOI])
+                                                            )
+                                                            ,
+                                                            stride2: 1,
+                                                            start_map: StartByteMap{\x00 => NonWordByte, \x01 => NonWordByte, \x02 => NonWordByte, \x03 => NonWordByte, \x04 => NonWordByte, \x05 => NonWordByte, \x06 => NonWordByte, \x07 => NonWordByte, \x08 => NonWordByte, \t => NonWordByte, \n => LineLF, \x0B => NonWordByte, \x0C => NonWordByte, \r => LineCR, \x0E => NonWordByte, \x0F => NonWordByte, \x10 => NonWordByte, \x11 => NonWordByte, \x12 => NonWordByte, \x13 => NonWordByte, \x14 => NonWordByte, \x15 => NonWordByte, \x16 => NonWordByte, \x17 => NonWordByte, \x18 => NonWordByte, \x19 => NonWordByte, \x1A => NonWordByte, \x1B => NonWordByte, \x1C => NonWordByte, \x1D => NonWordByte, \x1E => NonWordByte, \x1F => NonWordByte, ' ' => NonWordByte, ! => NonWordByte, \" => NonWordByte, # => NonWordByte, $ => NonWordByte, % => NonWordByte, & => NonWordByte, \' => NonWordByte, ( => NonWordByte, ) => NonWordByte, * => NonWordByte, + => NonWordByte, , => NonWordByte, - => NonWordByte, . => NonWordByte, / => NonWordByte, 0 => WordByte, 1 => WordByte, 2 => WordByte, 3 => WordByte, 4 => WordByte, 5 => WordByte, 6 => WordByte, 7 => WordByte, 8 => WordByte, 9 => WordByte, : => NonWordByte, ; => NonWordByte, < => NonWordByte, = => NonWordByte, > => NonWordByte, ? => NonWordByte, @ => NonWordByte, A => WordByte, B => WordByte, C => WordByte, D => WordByte, E => WordByte, F => WordByte, G => WordByte, H => WordByte, I => WordByte, J => WordByte, K => WordByte, L => WordByte, M => WordByte, N => WordByte, O => WordByte, P => WordByte, Q => WordByte, R => WordByte, S => WordByte, T => WordByte, U => WordByte, V => WordByte, W => WordByte, X => WordByte, Y => WordByte, Z => WordByte, [ => NonWordByte, \\ => NonWordByte, ] => NonWordByte, ^ => NonWordByte, _ => WordByte, ` => NonWordByte, a => WordByte, b => WordByte, c => WordByte, d => WordByte, e => WordByte, f => WordByte, g => WordByte, h => WordByte, i => WordByte, j => WordByte, k => WordByte, l => WordByte, m => WordByte, n => WordByte, o => WordByte, p => WordByte, q => WordByte, r => WordByte, s => WordByte, t => WordByte, u => WordByte, v => WordByte, w => WordByte, x => WordByte, y => WordByte, z => WordByte, { => NonWordByte, | => NonWordByte, } => NonWordByte, ~ => NonWordByte, \x7F => NonWordByte, \x80 => NonWordByte, \x81 => NonWordByte, \x82 => NonWordByte, \x83 => NonWordByte, \x84 => NonWordByte, \x85 => NonWordByte, \x86 => NonWordByte, \x87 => NonWordByte, \x88 => NonWordByte, \x89 => NonWordByte, \x8A => NonWordByte, \x8B => NonWordByte, \x8C => NonWordByte, \x8D => NonWordByte, \x8E => NonWordByte, \x8F => NonWordByte, \x90 => NonWordByte, \x91 => NonWordByte, \x92 => NonWordByte, \x93 => NonWordByte, \x94 => NonWordByte, \x95 => NonWordByte, \x96 => NonWordByte, \x97 => NonWordByte, \x98 => NonWordByte, \x99 => NonWordByte, \x9A => NonWordByte, \x9B => NonWordByte, \x9C => NonWordByte, \x9D => NonWordByte, \x9E => NonWordByte, \x9F => NonWordByte, \xA0 => NonWordByte, \xA1 => NonWordByte, \xA2 => NonWordByte, \xA3 => NonWordByte, \xA4 => NonWordByte, \xA5 => NonWordByte, \xA6 => NonWordByte, \xA7 => NonWordByte, \xA8 => NonWordByte, \xA9 => NonWordByte, \xAA => NonWordByte, \xAB => NonWordByte, \xAC => NonWordByte, \xAD => NonWordByte, \xAE => NonWordByte, \xAF => NonWordByte, \xB0 => NonWordByte, \xB1 => NonWordByte, \xB2 => NonWordByte, \xB3 => NonWordByte, \xB4 => NonWordByte, \xB5 => NonWordByte, \xB6 => NonWordByte, \xB7 => NonWordByte, \xB8 => NonWordByte, \xB9 => NonWordByte, \xBA => NonWordByte, \xBB => NonWordByte, \xBC => NonWordByte, \xBD => NonWordByte, \xBE => NonWordByte, \xBF => NonWordByte, \xC0 => NonWordByte, \xC1 => NonWordByte, \xC2 => NonWordByte, \xC3 => NonWordByte, \xC4 => NonWordByte, \xC5 => NonWordByte, \xC6 => NonWordByte, \xC7 => NonWordByte, \xC8 => NonWordByte, \xC9 => NonWordByte, \xCA => NonWordByte, \xCB => NonWordByte, \xCC => NonWordByte, \xCD => NonWordByte, \xCE => NonWordByte, \xCF => NonWordByte, \xD0 => NonWordByte, \xD1 => NonWordByte, \xD2 => NonWordByte, \xD3 => NonWordByte, \xD4 => NonWordByte, \xD5 => NonWordByte, \xD6 => NonWordByte, \xD7 => NonWordByte, \xD8 => NonWordByte, \xD9 => NonWordByte, \xDA => NonWordByte, \xDB => NonWordByte, \xDC => NonWordByte, \xDD => NonWordByte, \xDE => NonWordByte, \xDF => NonWordByte, \xE0 => NonWordByte, \xE1 => NonWordByte, \xE2 => NonWordByte, \xE3 => NonWordByte, \xE4 => NonWordByte, \xE5 => NonWordByte, \xE6 => NonWordByte, \xE7 => NonWordByte, \xE8 => NonWordByte, \xE9 => NonWordByte, \xEA => NonWordByte, \xEB => NonWordByte, \xEC => NonWordByte, \xED => NonWordByte, \xEE => NonWordByte, \xEF => NonWordByte, \xF0 => NonWordByte, \xF1 => NonWordByte, \xF2 => NonWordByte, \xF3 => NonWordByte, \xF4 => NonWordByte, \xF5 => NonWordByte, \xF6 => NonWordByte, \xF7 => NonWordByte, \xF8 => NonWordByte, \xF9 => NonWordByte, \xFA => NonWordByte, \xFB => NonWordByte, \xFC => NonWordByte, \xFD => NonWordByte, \xFE => NonWordByte, \xFF => NonWordByte},
+                                                            classes: ByteClasses(0 => [\x00-\xFF], 1 => [EOI]),
+                                                            quitset: ByteSet {
+                                                                bits: {},
+                                                            },
+                                                            cache_capacity: 10485760,
+                                                        },
+                                                        reverse: DFA {
+                                                            config: Config {
+                                                                match_kind: Some(
+                                                                    All,
+                                                                ),
+                                                                pre: Some(
+                                                                    None,
+                                                                ),
+                                                                starts_for_each_pattern: Some(
+                                                                    true,
+                                                                ),
+                                                                byte_classes: Some(
+                                                                    true,
+                                                                ),
+                                                                unicode_word_boundary: Some(
+                                                                    true,
+                                                                ),
+                                                                quitset: None,
+                                                                specialize_start_states: Some(
+                                                                    false,
+                                                                ),
+                                                                cache_capacity: Some(
+                                                                    10485760,
+                                                                ),
+                                                                skip_cache_capacity_check: Some(
+                                                                    false,
+                                                                ),
+                                                                minimum_cache_clear_count: Some(
+                                                                    Some(
+                                                                        3,
+                                                                    ),
+                                                                ),
+                                                                minimum_bytes_per_state: Some(
+                                                                    Some(
+                                                                        10,
+                                                                    ),
+                                                                ),
+                                                            },
+                                                            nfa: thompson::NFA(
+                                                            ^000000: FAIL
+                                                            
+                                                            transition equivalence classes: ByteClasses(0 => [\x00-\xFF], 1 => [EOI])
+                                                            )
+                                                            ,
+                                                            stride2: 1,
+                                                            start_map: StartByteMap{\x00 => NonWordByte, \x01 => NonWordByte, \x02 => NonWordByte, \x03 => NonWordByte, \x04 => NonWordByte, \x05 => NonWordByte, \x06 => NonWordByte, \x07 => NonWordByte, \x08 => NonWordByte, \t => NonWordByte, \n => LineLF, \x0B => NonWordByte, \x0C => NonWordByte, \r => LineCR, \x0E => NonWordByte, \x0F => NonWordByte, \x10 => NonWordByte, \x11 => NonWordByte, \x12 => NonWordByte, \x13 => NonWordByte, \x14 => NonWordByte, \x15 => NonWordByte, \x16 => NonWordByte, \x17 => NonWordByte, \x18 => NonWordByte, \x19 => NonWordByte, \x1A => NonWordByte, \x1B => NonWordByte, \x1C => NonWordByte, \x1D => NonWordByte, \x1E => NonWordByte, \x1F => NonWordByte, ' ' => NonWordByte, ! => NonWordByte, \" => NonWordByte, # => NonWordByte, $ => NonWordByte, % => NonWordByte, & => NonWordByte, \' => NonWordByte, ( => NonWordByte, ) => NonWordByte, * => NonWordByte, + => NonWordByte, , => NonWordByte, - => NonWordByte, . => NonWordByte, / => NonWordByte, 0 => WordByte, 1 => WordByte, 2 => WordByte, 3 => WordByte, 4 => WordByte, 5 => WordByte, 6 => WordByte, 7 => WordByte, 8 => WordByte, 9 => WordByte, : => NonWordByte, ; => NonWordByte, < => NonWordByte, = => NonWordByte, > => NonWordByte, ? => NonWordByte, @ => NonWordByte, A => WordByte, B => WordByte, C => WordByte, D => WordByte, E => WordByte, F => WordByte, G => WordByte, H => WordByte, I => WordByte, J => WordByte, K => WordByte, L => WordByte, M => WordByte, N => WordByte, O => WordByte, P => WordByte, Q => WordByte, R => WordByte, S => WordByte, T => WordByte, U => WordByte, V => WordByte, W => WordByte, X => WordByte, Y => WordByte, Z => WordByte, [ => NonWordByte, \\ => NonWordByte, ] => NonWordByte, ^ => NonWordByte, _ => WordByte, ` => NonWordByte, a => WordByte, b => WordByte, c => WordByte, d => WordByte, e => WordByte, f => WordByte, g => WordByte, h => WordByte, i => WordByte, j => WordByte, k => WordByte, l => WordByte, m => WordByte, n => WordByte, o => WordByte, p => WordByte, q => WordByte, r => WordByte, s => WordByte, t => WordByte, u => WordByte, v => WordByte, w => WordByte, x => WordByte, y => WordByte, z => WordByte, { => NonWordByte, | => NonWordByte, } => NonWordByte, ~ => NonWordByte, \x7F => NonWordByte, \x80 => NonWordByte, \x81 => NonWordByte, \x82 => NonWordByte, \x83 => NonWordByte, \x84 => NonWordByte, \x85 => NonWordByte, \x86 => NonWordByte, \x87 => NonWordByte, \x88 => NonWordByte, \x89 => NonWordByte, \x8A => NonWordByte, \x8B => NonWordByte, \x8C => NonWordByte, \x8D => NonWordByte, \x8E => NonWordByte, \x8F => NonWordByte, \x90 => NonWordByte, \x91 => NonWordByte, \x92 => NonWordByte, \x93 => NonWordByte, \x94 => NonWordByte, \x95 => NonWordByte, \x96 => NonWordByte, \x97 => NonWordByte, \x98 => NonWordByte, \x99 => NonWordByte, \x9A => NonWordByte, \x9B => NonWordByte, \x9C => NonWordByte, \x9D => NonWordByte, \x9E => NonWordByte, \x9F => NonWordByte, \xA0 => NonWordByte, \xA1 => NonWordByte, \xA2 => NonWordByte, \xA3 => NonWordByte, \xA4 => NonWordByte, \xA5 => NonWordByte, \xA6 => NonWordByte, \xA7 => NonWordByte, \xA8 => NonWordByte, \xA9 => NonWordByte, \xAA => NonWordByte, \xAB => NonWordByte, \xAC => NonWordByte, \xAD => NonWordByte, \xAE => NonWordByte, \xAF => NonWordByte, \xB0 => NonWordByte, \xB1 => NonWordByte, \xB2 => NonWordByte, \xB3 => NonWordByte, \xB4 => NonWordByte, \xB5 => NonWordByte, \xB6 => NonWordByte, \xB7 => NonWordByte, \xB8 => NonWordByte, \xB9 => NonWordByte, \xBA => NonWordByte, \xBB => NonWordByte, \xBC => NonWordByte, \xBD => NonWordByte, \xBE => NonWordByte, \xBF => NonWordByte, \xC0 => NonWordByte, \xC1 => NonWordByte, \xC2 => NonWordByte, \xC3 => NonWordByte, \xC4 => NonWordByte, \xC5 => NonWordByte, \xC6 => NonWordByte, \xC7 => NonWordByte, \xC8 => NonWordByte, \xC9 => NonWordByte, \xCA => NonWordByte, \xCB => NonWordByte, \xCC => NonWordByte, \xCD => NonWordByte, \xCE => NonWordByte, \xCF => NonWordByte, \xD0 => NonWordByte, \xD1 => NonWordByte, \xD2 => NonWordByte, \xD3 => NonWordByte, \xD4 => NonWordByte, \xD5 => NonWordByte, \xD6 => NonWordByte, \xD7 => NonWordByte, \xD8 => NonWordByte, \xD9 => NonWordByte, \xDA => NonWordByte, \xDB => NonWordByte, \xDC => NonWordByte, \xDD => NonWordByte, \xDE => NonWordByte, \xDF => NonWordByte, \xE0 => NonWordByte, \xE1 => NonWordByte, \xE2 => NonWordByte, \xE3 => NonWordByte, \xE4 => NonWordByte, \xE5 => NonWordByte, \xE6 => NonWordByte, \xE7 => NonWordByte, \xE8 => NonWordByte, \xE9 => NonWordByte, \xEA => NonWordByte, \xEB => NonWordByte, \xEC => NonWordByte, \xED => NonWordByte, \xEE => NonWordByte, \xEF => NonWordByte, \xF0 => NonWordByte, \xF1 => NonWordByte, \xF2 => NonWordByte, \xF3 => NonWordByte, \xF4 => NonWordByte, \xF5 => NonWordByte, \xF6 => NonWordByte, \xF7 => NonWordByte, \xF8 => NonWordByte, \xF9 => NonWordByte, \xFA => NonWordByte, \xFB => NonWordByte, \xFC => NonWordByte, \xFD => NonWordByte, \xFE => NonWordByte, \xFF => NonWordByte},
+                                                            classes: ByteClasses(0 => [\x00-\xFF], 1 => [EOI]),
+                                                            quitset: ByteSet {
+                                                                bits: {},
+                                                            },
+                                                            cache_capacity: 10485760,
+                                                        },
+                                                    },
+                                                ),
+                                            ),
+                                        ),
+                                        dfa: DFA(
+                                            None,
+                                        ),
+                                    },
+                                    info: RegexInfo(
+                                        RegexInfoI {
+                                            config: Config {
+                                                match_kind: Some(
+                                                    All,
+                                                ),
+                                                utf8_empty: Some(
+                                                    false,
+                                                ),
+                                                autopre: None,
+                                                pre: None,
+                                                which_captures: None,
+                                                nfa_size_limit: Some(
+                                                    Some(
+                                                        10485760,
+                                                    ),
+                                                ),
+                                                onepass_size_limit: None,
+                                                hybrid_cache_capacity: Some(
+                                                    10485760,
+                                                ),
+                                                hybrid: None,
+                                                dfa: None,
+                                                dfa_size_limit: None,
+                                                dfa_state_limit: None,
+                                                onepass: None,
+                                                backtrack: None,
+                                                byte_classes: None,
+                                                line_terminator: None,
+                                            },
+                                            props: [],
+                                            props_union: Properties(
+                                                PropertiesI {
+                                                    minimum_len: None,
+                                                    maximum_len: None,
+                                                    look_set: ∅,
+                                                    look_set_prefix: ∅,
+                                                    look_set_suffix: ∅,
+                                                    look_set_prefix_any: ∅,
+                                                    look_set_suffix_any: ∅,
+                                                    utf8: true,
+                                                    explicit_captures_len: 0,
+                                                    static_explicit_captures_len: None,
+                                                    literal: false,
+                                                    alternation_literal: true,
+                                                },
+                                            ),
+                                        },
+                                    ),
+                                },
+                                pool: Pool(
+                                    Pool {
+                                        stacks: [
+                                            CacheLine(
+                                                Mutex {
+                                                    data: [],
+                                                    poisoned: false,
+                                                    ..
+                                                },
+                                            ),
+                                            CacheLine(
+                                                Mutex {
+                                                    data: [],
+                                                    poisoned: false,
+                                                    ..
+                                                },
+                                            ),
+                                            CacheLine(
+                                                Mutex {
+                                                    data: [],
+                                                    poisoned: false,
+                                                    ..
+                                                },
+                                            ),
+                                            CacheLine(
+                                                Mutex {
+                                                    data: [],
+                                                    poisoned: false,
+                                                    ..
+                                                },
+                                            ),
+                                            CacheLine(
+                                                Mutex {
+                                                    data: [],
+                                                    poisoned: false,
+                                                    ..
+                                                },
+                                            ),
+                                            CacheLine(
+                                                Mutex {
+                                                    data: [],
+                                                    poisoned: false,
+                                                    ..
+                                                },
+                                            ),
+                                            CacheLine(
+                                                Mutex {
+                                                    data: [],
+                                                    poisoned: false,
+                                                    ..
+                                                },
+                                            ),
+                                            CacheLine(
+                                                Mutex {
+                                                    data: [],
+                                                    poisoned: false,
+                                                    ..
+                                                },
+                                            ),
+                                        ],
+                                        owner: 4,
+                                        owner_val: UnsafeCell { .. },
+                                    },
+                                ),
+                            },
+                            map: [],
+                            patset: Pool(
+                                Pool {
+                                    stacks: [
+                                        CacheLine(
+                                            Mutex {
+                                                data: [],
+                                                poisoned: false,
+                                                ..
+                                            },
+                                        ),
+                                        CacheLine(
+                                            Mutex {
+                                                data: [],
+                                                poisoned: false,
+                                                ..
+                                            },
+                                        ),
+                                        CacheLine(
+                                            Mutex {
+                                                data: [],
+                                                poisoned: false,
+                                                ..
+                                            },
+                                        ),
+                                        CacheLine(
+                                            Mutex {
+                                                data: [],
+                                                poisoned: false,
+                                                ..
+                                            },
+                                        ),
+                                        CacheLine(
+                                            Mutex {
+                                                data: [],
+                                                poisoned: false,
+                                                ..
+                                            },
+                                        ),
+                                        CacheLine(
+                                            Mutex {
+                                                data: [],
+                                                poisoned: false,
+                                                ..
+                                            },
+                                        ),
+                                        CacheLine(
+                                            Mutex {
+                                                data: [],
+                                                poisoned: false,
+                                                ..
+                                            },
+                                        ),
+                                        CacheLine(
+                                            Mutex {
+                                                data: [],
+                                                poisoned: false,
+                                                ..
+                                            },
+                                        ),
+                                    ],
+                                    owner: 0,
+                                    owner_val: UnsafeCell { .. },
+                                },
+                            ),
+                        },
+                    ),
+                ],
+            },
+            cache_key: 787281028166742793,
+        },
+        extend_include: FilePatternSet {
+            set: GlobSet {
+                len: 0,
+                strats: [],
+            },
+            cache_key: 14492805990617963705,
+        },
+        respect_gitignore: true,
+        project_root: "C:\\Users\\alber\\Documents\\dtu_mlops\\mlops-tinystories",
+    },
+    linter: LinterSettings {
+        exclude: FilePatternSet {
+            set: GlobSet {
+                len: 0,
+                strats: [],
+            },
+            cache_key: 14492805990617963705,
+        },
+        project_root: "C:\\Users\\alber\\Documents\\dtu_mlops\\mlops-tinystories",
+        rules: RuleTable {
+            enabled: {
+                UnaryPrefixIncrementDecrement,
+                AssignmentToOsEnviron,
+                UnreliableCallableCheck,
+                StripWithMultiCharacters,
+                MutableArgumentDefault,
+                UnusedLoopControlVariable,
+                FunctionCallInDefaultArgument,
+                GetAttrWithConstant,
+                SetAttrWithConstant,
+                AssertFalse,
+                JumpStatementInFinally,
+                RedundantTupleInExceptionHandler,
+                DuplicateHandlerException,
+                UselessComparison,
+                RaiseLiteral,
+                AssertRaisesException,
+                UselessExpression,
+                CachedInstanceMethod,
+                LoopVariableOverridesIterator,
+                FStringDocstring,
+                UselessContextlibSuppress,
+                FunctionUsesLoopVariable,
+                AbstractBaseClassWithoutAbstractMethod,
+                DuplicateTryBlockException,
+                StarArgUnpackingAfterKeywordArg,
+                EmptyMethodWithoutAbstractDecorator,
+                NoExplicitStacklevel,
+                ExceptWithEmptyTuple,
+                ExceptWithNonExceptionClasses,
+                ReuseOfGroupbyGenerator,
+                UnintentionalTypeAnnotation,
+                DuplicateValue,
+                ReSubPositionalArgs,
+                RaiseWithoutFromInsideExcept,
+                ZipWithoutExplicitStrict,
+                UnsortedImports,
+                MissingRequiredImport,
+                InvalidClassName,
+                InvalidFunctionName,
+                InvalidArgumentName,
+                InvalidFirstArgumentNameForClassMethod,
+                InvalidFirstArgumentNameForMethod,
+                NonLowercaseVariableInFunction,
+                DunderFunctionName,
+                ConstantImportedAsNonConstant,
+                LowercaseImportedAsNonLowercase,
+                CamelcaseImportedAsLowercase,
+                CamelcaseImportedAsConstant,
+                MixedCaseVariableInClassScope,
+                MixedCaseVariableInGlobalScope,
+                CamelcaseImportedAsAcronym,
+                ErrorSuffixOnExceptionName,
+                InvalidModuleName,
+                MixedSpacesAndTabs,
+                MultipleImportsOnOneLine,
+                ModuleImportNotAtTopOfFile,
+                LineTooLong,
+                MultipleStatementsOnOneLineColon,
+                MultipleStatementsOnOneLineSemicolon,
+                UselessSemicolon,
+                NoneComparison,
+                TrueFalseComparison,
+                NotInTest,
+                NotIsTest,
+                TypeComparison,
+                BareExcept,
+                LambdaAssignment,
+                AmbiguousVariableName,
+                AmbiguousClassName,
+                AmbiguousFunctionName,
+                IOError,
+                SyntaxError,
+                TabIndentation,
+                TrailingWhitespace,
+                MissingNewlineAtEndOfFile,
+                BlankLineWithWhitespace,
+                DocLineTooLong,
+                InvalidEscapeSequence,
+                UnusedImport,
+                ImportShadowedByLoopVar,
+                UndefinedLocalWithImportStar,
+                LateFutureImport,
+                UndefinedLocalWithImportStarUsage,
+                UndefinedLocalWithNestedImportStarUsage,
+                FutureFeatureNotDefined,
+                PercentFormatInvalidFormat,
+                PercentFormatExpectedMapping,
+                PercentFormatExpectedSequence,
+                PercentFormatExtraNamedArguments,
+                PercentFormatMissingArgument,
+                PercentFormatMixedPositionalAndNamed,
+                PercentFormatPositionalCountMismatch,
+                PercentFormatStarRequiresSequence,
+                PercentFormatUnsupportedFormatCharacter,
+                StringDotFormatInvalidFormat,
+                StringDotFormatExtraNamedArguments,
+                StringDotFormatExtraPositionalArguments,
+                StringDotFormatMissingArguments,
+                StringDotFormatMixingAutomatic,
+                FStringMissingPlaceholders,
+                MultiValueRepeatedKeyLiteral,
+                MultiValueRepeatedKeyVariable,
+                ExpressionsInStarAssignment,
+                MultipleStarredExpressions,
+                AssertTuple,
+                IsLiteral,
+                InvalidPrintSyntax,
+                IfTuple,
+                BreakOutsideLoop,
+                ContinueOutsideLoop,
+                YieldOutsideFunction,
+                ReturnOutsideFunction,
+                DefaultExceptNotLast,
+                ForwardAnnotationSyntaxError,
+                RedefinedWhileUnused,
+                UndefinedName,
+                UndefinedExport,
+                UndefinedLocal,
+                UnusedVariable,
+                UnusedAnnotation,
+                RaiseNotImplemented,
+            },
+            should_fix: {
+                UnaryPrefixIncrementDecrement,
+                AssignmentToOsEnviron,
+                UnreliableCallableCheck,
+                StripWithMultiCharacters,
+                MutableArgumentDefault,
+                UnusedLoopControlVariable,
+                FunctionCallInDefaultArgument,
+                GetAttrWithConstant,
+                SetAttrWithConstant,
+                AssertFalse,
+                JumpStatementInFinally,
+                RedundantTupleInExceptionHandler,
+                DuplicateHandlerException,
+                UselessComparison,
+                RaiseLiteral,
+                AssertRaisesException,
+                UselessExpression,
+                CachedInstanceMethod,
+                LoopVariableOverridesIterator,
+                FStringDocstring,
+                UselessContextlibSuppress,
+                FunctionUsesLoopVariable,
+                AbstractBaseClassWithoutAbstractMethod,
+                DuplicateTryBlockException,
+                StarArgUnpackingAfterKeywordArg,
+                EmptyMethodWithoutAbstractDecorator,
+                NoExplicitStacklevel,
+                ExceptWithEmptyTuple,
+                ExceptWithNonExceptionClasses,
+                ReuseOfGroupbyGenerator,
+                UnintentionalTypeAnnotation,
+                DuplicateValue,
+                ReSubPositionalArgs,
+                RaiseWithoutFromInsideExcept,
+                ZipWithoutExplicitStrict,
+                UnsortedImports,
+                MissingRequiredImport,
+                InvalidClassName,
+                InvalidFunctionName,
+                InvalidArgumentName,
+                InvalidFirstArgumentNameForClassMethod,
+                InvalidFirstArgumentNameForMethod,
+                NonLowercaseVariableInFunction,
+                DunderFunctionName,
+                ConstantImportedAsNonConstant,
+                LowercaseImportedAsNonLowercase,
+                CamelcaseImportedAsLowercase,
+                CamelcaseImportedAsConstant,
+                MixedCaseVariableInClassScope,
+                MixedCaseVariableInGlobalScope,
+                CamelcaseImportedAsAcronym,
+                ErrorSuffixOnExceptionName,
+                InvalidModuleName,
+                MixedSpacesAndTabs,
+                MultipleImportsOnOneLine,
+                ModuleImportNotAtTopOfFile,
+                LineTooLong,
+                MultipleStatementsOnOneLineColon,
+                MultipleStatementsOnOneLineSemicolon,
+                UselessSemicolon,
+                NoneComparison,
+                TrueFalseComparison,
+                NotInTest,
+                NotIsTest,
+                TypeComparison,
+                BareExcept,
+                LambdaAssignment,
+                AmbiguousVariableName,
+                AmbiguousClassName,
+                AmbiguousFunctionName,
+                IOError,
+                SyntaxError,
+                TabIndentation,
+                TrailingWhitespace,
+                MissingNewlineAtEndOfFile,
+                BlankLineWithWhitespace,
+                DocLineTooLong,
+                InvalidEscapeSequence,
+                UnusedImport,
+                ImportShadowedByLoopVar,
+                UndefinedLocalWithImportStar,
+                LateFutureImport,
+                UndefinedLocalWithImportStarUsage,
+                UndefinedLocalWithNestedImportStarUsage,
+                FutureFeatureNotDefined,
+                PercentFormatInvalidFormat,
+                PercentFormatExpectedMapping,
+                PercentFormatExpectedSequence,
+                PercentFormatExtraNamedArguments,
+                PercentFormatMissingArgument,
+                PercentFormatMixedPositionalAndNamed,
+                PercentFormatPositionalCountMismatch,
+                PercentFormatStarRequiresSequence,
+                PercentFormatUnsupportedFormatCharacter,
+                StringDotFormatInvalidFormat,
+                StringDotFormatExtraNamedArguments,
+                StringDotFormatExtraPositionalArguments,
+                StringDotFormatMissingArguments,
+                StringDotFormatMixingAutomatic,
+                FStringMissingPlaceholders,
+                MultiValueRepeatedKeyLiteral,
+                MultiValueRepeatedKeyVariable,
+                ExpressionsInStarAssignment,
+                MultipleStarredExpressions,
+                AssertTuple,
+                IsLiteral,
+                InvalidPrintSyntax,
+                IfTuple,
+                BreakOutsideLoop,
+                ContinueOutsideLoop,
+                YieldOutsideFunction,
+                ReturnOutsideFunction,
+                DefaultExceptNotLast,
+                ForwardAnnotationSyntaxError,
+                RedefinedWhileUnused,
+                UndefinedName,
+                UndefinedExport,
+                UndefinedLocal,
+                UnusedVariable,
+                UnusedAnnotation,
+                RaiseNotImplemented,
+            },
+        },
+        per_file_ignores: [],
+        fix_safety: FixSafetyTable {
+            forced_safe: {},
+            forced_unsafe: {},
+        },
+        target_version: Py311,
+        preview: Disabled,
+        explicit_preview_rules: false,
+        extension: ExtensionMapping {
+            mapping: {},
+        },
+        allowed_confusables: {},
+        builtins: [],
+        dummy_variable_rgx: Regex(
+            "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$",
+        ),
+        external: [],
+        ignore_init_module_imports: false,
+        logger_objects: [],
+        namespace_packages: [],
+        src: [
+            "C:\\Users\\alber\\Documents\\dtu_mlops\\mlops-tinystories",
+        ],
+        tab_size: IndentWidth(
+            4,
+        ),
+        line_length: LineLength(
+            120,
+        ),
+        task_tags: [
+            "TODO",
+            "FIXME",
+            "XXX",
+        ],
+        typing_modules: [],
+        flake8_annotations: Settings {
+            mypy_init_return: false,
+            suppress_dummy_args: false,
+            suppress_none_returning: false,
+            allow_star_arg_any: false,
+            ignore_fully_untyped: false,
+        },
+        flake8_bandit: Settings {
+            hardcoded_tmp_directory: [
+                "/tmp",
+                "/var/tmp",
+                "/dev/shm",
+            ],
+            check_typed_exception: false,
+        },
+        flake8_bugbear: Settings {
+            extend_immutable_calls: [],
+        },
+        flake8_builtins: Settings {
+            builtins_ignorelist: [],
+        },
+        flake8_comprehensions: Settings {
+            allow_dict_calls_with_keyword_arguments: false,
+        },
+        flake8_copyright: Settings {
+            notice_rgx: Regex(
+                "(?i)Copyright\\s+(\\(C\\)\\s+)?\\d{4}(-\\d{4})*",
+            ),
+            author: None,
+            min_file_size: 0,
+        },
+        flake8_errmsg: Settings {
+            max_string_length: 0,
+        },
+        flake8_gettext: Settings {
+            functions_names: [
+                "_",
+                "gettext",
+                "ngettext",
+            ],
+        },
+        flake8_implicit_str_concat: Settings {
+            allow_multiline: true,
+        },
+        flake8_import_conventions: Settings {
+            aliases: {
+                "matplotlib": "mpl",
+                "matplotlib.pyplot": "plt",
+                "pandas": "pd",
+                "seaborn": "sns",
+                "tensorflow": "tf",
+                "networkx": "nx",
+                "plotly.express": "px",
+                "polars": "pl",
+                "numpy": "np",
+                "panel": "pn",
+                "pyarrow": "pa",
+                "altair": "alt",
+                "tkinter": "tk",
+                "holoviews": "hv",
+            },
+            banned_aliases: {},
+            banned_from: {},
+        },
+        flake8_pytest_style: Settings {
+            fixture_parentheses: true,
+            parametrize_names_type: Tuple,
+            parametrize_values_type: List,
+            parametrize_values_row_type: Tuple,
+            raises_require_match_for: [
+                Pattern {
+                    original: "BaseException",
+                    tokens: [
+                        Char(
+                            'B',
+                        ),
+                        Char(
+                            'a',
+                        ),
+                        Char(
+                            's',
+                        ),
+                        Char(
+                            'e',
+                        ),
+                        Char(
+                            'E',
+                        ),
+                        Char(
+                            'x',
+                        ),
+                        Char(
+                            'c',
+                        ),
+                        Char(
+                            'e',
+                        ),
+                        Char(
+                            'p',
+                        ),
+                        Char(
+                            't',
+                        ),
+                        Char(
+                            'i',
+                        ),
+                        Char(
+                            'o',
+                        ),
+                        Char(
+                            'n',
+                        ),
+                    ],
+                    is_recursive: false,
+                },
+                Pattern {
+                    original: "Exception",
+                    tokens: [
+                        Char(
+                            'E',
+                        ),
+                        Char(
+                            'x',
+                        ),
+                        Char(
+                            'c',
+                        ),
+                        Char(
+                            'e',
+                        ),
+                        Char(
+                            'p',
+                        ),
+                        Char(
+                            't',
+                        ),
+                        Char(
+                            'i',
+                        ),
+                        Char(
+                            'o',
+                        ),
+                        Char(
+                            'n',
+                        ),
+                    ],
+                    is_recursive: false,
+                },
+                Pattern {
+                    original: "ValueError",
+                    tokens: [
+                        Char(
+                            'V',
+                        ),
+                        Char(
+                            'a',
+                        ),
+                        Char(
+                            'l',
+                        ),
+                        Char(
+                            'u',
+                        ),
+                        Char(
+                            'e',
+                        ),
+                        Char(
+                            'E',
+                        ),
+                        Char(
+                            'r',
+                        ),
+                        Char(
+                            'r',
+                        ),
+                        Char(
+                            'o',
+                        ),
+                        Char(
+                            'r',
+                        ),
+                    ],
+                    is_recursive: false,
+                },
+                Pattern {
+                    original: "OSError",
+                    tokens: [
+                        Char(
+                            'O',
+                        ),
+                        Char(
+                            'S',
+                        ),
+                        Char(
+                            'E',
+                        ),
+                        Char(
+                            'r',
+                        ),
+                        Char(
+                            'r',
+                        ),
+                        Char(
+                            'o',
+                        ),
+                        Char(
+                            'r',
+                        ),
+                    ],
+                    is_recursive: false,
+                },
+                Pattern {
+                    original: "IOError",
+                    tokens: [
+                        Char(
+                            'I',
+                        ),
+                        Char(
+                            'O',
+                        ),
+                        Char(
+                            'E',
+                        ),
+                        Char(
+                            'r',
+                        ),
+                        Char(
+                            'r',
+                        ),
+                        Char(
+                            'o',
+                        ),
+                        Char(
+                            'r',
+                        ),
+                    ],
+                    is_recursive: false,
+                },
+                Pattern {
+                    original: "EnvironmentError",
+                    tokens: [
+                        Char(
+                            'E',
+                        ),
+                        Char(
+                            'n',
+                        ),
+                        Char(
+                            'v',
+                        ),
+                        Char(
+                            'i',
+                        ),
+                        Char(
+                            'r',
+                        ),
+                        Char(
+                            'o',
+                        ),
+                        Char(
+                            'n',
+                        ),
+                        Char(
+                            'm',
+                        ),
+                        Char(
+                            'e',
+                        ),
+                        Char(
+                            'n',
+                        ),
+                        Char(
+                            't',
+                        ),
+                        Char(
+                            'E',
+                        ),
+                        Char(
+                            'r',
+                        ),
+                        Char(
+                            'r',
+                        ),
+                        Char(
+                            'o',
+                        ),
+                        Char(
+                            'r',
+                        ),
+                    ],
+                    is_recursive: false,
+                },
+                Pattern {
+                    original: "socket.error",
+                    tokens: [
+                        Char(
+                            's',
+                        ),
+                        Char(
+                            'o',
+                        ),
+                        Char(
+                            'c',
+                        ),
+                        Char(
+                            'k',
+                        ),
+                        Char(
+                            'e',
+                        ),
+                        Char(
+                            't',
+                        ),
+                        Char(
+                            '.',
+                        ),
+                        Char(
+                            'e',
+                        ),
+                        Char(
+                            'r',
+                        ),
+                        Char(
+                            'r',
+                        ),
+                        Char(
+                            'o',
+                        ),
+                        Char(
+                            'r',
+                        ),
+                    ],
+                    is_recursive: false,
+                },
+            ],
+            raises_extend_require_match_for: [],
+            mark_parentheses: true,
+        },
+        flake8_quotes: Settings {
+            inline_quotes: Double,
+            multiline_quotes: Double,
+            docstring_quotes: Double,
+            avoid_escape: true,
+        },
+        flake8_self: Settings {
+            ignore_names: [
+                "_make",
+                "_asdict",
+                "_replace",
+                "_fields",
+                "_field_defaults",
+                "_name_",
+                "_value_",
+            ],
+        },
+        flake8_tidy_imports: Settings {
+            ban_relative_imports: Parents,
+            banned_api: {},
+            banned_module_level_imports: [],
+        },
+        flake8_type_checking: Settings {
+            strict: false,
+            exempt_modules: [
+                "typing",
+                "typing_extensions",
+            ],
+            runtime_required_base_classes: [],
+            runtime_required_decorators: [],
+            quote_annotations: false,
+        },
+        flake8_unused_arguments: Settings {
+            ignore_variadic_names: false,
+        },
+        isort: Settings {
+            required_imports: {},
+            combine_as_imports: false,
+            force_single_line: false,
+            force_sort_within_sections: false,
+            case_sensitive: false,
+            force_wrap_aliases: false,
+            force_to_top: {},
+            known_modules: KnownModules {
+                known: [
+                    (
+                        Pattern {
+                            original: "device",
+                            tokens: [
+                                Char(
+                                    'd',
+                                ),
+                                Char(
+                                    'e',
+                                ),
+                                Char(
+                                    'v',
+                                ),
+                                Char(
+                                    'i',
+                                ),
+                                Char(
+                                    'c',
+                                ),
+                                Char(
+                                    'e',
+                                ),
+                            ],
+                            is_recursive: false,
+                        },
+                        Known(
+                            FirstParty,
+                        ),
+                    ),
+                ],
+                has_submodules: false,
+            },
+            detect_same_package: true,
+            order_by_type: true,
+            relative_imports_order: FurthestToClosest,
+            single_line_exclusions: {},
+            split_on_trailing_comma: true,
+            classes: {},
+            constants: {},
+            variables: {},
+            no_lines_before: {},
+            lines_after_imports: -1,
+            lines_between_types: 0,
+            forced_separate: [],
+            section_order: [
+                Known(
+                    Future,
+                ),
+                Known(
+                    StandardLibrary,
+                ),
+                Known(
+                    ThirdParty,
+                ),
+                Known(
+                    FirstParty,
+                ),
+                Known(
+                    LocalFolder,
+                ),
+            ],
+            no_sections: false,
+            from_first: false,
+            length_sort: false,
+            length_sort_straight: false,
+        },
+        mccabe: Settings {
+            max_complexity: 10,
+        },
+        pep8_naming: Settings {
+            ignore_names: [
+                Pattern {
+                    original: "setUp",
+                    tokens: [
+                        Char(
+                            's',
+                        ),
+                        Char(
+                            'e',
+                        ),
+                        Char(
+                            't',
+                        ),
+                        Char(
+                            'U',
+                        ),
+                        Char(
+                            'p',
+                        ),
+                    ],
+                    is_recursive: false,
+                },
+                Pattern {
+                    original: "tearDown",
+                    tokens: [
+                        Char(
+                            't',
+                        ),
+                        Char(
+                            'e',
+                        ),
+                        Char(
+                            'a',
+                        ),
+                        Char(
+                            'r',
+                        ),
+                        Char(
+                            'D',
+                        ),
+                        Char(
+                            'o',
+                        ),
+                        Char(
+                            'w',
+                        ),
+                        Char(
+                            'n',
+                        ),
+                    ],
+                    is_recursive: false,
+                },
+                Pattern {
+                    original: "setUpClass",
+                    tokens: [
+                        Char(
+                            's',
+                        ),
+                        Char(
+                            'e',
+                        ),
+                        Char(
+                            't',
+                        ),
+                        Char(
+                            'U',
+                        ),
+                        Char(
+                            'p',
+                        ),
+                        Char(
+                            'C',
+                        ),
+                        Char(
+                            'l',
+                        ),
+                        Char(
+                            'a',
+                        ),
+                        Char(
+                            's',
+                        ),
+                        Char(
+                            's',
+                        ),
+                    ],
+                    is_recursive: false,
+                },
+                Pattern {
+                    original: "tearDownClass",
+                    tokens: [
+                        Char(
+                            't',
+                        ),
+                        Char(
+                            'e',
+                        ),
+                        Char(
+                            'a',
+                        ),
+                        Char(
+                            'r',
+                        ),
+                        Char(
+                            'D',
+                        ),
+                        Char(
+                            'o',
+                        ),
+                        Char(
+                            'w',
+                        ),
+                        Char(
+                            'n',
+                        ),
+                        Char(
+                            'C',
+                        ),
+                        Char(
+                            'l',
+                        ),
+                        Char(
+                            'a',
+                        ),
+                        Char(
+                            's',
+                        ),
+                        Char(
+                            's',
+                        ),
+                    ],
+                    is_recursive: false,
+                },
+                Pattern {
+                    original: "setUpModule",
+                    tokens: [
+                        Char(
+                            's',
+                        ),
+                        Char(
+                            'e',
+                        ),
+                        Char(
+                            't',
+                        ),
+                        Char(
+                            'U',
+                        ),
+                        Char(
+                            'p',
+                        ),
+                        Char(
+                            'M',
+                        ),
+                        Char(
+                            'o',
+                        ),
+                        Char(
+                            'd',
+                        ),
+                        Char(
+                            'u',
+                        ),
+                        Char(
+                            'l',
+                        ),
+                        Char(
+                            'e',
+                        ),
+                    ],
+                    is_recursive: false,
+                },
+                Pattern {
+                    original: "tearDownModule",
+                    tokens: [
+                        Char(
+                            't',
+                        ),
+                        Char(
+                            'e',
+                        ),
+                        Char(
+                            'a',
+                        ),
+                        Char(
+                            'r',
+                        ),
+                        Char(
+                            'D',
+                        ),
+                        Char(
+                            'o',
+                        ),
+                        Char(
+                            'w',
+                        ),
+                        Char(
+                            'n',
+                        ),
+                        Char(
+                            'M',
+                        ),
+                        Char(
+                            'o',
+                        ),
+                        Char(
+                            'd',
+                        ),
+                        Char(
+                            'u',
+                        ),
+                        Char(
+                            'l',
+                        ),
+                        Char(
+                            'e',
+                        ),
+                    ],
+                    is_recursive: false,
+                },
+                Pattern {
+                    original: "asyncSetUp",
+                    tokens: [
+                        Char(
+                            'a',
+                        ),
+                        Char(
+                            's',
+                        ),
+                        Char(
+                            'y',
+                        ),
+                        Char(
+                            'n',
+                        ),
+                        Char(
+                            'c',
+                        ),
+                        Char(
+                            'S',
+                        ),
+                        Char(
+                            'e',
+                        ),
+                        Char(
+                            't',
+                        ),
+                        Char(
+                            'U',
+                        ),
+                        Char(
+                            'p',
+                        ),
+                    ],
+                    is_recursive: false,
+                },
+                Pattern {
+                    original: "asyncTearDown",
+                    tokens: [
+                        Char(
+                            'a',
+                        ),
+                        Char(
+                            's',
+                        ),
+                        Char(
+                            'y',
+                        ),
+                        Char(
+                            'n',
+                        ),
+                        Char(
+                            'c',
+                        ),
+                        Char(
+                            'T',
+                        ),
+                        Char(
+                            'e',
+                        ),
+                        Char(
+                            'a',
+                        ),
+                        Char(
+                            'r',
+                        ),
+                        Char(
+                            'D',
+                        ),
+                        Char(
+                            'o',
+                        ),
+                        Char(
+                            'w',
+                        ),
+                        Char(
+                            'n',
+                        ),
+                    ],
+                    is_recursive: false,
+                },
+                Pattern {
+                    original: "setUpTestData",
+                    tokens: [
+                        Char(
+                            's',
+                        ),
+                        Char(
+                            'e',
+                        ),
+                        Char(
+                            't',
+                        ),
+                        Char(
+                            'U',
+                        ),
+                        Char(
+                            'p',
+                        ),
+                        Char(
+                            'T',
+                        ),
+                        Char(
+                            'e',
+                        ),
+                        Char(
+                            's',
+                        ),
+                        Char(
+                            't',
+                        ),
+                        Char(
+                            'D',
+                        ),
+                        Char(
+                            'a',
+                        ),
+                        Char(
+                            't',
+                        ),
+                        Char(
+                            'a',
+                        ),
+                    ],
+                    is_recursive: false,
+                },
+                Pattern {
+                    original: "failureException",
+                    tokens: [
+                        Char(
+                            'f',
+                        ),
+                        Char(
+                            'a',
+                        ),
+                        Char(
+                            'i',
+                        ),
+                        Char(
+                            'l',
+                        ),
+                        Char(
+                            'u',
+                        ),
+                        Char(
+                            'r',
+                        ),
+                        Char(
+                            'e',
+                        ),
+                        Char(
+                            'E',
+                        ),
+                        Char(
+                            'x',
+                        ),
+                        Char(
+                            'c',
+                        ),
+                        Char(
+                            'e',
+                        ),
+                        Char(
+                            'p',
+                        ),
+                        Char(
+                            't',
+                        ),
+                        Char(
+                            'i',
+                        ),
+                        Char(
+                            'o',
+                        ),
+                        Char(
+                            'n',
+                        ),
+                    ],
+                    is_recursive: false,
+                },
+                Pattern {
+                    original: "longMessage",
+                    tokens: [
+                        Char(
+                            'l',
+                        ),
+                        Char(
+                            'o',
+                        ),
+                        Char(
+                            'n',
+                        ),
+                        Char(
+                            'g',
+                        ),
+                        Char(
+                            'M',
+                        ),
+                        Char(
+                            'e',
+                        ),
+                        Char(
+                            's',
+                        ),
+                        Char(
+                            's',
+                        ),
+                        Char(
+                            'a',
+                        ),
+                        Char(
+                            'g',
+                        ),
+                        Char(
+                            'e',
+                        ),
+                    ],
+                    is_recursive: false,
+                },
+                Pattern {
+                    original: "maxDiff",
+                    tokens: [
+                        Char(
+                            'm',
+                        ),
+                        Char(
+                            'a',
+                        ),
+                        Char(
+                            'x',
+                        ),
+                        Char(
+                            'D',
+                        ),
+                        Char(
+                            'i',
+                        ),
+                        Char(
+                            'f',
+                        ),
+                        Char(
+                            'f',
+                        ),
+                    ],
+                    is_recursive: false,
+                },
+            ],
+            classmethod_decorators: [],
+            staticmethod_decorators: [],
+        },
+        pycodestyle: Settings {
+            max_line_length: LineLength(
+                120,
+            ),
+            max_doc_length: None,
+            ignore_overlong_task_comments: false,
+        },
+        pydocstyle: Settings {
+            convention: None,
+            ignore_decorators: {},
+            property_decorators: {},
+        },
+        pyflakes: Settings {
+            extend_generics: [],
+        },
+        pylint: Settings {
+            allow_magic_value_types: [
+                Str,
+                Bytes,
+            ],
+            allow_dunder_method_names: {},
+            max_args: 5,
+            max_positional_args: 5,
+            max_returns: 6,
+            max_bool_expr: 5,
+            max_branches: 12,
+            max_statements: 50,
+            max_public_methods: 20,
+            max_locals: 15,
+        },
+        pyupgrade: Settings {
+            keep_runtime_typing: false,
+        },
+    },
+    formatter: FormatterSettings {
+        exclude: FilePatternSet {
+            set: GlobSet {
+                len: 0,
+                strats: [],
+            },
+            cache_key: 14492805990617963705,
+        },
+        preview: Disabled,
+        target_version: Py311,
+        line_width: LineWidth(
+            120,
+        ),
+        indent_style: Space,
+        indent_width: IndentWidth(
+            4,
+        ),
+        quote_style: Double,
+        magic_trailing_comma: Respect,
+        line_ending: Auto,
+        docstring_code_format: Disabled,
+        docstring_code_line_width: "dynamic",
+    },
+}
