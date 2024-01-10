@@ -17,7 +17,7 @@ MODELS_DIR = "models"
 
 
 @dataclass
-class TinyStoriesConfig:
+class TinyStoriesModelConfig:
     """TinyStories model configuration.
 
     Args:
@@ -52,7 +52,7 @@ class TinyStoriesModel(LightningModule):
         self._model = model
 
     @staticmethod
-    def initialize(config: TinyStoriesConfig, device: torch.device) -> "TinyStoriesModel":
+    def initialize(config: TinyStoriesModelConfig, device: torch.device) -> "TinyStoriesModel":
         """Initialize the model with the given configuration."""
         model_config = GPTNeoConfig(
             num_layers=config.num_layers,

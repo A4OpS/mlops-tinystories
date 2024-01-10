@@ -2,16 +2,17 @@ from pytorch_lightning import Trainer
 from pytorch_lightning.callbacks import ModelCheckpoint
 from pytorch_lightning.loggers import WandbLogger
 
-from data import TinyStories
+from data import TinyStories, TinyStoriesConfig
 from device import get_device
-from models import TinyStoriesConfig, TinyStoriesModel
+from models import TinyStoriesModel, TinyStoriesModelConfig
 
 if __name__ == "__main__":
     device = get_device()
 
-    data = TinyStories("data", device.torch())
+    data_config = TinyStoriesConfig()
+    data = TinyStories("data", device.torch(), data_config)
 
-    config = TinyStoriesConfig(
+    config = TinyStoriesModelConfig(
         num_layers=2,
         intermediate_size=512,
         hidden_size=512,
