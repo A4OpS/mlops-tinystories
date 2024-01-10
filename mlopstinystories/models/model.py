@@ -38,7 +38,6 @@ class TinyStoriesConfig:
 
 
 class TinyStoriesModel(LightningModule):
-    _init_allowed: bool
     _model: GPTNeoForCausalLM
 
     """TinyStories transformer language model.
@@ -48,23 +47,9 @@ class TinyStoriesModel(LightningModule):
 
     """
 
-    def __init__(self) -> None:
-        if not hasattr(self, "_init_allowed") or not self._init_allowed:
-            raise NotImplementedError(
-                "Direct instantiation of TinyStoriesModel is not allowed, \
-                    please use one of the provided static methods."
-            )
+    def __init__(self, model: GPTNeoForCausalLM) -> None:
         super().__init__()
-
-    @classmethod
-    def _new(cls, model: GPTNeoForCausalLM) -> "TinyStoriesModel":
-        """Create a new model from the given configuration and model."""
-
-        result = cls.__new__(cls)
-        result._init_allowed = True
-        result.__init__()
-        result._model = model
-        return result
+        self._model = model
 
     @staticmethod
     def initialize(config: TinyStoriesConfig, device: torch.device) -> "TinyStoriesModel":
@@ -80,7 +65,7 @@ class TinyStoriesModel(LightningModule):
         )
         model = GPTNeoForCausalLM(model_config)
         model = model.to(device=device)  # type: ignore
-        return TinyStoriesModel._new(model)
+        return TinyStoriesModel(model)
 
     @staticmethod
     def load(path: str, device: torch.device) -> "TinyStoriesModel":
@@ -91,7 +76,7 @@ class TinyStoriesModel(LightningModule):
             raise ValueError(f"Model {whole_path} does not exist")
         model = typing.cast(GPTNeoForCausalLM, GPTNeoForCausalLM.from_pretrained(whole_path))
         model = model.to(device=device)  # type: ignore
-        return TinyStoriesModel._new(model)
+        return TinyStoriesModel(model)
 
     def save(self, path: str) -> None:
         """Save the model to the given path within the models directory."""
@@ -168,6 +153,26 @@ class TinyStoriesModel(LightningModule):
         [batch] = batch_list
         outputs = self._model(batch[:-1], labels=batch[1:])
         loss = outputs.loss
+        self.log("train_loss", loss, on_step=True)
+        return loss
+
+    def validation_step(self, batch_list: List[torch.Tensor], batch_idx: int) -> torch.Tensor:
+        """Validation step.
+
+        Args:
+        ----
+            batch: batch of data.
+            batch_idx: index of the batch.
+
+        Returns:
+        -------
+            Loss tensor.
+
+        """
+        [batch] = batch_list
+        outputs = self._model(batch[:-1], labels=batch[1:])
+        loss = outputs.loss
+        self.log("val_loss", loss, on_epoch=True)
         return loss
 
     def configure_optimizers(self) -> OptimizerLRScheduler:
