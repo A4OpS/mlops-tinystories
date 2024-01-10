@@ -1,8 +1,8 @@
 import torch
-from device import get_device
 from transformers.generation import GenerationConfig
 
 from data import TinyStories
+from device import get_device
 from models import TinyStoriesModel
 
 

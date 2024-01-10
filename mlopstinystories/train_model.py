@@ -1,9 +1,9 @@
-from device import get_device
 from pytorch_lightning import Trainer
 from pytorch_lightning.callbacks import ModelCheckpoint
 from pytorch_lightning.loggers import WandbLogger
 
 from data import TinyStories
+from device import get_device
 from models import TinyStoriesConfig, TinyStoriesModel
 
 if __name__ == "__main__":
