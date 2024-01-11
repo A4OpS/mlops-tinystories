@@ -47,6 +47,9 @@ class TinyStoriesConfig:
 class TinyStories(LightningDataModule):
     _config: TinyStoriesConfig
 
+    _raw_data_path: str
+    _processed_data_path: str
+
     _tokenizer: PreTrainedTokenizerFast
     _vocab_size: int
 
@@ -59,22 +62,25 @@ class TinyStories(LightningDataModule):
     _validation_tokens: Optional[Tensor]
     _test_tokens: Optional[Tensor]
 
-    def __init__(self, device: torch.device, config: TinyStoriesConfig) -> None:
+    def __init__(self, root_path: str, device: torch.device, config: TinyStoriesConfig) -> None:
         super().__init__()
 
         self._config = config
 
+        self._raw_data_path = os.path.join(root_path, RAW_DATA_PATH)
+        self._processed_data_path = os.path.join(root_path, PROCESSED_DATA_PATH)
+
         self._tokenizer = TinyStories.create_tokenizer()
         self._vocab_size = self.tokenizer.vocab_size
 
-        if not os.path.exists(RAW_DATA_PATH):
+        if not os.path.exists(self._raw_data_path):
             raise Exception(
-                f"Raw data directory not found. Please place the raw data in [{RAW_DATA_PATH}] "
+                f"Raw data directory not found. Please place the raw data in [{self._raw_data_path}] "
                 f"from 'data/constants.py'. You can use the 'fetch_raw_data.py' script to download the data. "
             )
 
-        if not os.path.exists(PROCESSED_DATA_PATH):
-            os.makedirs(PROCESSED_DATA_PATH)
+        if not os.path.exists(self._processed_data_path):
+            os.makedirs(self._processed_data_path)
         self._device = device
 
         self._train_texts: Optional[List[str]] = None
@@ -105,13 +111,15 @@ class TinyStories(LightningDataModule):
 
     def prepare_data(self) -> None:
         print("Preparing data...")
-        if not os.path.exists(RAW_DATA_PATH):
+        if not os.path.exists(self._raw_data_path):
             raise Exception(
-                f"Raw data directory not found. Please place the raw data in [{RAW_DATA_PATH}] \
+                f"Raw data directory not found. Please place the raw data in [{self._raw_data_path}] \
                     from 'data/constants.py'. You can use the 'fetch_raw_data.py' script to download the data."
             )
         # Load data from disk.
-        raw_data: DatasetDict = datasets.load_from_disk(RAW_DATA_PATH)  # type: ignore
+        print(os.getcwd())
+        print(self._raw_data_path)
+        raw_data: DatasetDict = datasets.load_from_disk(self._raw_data_path)  # type: ignore
         # Convert dataset splits to pandas dataframes.
         train_texts = raw_data["train"].data.to_pandas()
         validation_texts = raw_data["validation"].data.to_pandas()
@@ -149,14 +157,14 @@ class TinyStories(LightningDataModule):
         train_tokens = tokens[validation_end_index:]
 
         # Save the data to disk.
-        os.makedirs(PROCESSED_DATA_PATH, exist_ok=True)
-        train_texts.to_pickle(os.path.join(PROCESSED_DATA_PATH, "train_texts.pkl"))
-        validation_texts.to_pickle(os.path.join(PROCESSED_DATA_PATH, "validation_texts.pkl"))
-        test_texts.to_pickle(os.path.join(PROCESSED_DATA_PATH, "test_texts.pkl"))
+        os.makedirs(self._processed_data_path, exist_ok=True)
+        train_texts.to_pickle(os.path.join(self._processed_data_path, "train_texts.pkl"))
+        validation_texts.to_pickle(os.path.join(self._processed_data_path, "validation_texts.pkl"))
+        test_texts.to_pickle(os.path.join(self._processed_data_path, "test_texts.pkl"))
 
-        torch.save(train_tokens.clone(), os.path.join(PROCESSED_DATA_PATH, "train_tokens.pt"))
-        torch.save(validation_tokens.clone(), os.path.join(PROCESSED_DATA_PATH, "validation_tokens.pt"))
-        torch.save(test_tokens.clone(), os.path.join(PROCESSED_DATA_PATH, "test_tokens.pt"))
+        torch.save(train_tokens.clone(), os.path.join(self._processed_data_path, "train_tokens.pt"))
+        torch.save(validation_tokens.clone(), os.path.join(self._processed_data_path, "validation_tokens.pt"))
+        torch.save(test_tokens.clone(), os.path.join(self._processed_data_path, "test_tokens.pt"))
 
         print("Data prepared.")
 
@@ -164,15 +172,15 @@ class TinyStories(LightningDataModule):
         print("Loading data from disk...")
 
         # Load data from disk
-        self._train_texts = pd.read_pickle(os.path.join(PROCESSED_DATA_PATH, "train_texts.pkl"))["text"].tolist()
-        self._validation_texts = pd.read_pickle(os.path.join(PROCESSED_DATA_PATH, "validation_texts.pkl"))[
+        self._train_texts = pd.read_pickle(os.path.join(self._processed_data_path, "train_texts.pkl"))["text"].tolist()
+        self._validation_texts = pd.read_pickle(os.path.join(self._processed_data_path, "validation_texts.pkl"))[
             "text"
         ].tolist()
-        self._test_texts = pd.read_pickle(os.path.join(PROCESSED_DATA_PATH, "test_texts.pkl"))["text"].tolist()
+        self._test_texts = pd.read_pickle(os.path.join(self._processed_data_path, "test_texts.pkl"))["text"].tolist()
 
-        self._train_tokens = torch.load(os.path.join(PROCESSED_DATA_PATH, "train_tokens.pt")).long()
-        self._validation_tokens = torch.load(os.path.join(PROCESSED_DATA_PATH, "validation_tokens.pt")).long()
-        self._test_tokens = torch.load(os.path.join(PROCESSED_DATA_PATH, "test_tokens.pt")).long()
+        self._train_tokens = torch.load(os.path.join(self._processed_data_path, "train_tokens.pt")).long()
+        self._validation_tokens = torch.load(os.path.join(self._processed_data_path, "validation_tokens.pt")).long()
+        self._test_tokens = torch.load(os.path.join(self._processed_data_path, "test_tokens.pt")).long()
 
         self._train_set = TensorDataset(self._train_tokens)
         self._validation_set = TensorDataset(self._validation_tokens)

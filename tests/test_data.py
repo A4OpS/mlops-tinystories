@@ -1,19 +1,24 @@
 import os
 from glob import glob
+from typing import List
 
 import torch
 from pytorch_lightning import LightningDataModule
 from torch.utils.data import DataLoader
 from transformers import PreTrainedTokenizerFast
 
+from mlopstinystories import data
 from mlopstinystories.data import PROCESSED_DATA_PATH, RAW_DATA_PATH, TinyStories, TinyStoriesConfig
 
 
 # Test fetching of raw data
 def test_fetch_raw_data():
+    data.fetch_raw_data()
     # Test files in data directory
     assert os.path.exists(RAW_DATA_PATH), "Raw data directory does not exists"
-    assert os.path.exists(os.path.join(RAW_DATA_PATH, "train")), "Missing raw train directory"
+    assert os.path.exists(
+        os.path.join(RAW_DATA_PATH, "train")
+    ), f"Missing raw train directory '{os.path.join(RAW_DATA_PATH, 'train')}'"
     assert os.path.exists(os.path.join(RAW_DATA_PATH, "validation")), "Missing raw validation directory"
     assert os.path.exists(os.path.join(RAW_DATA_PATH, "dataset_dict.json")), "Missing raw dataset dict file"
 
@@ -70,24 +75,23 @@ def test_process_data():
         assert os.path.getsize(os.path.join(PROCESSED_DATA_PATH, file)) > 0, f"Processed data file {file} is empty"
 
 
-
 # Test loading/fetching of data module
 def test_data_module():
-    def dataloader_test(data_loader: DataLoader[TinyStories]):
+    def dataloader_test(data_loader: DataLoader[List[torch.Tensor]]):
         assert isinstance(data_loader, DataLoader), "Data loader is not of type torch.utils.data.DataLoader"
         assert len(data_loader) > 0, "Data loader is empty"
 
-
     config = TinyStoriesConfig(
-        total_ratio = 0.005,
-        validation_ratio =  0.1,
-        test_ratio =  0.05,
-        max_length_text = 1024,
-        max_length = 256,
-        data_loader_batch_size = 4)
-    data = TinyStories(torch.device("cpu"), config)
+        total_ratio=0.005,
+        validation_ratio=0.1,
+        test_ratio=0.05,
+        max_length_text=1024,
+        max_length=256,
+        data_loader_batch_size=4,
+    )
+    data = TinyStories("", torch.device("cpu"), config)
     data.prepare_data()
-    data.setup('fisk')
+    data.setup("fisk")
 
     # Test data module
     assert isinstance(data, LightningDataModule), "Data module is not of type LightningDataModule"
@@ -100,4 +104,3 @@ def test_data_module():
     dataloader_test(data.train_dataloader())
     dataloader_test(data.val_dataloader())
     dataloader_test(data.test_dataloader())
-
