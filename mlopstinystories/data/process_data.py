@@ -1,13 +1,26 @@
+from dataclasses import dataclass
 from datetime import datetime
 
+import hydra
 import torch
 from data_module import TinyStories, TinyStoriesConfig
+from hydra.core.config_store import ConfigStore
 
 
-def main():
+@dataclass
+class ProcessDataConfig:
+    data_config: TinyStoriesConfig
+
+
+cs = ConfigStore.instance()
+
+cs.store(name="process_data_config", node=ProcessDataConfig)
+
+
+@hydra.main(config_path="../../conf/process_data", version_base="1.3")
+def main(config: ProcessDataConfig):
     start_time = datetime.now()
-    config = TinyStoriesConfig()
-    data = TinyStories("data", torch.device("cpu"), config)
+    data = TinyStories("data", torch.device("cpu"), config.data_config)
     data.prepare_data()
     end_time = datetime.now()
     print(f"Time to prepare data: {end_time - start_time}")
