@@ -12,6 +12,12 @@ from .models import ModelNotFoundError, TinyStoriesModel
 
 
 class AppState:
+    """
+    State of the server application. `_device` and `_tokenizer` are shared across all models and endpoints
+    and should therefore only be set in the beginning.
+    `_models` is a dictionary of model paths to models. Models are loaded lazily and only once.
+    """
+
     _device: Device
     _tokenizer: PreTrainedTokenizerFast
     _models: Dict[str, TinyStoriesModel]
@@ -34,6 +40,18 @@ class AppState:
         return self._tokenizer
 
     def get_model(self, model_path: str) -> Optional[TinyStoriesModel]:
+        """
+        Get the model with the given path. If the model is not loaded yet, load it and store it in the `_models`
+        dictionary.
+
+        Args:
+        ----
+            model_path: Path of the model to load.
+
+        Returns:
+        -------
+            The model with the given path, or `None` if the model does not exist.
+        """
         if model_path not in self._models:
             try:
                 model = TinyStoriesModel.load(model_path, self.device.torch())
@@ -46,6 +64,7 @@ class AppState:
 
 @asynccontextmanager
 async def initialize(app: FastAPI):
+    """Initialize the application state."""
     device = get_device()
     tokenizer = TinyStories.create_tokenizer()
     app.state.state = AppState(device, tokenizer)
@@ -65,6 +84,19 @@ def read_root():
 def generate(
     request: Request, response: Response, model_path: str, input: str, max_length: int = 50, temperature: float = 0.5
 ):
+    """
+    Handle a generation request.
+
+    Args:
+    ----
+        request: A request object that provides access to application state.
+        response: A response object that allows setting of the status code.
+        model_path: Path of the model to use for generation.
+        input: Input text for generation.
+        max_length: Maximum length of the generated text.
+        temperature: Temperature for generation.
+    ----
+    """
     state: AppState = request.app.state.state
 
     device = state.device
