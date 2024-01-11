@@ -1,3 +1,3 @@
-from .data_module import TinyStories
+from .data_module import TinyStories, TinyStoriesConfig
 
-__all__ = ["TinyStories"]
+__all__ = ["TinyStories", "TinyStoriesConfig"]
