@@ -67,8 +67,6 @@ class TinyStories(LightningDataModule):
         self._config = config
 
         self._tokenizer = TinyStories.create_tokenizer()
-        self._tokenizer.pad_token = self.tokenizer.eos_token
-        self._tokenizer.pad_token = self.tokenizer.eos_token
         self._vocab_size = self.tokenizer.vocab_size
 
         self._data_dir = data_dir
@@ -93,7 +91,10 @@ class TinyStories(LightningDataModule):
 
     @staticmethod
     def create_tokenizer() -> PreTrainedTokenizerFast:
-        return AutoTokenizer.from_pretrained("EleutherAI/gpt-neo-2.7B")  # type: ignore
+        tokenizer: PreTrainedTokenizerFast = AutoTokenizer.from_pretrained("EleutherAI/gpt-neo-2.7B")  # type: ignore
+        tokenizer.pad_token = tokenizer.eos_token
+        tokenizer.pad_token_id = tokenizer.eos_token_id
+        return tokenizer
 
     @property
     def config(self) -> TinyStoriesConfig:
