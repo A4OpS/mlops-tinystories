@@ -1,12 +1,14 @@
 from pytorch_lightning import Trainer
 from pytorch_lightning.callbacks import ModelCheckpoint
 from pytorch_lightning.loggers import WandbLogger
+from pytorch_lightning.profilers import PyTorchProfiler
+from torch.profiler import ProfilerActivity, tensorboard_trace_handler
 
 from data import TinyStories
 from device import get_device
 from models import TinyStoriesConfig, TinyStoriesModel
 
-if __name__ == "__main__":
+def main():
     device = get_device()
 
     data = TinyStories("data", device.torch())
@@ -32,6 +34,18 @@ if __name__ == "__main__":
         filename="{step}-{val_loss:.2f}",
         mode="min",
     )
+
+    profiler = PyTorchProfiler(
+        activities=[ProfilerActivity.CPU],
+        row_limit = 20,
+        record_shapes = True,
+        with_stack = True,
+        profile_memory = True,
+        #export_to_chrome_tracing = True,
+        sort_by_key = "cpu_time_total",
+        on_trace_ready = tensorboard_trace_handler("./profilers")
+    )
+
     trainer = Trainer(
         logger=WandbLogger(project="mlops-tinystories"),
         accelerator=device.lightning(),
@@ -42,8 +56,13 @@ if __name__ == "__main__":
         limit_val_batches=10,
         log_every_n_steps=1,
         num_sanity_val_steps=0,
+        #profiler = profiler,
     )
 
     trainer.fit(model, datamodule=data)
 
     model.save("model1")
+
+
+if __name__ == "__main__":
+    main()
