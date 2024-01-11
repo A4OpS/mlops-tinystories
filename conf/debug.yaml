@@ -1,0 +1,20 @@
+data_config: {
+  total_ratio: 0.005,
+  validation_ratio: 0.1,
+  test_ratio: 0.05,
+  max_length_text: 1024,
+  max_length: 256,
+  data_loader_batch_size: 4
+}
+model_config: {
+  num_layers: 1,
+  intermediate_size: 512,
+  hidden_size: 512,
+  num_heads: 8,
+  max_position_embeddings: 512,
+}
+max_epochs: 1
+max_steps: 50
+val_check_interval: 5
+limit_val_batches: 10
+log_every_n_steps: 1

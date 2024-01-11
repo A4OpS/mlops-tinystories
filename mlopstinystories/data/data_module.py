@@ -19,6 +19,8 @@ class TinyStoriesConfig:
 
     Attributes:
         total_ratio (float): The ratio of the total dataset to use.
+            Setting this to 1 will use the entire dataset, resulting in 4 GB of processed data
+            and will likely eat _all_ your RAM, so be careful with setting this too high.
         validation_ratio (float): The ratio of use data to use for validation.
             The validation set will be `total_ratio * validation_ratio` of the total dataset.
         test_ratio (float): The ratio of use data to use for testing.
@@ -32,12 +34,12 @@ class TinyStoriesConfig:
         data_loader_batch_size (int): The batch size to use for the dataloaders.
     """
 
-    total_ratio: float = 0.05
-    validation_ratio: float = 0.1
-    test_ratio: float = 0.05
-    max_length_text: int = 1024
-    max_length: int = 256
-    data_loader_batch_size: int = 4
+    total_ratio: float
+    validation_ratio: float
+    test_ratio: float
+    max_length_text: int
+    max_length: int
+    data_loader_batch_size: int
 
 
 class TinyStories(LightningDataModule):
@@ -64,7 +66,7 @@ class TinyStories(LightningDataModule):
 
         self._config = config
 
-        self._tokenizer = AutoTokenizer.from_pretrained("EleutherAI/gpt-neo-2.7B")  # type: ignore
+        self._tokenizer = TinyStories.create_tokenizer()
         self._tokenizer.pad_token = self.tokenizer.eos_token
         self._tokenizer.pad_token = self.tokenizer.eos_token
         self._vocab_size = self.tokenizer.vocab_size
@@ -73,8 +75,9 @@ class TinyStories(LightningDataModule):
         self._raw_dir = os.path.join(data_dir, "raw")
         if not os.path.exists(self._raw_dir):
             raise Exception(
-                "Raw data directory not found. Please place the raw data in '[data_dir]/raw'. \
-                    You can use the 'fetch_raw_data.py' script to download the data."
+                f"Raw data directory not found. Please place the raw data in '[data_dir]/raw'. "
+                f"You can use the 'fetch_raw_data.py' script to download the data. "
+                f"data_dir: {data_dir}  absolute raw_data_dir: {os.path.abspath(self._raw_dir)}"
             )
         self._processed_dir = os.path.join(data_dir, "processed")
         if not os.path.exists(self._processed_dir):
@@ -87,6 +90,10 @@ class TinyStories(LightningDataModule):
         self._train_tokens: Optional[Tensor] = None
         self._validation_tokens: Optional[Tensor] = None
         self._test_tokens: Optional[Tensor] = None
+
+    @staticmethod
+    def create_tokenizer() -> PreTrainedTokenizerFast:
+        return AutoTokenizer.from_pretrained("EleutherAI/gpt-neo-2.7B")  # type: ignore
 
     @property
     def config(self) -> TinyStoriesConfig:

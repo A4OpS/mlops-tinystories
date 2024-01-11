@@ -1,3 +1,8 @@
+import os
+from dataclasses import dataclass
+
+import hydra
+from hydra.core.config_store import ConfigStore
 from pytorch_lightning import Trainer
 from pytorch_lightning.callbacks import ModelCheckpoint
 from pytorch_lightning.loggers import WandbLogger
@@ -7,22 +12,33 @@ from device import get_device
 from models import TinyStoriesModel, TinyStoriesModelConfig
 
 
-def main():
+@dataclass
+class TrainModelConfig:
+    data_config: TinyStoriesConfig
+    model_config: TinyStoriesModelConfig
+    max_epochs: int
+    max_steps: int
+    val_check_interval: int
+    limit_val_batches: int
+    log_every_n_steps: int
+
+
+cs = ConfigStore.instance()
+
+cs.store(name="config", node=TrainModelConfig)
+
+
+@hydra.main(config_path="../conf", config_name="config")
+def main(config: TrainModelConfig) -> None:
     device = get_device()
 
-    data_config = TinyStoriesConfig()
-    data = TinyStories("data", device.torch(), data_config)
+    print(config)
 
-    config = TinyStoriesModelConfig(
-        num_layers=2,
-        intermediate_size=512,
-        hidden_size=512,
-        num_heads=8,
-        vocab_size=data.vocab_size,
-        max_position_embeddings=512,
-    )
+    repo_root = hydra.utils.get_original_cwd()
 
-    model = TinyStoriesModel.initialize(config, device.torch())
+    data = TinyStories(os.path.join(repo_root, "data"), device.torch(), config.data_config)
+
+    model = TinyStoriesModel.initialize(config.model_config, device.torch())
     print("Device: ", model.device())
     print(f"Number of parameters: {model.num_params()}")
 
@@ -37,13 +53,13 @@ def main():
     trainer = Trainer(
         logger=WandbLogger(project="mlops-tinystories"),
         accelerator=device.lightning(),
-        max_epochs=1,
+        max_epochs=config.max_epochs,
         callbacks=[checkpoint_callback],
-        max_steps=50,
-        val_check_interval=5,
-        limit_val_batches=10,
-        log_every_n_steps=1,
-        num_sanity_val_steps=0,
+        max_steps=config.max_steps,
+        val_check_interval=config.val_check_interval,
+        limit_val_batches=config.limit_val_batches,
+        log_every_n_steps=config.log_every_n_steps,
+        num_sanity_val_steps=2,
     )
 
     trainer.fit(model, datamodule=data)

@@ -1,17 +1,14 @@
 import torch
 from transformers.generation import GenerationConfig
 
-from data import TinyStories, TinyStoriesConfig
+from data import TinyStories
 from device import get_device
 from models import TinyStoriesModel
 
 if __name__ == "__main__":
     device = get_device()
 
-    config = TinyStoriesConfig()
-
-    data = TinyStories("data", device.torch(), config)
-    tokenizer = data.tokenizer
+    tokenizer = TinyStories.create_tokenizer()
 
     model = TinyStoriesModel.load("model1", device.torch())
 
