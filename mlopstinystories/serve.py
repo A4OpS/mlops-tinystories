@@ -2,7 +2,7 @@ from contextlib import asynccontextmanager
 from http import HTTPStatus
 from typing import Dict, Optional
 
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, Response
 from transformers import PreTrainedTokenizerFast
 from transformers.generation import GenerationConfig
 
@@ -55,18 +55,16 @@ async def initialize(app: FastAPI):
 app = FastAPI(lifespan=initialize)
 
 
-@app.get("/")
+@app.get("/", status_code=HTTPStatus.OK)
 def read_root():
     """Health check."""
-    response = {
-        "message": HTTPStatus.OK.phrase,
-        "status-code": HTTPStatus.OK,
-    }
-    return response
+    return HTTPStatus.OK.phrase
 
 
-@app.get("/generate/{model_path}")
-def generate(model_path: str, input: str, request: Request, max_length: int = 50, temperature: float = 0.5):
+@app.get("/generate/{model_path}", status_code=HTTPStatus.OK)
+def generate(
+    request: Request, response: Response, model_path: str, input: str, max_length: int = 50, temperature: float = 0.5
+):
     state: AppState = request.app.state.state
 
     device = state.device
@@ -75,11 +73,8 @@ def generate(model_path: str, input: str, request: Request, max_length: int = 50
 
     model = state.get_model(model_path)
     if model is None:
-        response = {
-            "message": f"Model '{model_path}' not found",
-            "status-code": HTTPStatus.NOT_FOUND,
-        }
-        return response
+        response.status_code = HTTPStatus.NOT_FOUND
+        return f"Model '{model_path}' not found"
 
     input_tokens = tokenizer(input, return_tensors="pt").input_ids
 
@@ -93,8 +88,4 @@ def generate(model_path: str, input: str, request: Request, max_length: int = 50
     output_tokens = model.generate(input_tokens.to(device.torch()), generation_config)
     output_text = tokenizer.decode(output_tokens[0].to("cpu"))
 
-    response = {
-        "message": output_text,
-        "status-code": HTTPStatus.OK,
-    }
-    return response
+    return output_text
