@@ -3,6 +3,7 @@
 #How to run this dockerfile
 # 1. ensure that docker is running
 # 2. Build the container: docker build -f dockerfiles\base_cuda.dockerfile . -t cuda:latest
+#If step 2 fails to autehnticate run the following command: docker run -it --rm nvcr.io/nvidia/pytorch:23.12-py3 bash
 # 3. Run the container in interactive mode: docker run -it --entrypoint sh cuda:latest
 
 # Get base image
@@ -32,4 +33,3 @@ RUN pip install -r requirements.txt --no-cache-dir -v
 #Command that install the project in the current directory (pyproject.toml)
 RUN pip install . --no-deps --no-cache-dir -v
 
-RUN python -c "import cpuinfo; import torch; print(cpuinfo.get_cpu_info()['brand_raw']); print(torch.cuda.get_device_name(0) if torch.cuda.is_available() else 'No GPU')"
