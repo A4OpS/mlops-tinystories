@@ -18,7 +18,7 @@ cs.store(name="process_data_config", node=ProcessDataConfig)
 
 
 @hydra.main(config_path="../../conf/process_data", version_base="1.3")
-def main(config: ProcessDataConfig):
+def main(config: ProcessDataConfig) -> None:
     start_time = datetime.now()
     repo_root = hydra.utils.get_original_cwd()
     data = TinyStories(repo_root, torch.device("cpu"), config.data_config)

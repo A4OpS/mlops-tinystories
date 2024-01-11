@@ -8,7 +8,7 @@ from datasets.dataset_dict import DatasetDict
 RAW_DATA_PATH: str = os.path.join("data", "raw")
 
 
-def fetch_raw_data():
+def fetch_raw_data() -> None:
     log = logging.getLogger(__name__)
 
     # Get dataset from huggingface
