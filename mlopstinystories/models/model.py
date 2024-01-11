@@ -17,16 +17,17 @@ MODELS_DIR = "models"
 
 
 @dataclass
-class TinyStoriesConfig:
+class TinyStoriesModelConfig:
     """TinyStories model configuration.
 
     Args:
     ----
-        num_layers: Number of transformer layers.
-        intermediate_size: Size of the intermediate layer.
-        hidden_size: Size of the hidden layer.
-        num_heads: Number of attention heads.
-
+        num_layers (int): Number of transformer layers.
+        intermediate_size (int): Size of the intermediate layer.
+        hidden_size (int): Size of the hidden layer.
+        num_heads (int): Number of attention heads.
+        vocab_size (int): Size of vocabulary.
+        max_position_embeddings (int): The maximum sequence length that this model might ever be used with.
     """
 
     num_layers: int = 1
@@ -52,7 +53,7 @@ class TinyStoriesModel(LightningModule):
         self._model = model
 
     @staticmethod
-    def initialize(config: TinyStoriesConfig, device: torch.device) -> "TinyStoriesModel":
+    def initialize(config: TinyStoriesModelConfig, device: torch.device) -> "TinyStoriesModel":
         """Initialize the model with the given configuration."""
         model_config = GPTNeoConfig(
             num_layers=config.num_layers,

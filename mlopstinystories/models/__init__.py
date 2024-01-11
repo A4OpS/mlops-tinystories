@@ -1,3 +1,3 @@
-from .model import TinyStoriesConfig, TinyStoriesModel
+from .model import TinyStoriesModel, TinyStoriesModelConfig
 
-__all__ = ["TinyStoriesConfig", "TinyStoriesModel"]
+__all__ = ["TinyStoriesModelConfig", "TinyStoriesModel"]
