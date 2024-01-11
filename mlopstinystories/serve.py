@@ -66,7 +66,7 @@ def read_root():
 
 
 @app.get("/generate/{model_path}")
-def generate(model_path: str, input_text: str, request: Request):
+def generate(model_path: str, input: str, request: Request, max_length: int = 50, temperature: float = 0.5):
     state: AppState = request.app.state.state
 
     device = state.device
@@ -81,12 +81,12 @@ def generate(model_path: str, input_text: str, request: Request):
         }
         return response
 
-    input_tokens = tokenizer(input_text, return_tensors="pt").input_ids
+    input_tokens = tokenizer(input, return_tensors="pt").input_ids
 
     generation_config = GenerationConfig(
-        max_length=50,
+        max_length=max_length,
         pad_token_id=tokenizer.pad_token_id,
-        temperature=0.5,
+        temperature=temperature,
         do_sample=True,
     )
 
