@@ -3,9 +3,10 @@ from glob import glob
 
 import torch
 from pytorch_lightning import LightningDataModule
+from torch.utils.data import DataLoader
 from transformers import PreTrainedTokenizerFast
 
-from mlopstinystories.data import PROCESSED_DATA_PATH, RAW_DATA_PATH, TinyStories
+from mlopstinystories.data import PROCESSED_DATA_PATH, RAW_DATA_PATH, TinyStories, TinyStoriesConfig
 
 
 # Test fetching of raw data
@@ -69,21 +70,34 @@ def test_process_data():
         assert os.path.getsize(os.path.join(PROCESSED_DATA_PATH, file)) > 0, f"Processed data file {file} is empty"
 
 
-#def data_loader_test(DataLoader[List[Tensor]]):
-#    pass
 
 # Test loading/fetching of data module
 def test_data_module():
-    data = TinyStories(torch.device("cpu"))
+    def dataloader_test(data_loader: DataLoader[TinyStories]):
+        assert isinstance(data_loader, DataLoader), "Data loader is not of type torch.utils.data.DataLoader"
+        assert len(data_loader) > 0, "Data loader is empty"
+
+
+    config = TinyStoriesConfig(
+        total_ratio = 0.005,
+        validation_ratio =  0.1,
+        test_ratio =  0.05,
+        max_length_text = 1024,
+        max_length = 256,
+        data_loader_batch_size = 4)
+    data = TinyStories(torch.device("cpu"), config)
+    data.prepare_data()
+    data.setup('fisk')
+
+    # Test data module
     assert isinstance(data, LightningDataModule), "Data module is not of type LightningDataModule"
 
     # Test tokenizer
     assert isinstance(data.tokenizer, PreTrainedTokenizerFast), "Tokenizer is not of type PreTrainedTokenizerFast"
     assert data._vocab_size > 0, "Tokenizer vocab is empty"
 
-    # Test setup
-
     # Test dataloaders
-    #data_loader_test(data.train_dataloader)
-    #data_loader_test(data.val_dataloader)
-    #data_loader_test(data.test_dataloader)
+    dataloader_test(data.train_dataloader())
+    dataloader_test(data.val_dataloader())
+    dataloader_test(data.test_dataloader())
+
