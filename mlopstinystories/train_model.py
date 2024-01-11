@@ -25,14 +25,12 @@ class TrainModelConfig:
 
 cs = ConfigStore.instance()
 
-cs.store(name="config", node=TrainModelConfig)
+cs.store(name="train_config", node=TrainModelConfig)
 
 
-@hydra.main(config_path="../conf", config_name="config")
+@hydra.main(config_path="../conf/train", version_base="1.3")
 def main(config: TrainModelConfig) -> None:
     device = get_device()
-
-    print(config)
 
     repo_root = hydra.utils.get_original_cwd()
 

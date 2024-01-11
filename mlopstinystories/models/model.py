@@ -22,11 +22,12 @@ class TinyStoriesModelConfig:
 
     Args:
     ----
-        num_layers: Number of transformer layers.
-        intermediate_size: Size of the intermediate layer.
-        hidden_size: Size of the hidden layer.
-        num_heads: Number of attention heads.
-
+        num_layers (int): Number of transformer layers.
+        intermediate_size (int): Size of the intermediate layer.
+        hidden_size (int): Size of the hidden layer.
+        num_heads (int): Number of attention heads.
+        vocab_size (int): Size of vocabulary.
+        max_position_embeddings (int): The maximum sequence length that this model might ever be used with.
     """
 
     num_layers: int = 1
