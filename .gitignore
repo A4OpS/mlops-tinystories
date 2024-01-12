@@ -179,6 +179,7 @@ cython_debug/
 /data
 /models
 /outputs
+/profilers
 
 .ruff_cache/
 lightning_logs
