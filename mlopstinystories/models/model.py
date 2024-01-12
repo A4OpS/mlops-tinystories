@@ -38,6 +38,27 @@ class TinyStoriesModelConfig:
     max_position_embeddings: int = 2048
 
 
+class ModelNotFoundError(Exception):
+    """Model not found exception."""
+
+    _model_path: str
+
+    def __init__(self, model_path: str) -> None:
+        super().__init__(f"Model {model_path} not found")
+        self._model_path = model_path
+
+    @property
+    def model_path(self) -> str:
+        """Get model name.
+
+        Returns:
+        -------
+            Model name.
+
+        """
+        return self._model_path
+
+
 class TinyStoriesModel(LightningModule):
     _model: GPTNeoForCausalLM
 
@@ -73,8 +94,10 @@ class TinyStoriesModel(LightningModule):
         """Load the model from the given path within the models directory."""
 
         whole_path = os.path.join(MODELS_DIR, path)
+        if not os.path.exists(MODELS_DIR):
+            raise Exception("Models directory does not exist.")
         if not os.path.exists(whole_path):
-            raise ValueError(f"Model {whole_path} does not exist")
+            raise ModelNotFoundError(path)
         model = typing.cast(GPTNeoForCausalLM, GPTNeoForCausalLM.from_pretrained(whole_path))
         model = model.to(device=device)  # type: ignore
         return TinyStoriesModel(model)

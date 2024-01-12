@@ -25,7 +25,7 @@ cs.store(name="predict_config", node=PredictConfig)
 
 
 @hydra.main(config_path="../conf/predict", version_base="1.3")
-def main(config: PredictConfig):
+def main(config: PredictConfig) -> None:
     device = get_device()
 
     tokenizer = TinyStories.create_tokenizer()
