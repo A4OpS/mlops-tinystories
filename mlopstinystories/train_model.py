@@ -1,4 +1,3 @@
-import os
 from dataclasses import dataclass
 
 import hydra
@@ -34,7 +33,7 @@ def main(config: TrainModelConfig) -> None:
 
     repo_root = hydra.utils.get_original_cwd()
 
-    data = TinyStories(os.path.join(repo_root, "data"), device.torch(), config.data_config)
+    data = TinyStories(repo_root, device.torch(), config.data_config)
 
     model = TinyStoriesModel.initialize(config.model_config, device.torch())
     print("Device: ", model.device())
