@@ -1,3 +1,3 @@
-from .model import TinyStoriesModel, TinyStoriesModelConfig
+from .model import ModelNotFoundError, TinyStoriesModel, TinyStoriesModelConfig
 
-__all__ = ["TinyStoriesModelConfig", "TinyStoriesModel"]
+__all__ = ["TinyStoriesModelConfig", "TinyStoriesModel", "ModelNotFoundError"]
