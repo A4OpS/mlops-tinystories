@@ -13,3 +13,4 @@ mkdocs-material <= 9.4.6
 mkdocstrings <= 0.23.0
 mkdocstrings[python]>=0.18
 tensorboard ~= 2.15.1
+torch-tb-profiler ~= 0.4.3
