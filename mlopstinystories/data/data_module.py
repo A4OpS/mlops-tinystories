@@ -1,5 +1,5 @@
-import json
 import os
+from dataclasses import dataclass
 from typing import List, Optional
 
 import datasets
@@ -11,16 +11,40 @@ from torch import Tensor
 from torch.utils.data import DataLoader, TensorDataset
 from transformers import AutoTokenizer, PreTrainedTokenizerFast
 
-TOTAL_RATIO = 0.05
-VALIDATION_RATIO = 0.1
-TEST_RATIO = 0.05
-TOKENIZATION_BATCH_SIZE = 64
-MAX_LENGTH_TEXT = 1024
-MAX_LENGTH = 256
-DATA_LOADER_BATCH_SIZE = 4
+
+@dataclass
+class TinyStoriesConfig:
+    """
+    Configuration for the TinyStories dataset.
+
+    Attributes:
+        total_ratio (float): The ratio of the total dataset to use.
+            Setting this to 1 will use the entire dataset, resulting in 4 GB of processed data
+            and will likely eat _all_ your RAM, so be careful with setting this too high.
+        validation_ratio (float): The ratio of use data to use for validation.
+            The validation set will be `total_ratio * validation_ratio` of the total dataset.
+        test_ratio (float): The ratio of use data to use for testing.
+            The test set will be `total_ratio * test_ratio` of the total dataset.
+        max_length_text (int): The maximum length of the text in the dataset.
+            Texts longer than this will be discarded. If there are few than `total_ratio` texts shorter than this,
+            `total_ratio` will be ignored.
+        max_length (int): The maximum length of the tokenized text. Texts longer than this will be truncated.
+            It can therefore be a good idea to set this low enough that few texts shorter than `max_length_text`
+            have more tokens than `max_length`.
+        data_loader_batch_size (int): The batch size to use for the dataloaders.
+    """
+
+    total_ratio: float
+    validation_ratio: float
+    test_ratio: float
+    max_length_text: int
+    max_length: int
+    data_loader_batch_size: int
 
 
 class TinyStories(LightningDataModule):
+    _config: TinyStoriesConfig
+
     _tokenizer: PreTrainedTokenizerFast
     _vocab_size: int
 
@@ -37,20 +61,21 @@ class TinyStories(LightningDataModule):
     _validation_tokens: Optional[Tensor]
     _test_tokens: Optional[Tensor]
 
-    def __init__(self, data_dir: str, device: torch.device) -> None:
+    def __init__(self, data_dir: str, device: torch.device, config: TinyStoriesConfig) -> None:
         super().__init__()
 
-        self._tokenizer = AutoTokenizer.from_pretrained("EleutherAI/gpt-neo-2.7B")  # type: ignore
-        self._tokenizer.pad_token = self.tokenizer.eos_token
-        self._tokenizer.pad_token = self.tokenizer.eos_token
+        self._config = config
+
+        self._tokenizer = TinyStories.create_tokenizer()
         self._vocab_size = self.tokenizer.vocab_size
 
         self._data_dir = data_dir
         self._raw_dir = os.path.join(data_dir, "raw")
         if not os.path.exists(self._raw_dir):
             raise Exception(
-                "Raw data directory not found. Please place the raw data in '[data_dir]/raw'. \
-                    You can use the 'fetch_raw_data.py' script to download the data."
+                f"Raw data directory not found. Please place the raw data in '[data_dir]/raw'. "
+                f"You can use the 'fetch_raw_data.py' script to download the data. "
+                f"data_dir: {data_dir}  absolute raw_data_dir: {os.path.abspath(self._raw_dir)}"
             )
         self._processed_dir = os.path.join(data_dir, "processed")
         if not os.path.exists(self._processed_dir):
@@ -63,6 +88,17 @@ class TinyStories(LightningDataModule):
         self._train_tokens: Optional[Tensor] = None
         self._validation_tokens: Optional[Tensor] = None
         self._test_tokens: Optional[Tensor] = None
+
+    @staticmethod
+    def create_tokenizer() -> PreTrainedTokenizerFast:
+        tokenizer: PreTrainedTokenizerFast = AutoTokenizer.from_pretrained("EleutherAI/gpt-neo-2.7B")  # type: ignore
+        tokenizer.pad_token = tokenizer.eos_token
+        tokenizer.pad_token_id = tokenizer.eos_token_id
+        return tokenizer
+
+    @property
+    def config(self) -> TinyStoriesConfig:
+        return self._config
 
     @property
     def tokenizer(self) -> PreTrainedTokenizerFast:
@@ -86,9 +122,10 @@ class TinyStories(LightningDataModule):
         data = pd.concat([train_texts, validation_texts])
 
         # Shuffle the data and reset the index.
-        short = data[data["text"].apply(len) <= MAX_LENGTH_TEXT]
+        short = data[data["text"].apply(len) <= self.config.max_length_text]
         short_ratio = len(short) / len(data)
-        shuffled_data = short.sample(frac=TOTAL_RATIO / short_ratio, random_state=42).reset_index(drop=True)
+        sample_ratio = min(1, self.config.total_ratio / short_ratio)
+        shuffled_data = short.sample(frac=sample_ratio, random_state=42).reset_index(drop=True)
 
         strings = shuffled_data["text"].tolist()
 
@@ -96,15 +133,15 @@ class TinyStories(LightningDataModule):
             strings,
             add_special_tokens=True,
             padding="max_length",
-            max_length=MAX_LENGTH,
+            max_length=self.config.max_length,
             truncation=True,
             return_tensors="pt",
         )
         tokens: Tensor = tokenized_strings["input_ids"].to(torch.int32)  # type: ignore
 
         # Split the data into train, validation and test sets.
-        test_end_index = int(len(shuffled_data) * TEST_RATIO)
-        validation_end_index = int(len(shuffled_data) * (TEST_RATIO + VALIDATION_RATIO))
+        test_end_index = int(len(shuffled_data) * self.config.test_ratio)
+        validation_end_index = int(len(shuffled_data) * (self.config.test_ratio + self.config.validation_ratio))
 
         test_texts = shuffled_data[0:test_end_index]
         validation_texts = shuffled_data[test_end_index:validation_end_index]
@@ -124,15 +161,6 @@ class TinyStories(LightningDataModule):
         torch.save(validation_tokens.clone(), os.path.join(self._processed_dir, "validation_tokens.pt"))
         torch.save(test_tokens.clone(), os.path.join(self._processed_dir, "test_tokens.pt"))
 
-        info = {
-            "vocab_size": self.tokenizer.vocab_size,
-            "total_ratio": TOTAL_RATIO,
-            "validation_ratio": VALIDATION_RATIO,
-            "test_ratio": TEST_RATIO,
-            "max_length_text": MAX_LENGTH_TEXT,
-            "max_length": MAX_LENGTH,
-        }
-        json.dump(info, open(os.path.join(self._processed_dir, "info.json"), "w"))
         print("Data prepared.")
 
     def setup(self, stage: str) -> None:
@@ -161,7 +189,7 @@ class TinyStories(LightningDataModule):
         if pin_memory:
             train_loader: DataLoader[List[Tensor]] = DataLoader(  # type: ignore
                 self._train_set,
-                batch_size=DATA_LOADER_BATCH_SIZE,
+                batch_size=self.config.data_loader_batch_size,
                 shuffle=True,
                 num_workers=torch.get_num_threads(),
                 persistent_workers=True,
@@ -171,7 +199,7 @@ class TinyStories(LightningDataModule):
         else:
             train_loader = DataLoader(  # type: ignore
                 self._train_set,
-                batch_size=DATA_LOADER_BATCH_SIZE,
+                batch_size=self.config.data_loader_batch_size,
                 shuffle=True,
                 num_workers=torch.get_num_threads(),
                 persistent_workers=True,
@@ -186,7 +214,7 @@ class TinyStories(LightningDataModule):
         if pin_memory:
             validation_loader: DataLoader[List[Tensor]] = DataLoader(  # type: ignore
                 self._validation_set,
-                batch_size=DATA_LOADER_BATCH_SIZE,
+                batch_size=self.config.data_loader_batch_size,
                 num_workers=torch.get_num_threads(),
                 persistent_workers=True,
                 pin_memory=True,
@@ -195,7 +223,7 @@ class TinyStories(LightningDataModule):
         else:
             validation_loader = DataLoader(  # type: ignore
                 self._validation_set,
-                batch_size=DATA_LOADER_BATCH_SIZE,
+                batch_size=self.config.data_loader_batch_size,
                 num_workers=torch.get_num_threads(),
                 persistent_workers=True,
             )
@@ -208,7 +236,7 @@ class TinyStories(LightningDataModule):
         if pin_memory:
             test_loader: DataLoader[List[Tensor]] = DataLoader(  # type: ignore
                 self._test_set,
-                batch_size=DATA_LOADER_BATCH_SIZE,
+                batch_size=self.config.data_loader_batch_size,
                 num_workers=torch.get_num_threads(),
                 persistent_workers=True,
                 pin_memory=True,
@@ -217,7 +245,7 @@ class TinyStories(LightningDataModule):
         else:
             test_loader = DataLoader(  # type: ignore
                 self._test_set,
-                batch_size=DATA_LOADER_BATCH_SIZE,
+                batch_size=self.config.data_loader_batch_size,
                 num_workers=torch.get_num_threads(),
                 persistent_workers=True,
             )
