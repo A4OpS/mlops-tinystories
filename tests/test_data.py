@@ -10,9 +10,10 @@ from transformers import PreTrainedTokenizerFast
 from mlopstinystories import data
 from mlopstinystories.data import PROCESSED_DATA_PATH, RAW_DATA_PATH, TinyStories, TinyStoriesConfig
 
+# Intergration test for data module
 
 # Test fetching of raw data
-def test_fetch_raw_data():
+def fetch_raw_data_test():
     data.fetch_raw_data()
     # Test files in data directory
     assert os.path.exists(RAW_DATA_PATH), "Raw data directory does not exists"
@@ -51,8 +52,25 @@ def test_fetch_raw_data():
     #     - Test if the state.json has the correct number of files in both train and validation folder
 
 
-# Test processing of raw data
-def test_process_data():
+
+# Test loading/fetching of data module
+def data_module_test():
+    def dataloader_test(data_loader: DataLoader[List[torch.Tensor]]):
+        assert isinstance(data_loader, DataLoader), "Data loader is not of type torch.utils.data.DataLoader"
+        assert len(data_loader) > 0, "Data loader is empty"
+
+    config = TinyStoriesConfig(
+        total_ratio=0.005,
+        validation_ratio=0.1,
+        test_ratio=0.05,
+        max_length_text=1024,
+        max_length=256,
+        data_loader_batch_size=4,
+    )
+    data = TinyStories("", torch.device("cpu"), config)
+    data.prepare_data()
+    data.setup("fisk")
+
     # Test if processed data directory exists
     assert os.path.exists(PROCESSED_DATA_PATH), "Processed data directory does not exists"
 
@@ -74,25 +92,6 @@ def test_process_data():
     for file in files:
         assert os.path.getsize(os.path.join(PROCESSED_DATA_PATH, file)) > 0, f"Processed data file {file} is empty"
 
-
-# Test loading/fetching of data module
-def test_data_module():
-    def dataloader_test(data_loader: DataLoader[List[torch.Tensor]]):
-        assert isinstance(data_loader, DataLoader), "Data loader is not of type torch.utils.data.DataLoader"
-        assert len(data_loader) > 0, "Data loader is empty"
-
-    config = TinyStoriesConfig(
-        total_ratio=0.005,
-        validation_ratio=0.1,
-        test_ratio=0.05,
-        max_length_text=1024,
-        max_length=256,
-        data_loader_batch_size=4,
-    )
-    data = TinyStories("", torch.device("cpu"), config)
-    data.prepare_data()
-    data.setup("fisk")
-
     # Test data module
     assert isinstance(data, LightningDataModule), "Data module is not of type LightningDataModule"
 
@@ -104,3 +103,8 @@ def test_data_module():
     dataloader_test(data.train_dataloader())
     dataloader_test(data.val_dataloader())
     dataloader_test(data.test_dataloader())
+
+
+def test_data():
+    fetch_raw_data_test()
+    data_module_test()
