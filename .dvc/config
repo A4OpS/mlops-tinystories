@@ -1,8 +1,4 @@
 [core]
-    remote = tiny_storage
-['remote "storage"']
-    url = gdrive://1Y4F7XwhrEUBiHIhg6EUzDgYvEtbVtgHV
+    remote = google_storage
 ['remote "google_storage"']
-    url = gs://test_bucket_tiny/
-['remote "tiny_storage"']
-    url = gs://mlops-tiny-stories/
+    url = gs://mlops_tiny/
