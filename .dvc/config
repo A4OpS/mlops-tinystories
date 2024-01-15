@@ -1,4 +1,4 @@
 [core]
-    remote = storage
-['remote "storage"']
-    url = gdrive://1Y4F7XwhrEUBiHIhg6EUzDgYvEtbVtgHV
+    remote = google_storage
+['remote "google_storage"']
+    url = gs://mlops_tiny/
