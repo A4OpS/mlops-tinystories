@@ -144,6 +144,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+tiny_env/
 
 # Spyder project settings
 .spyderproject
@@ -177,6 +178,7 @@ cython_debug/
 #.idea/
 /data
 /models
+/outputs
 
 .ruff_cache/
 lightning_logs
