@@ -117,8 +117,6 @@ class TinyStories(LightningDataModule):
                     from 'data/constants.py'. You can use the 'fetch_raw_data.py' script to download the data."
             )
         # Load data from disk.
-        print(os.getcwd())
-        print(self._raw_data_path)
         raw_data: DatasetDict = datasets.load_from_disk(self._raw_data_path)  # type: ignore
         # Convert dataset splits to pandas dataframes.
         train_texts = raw_data["train"].data.to_pandas()

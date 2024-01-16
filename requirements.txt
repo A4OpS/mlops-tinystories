@@ -2,8 +2,10 @@ torch ~= 2.1.0
 pytorch-lightning ~= 2.1.3
 pandas ~= 2.1.4
 huggingface-hub ~= 0.20.1
-dvs ~= 3.38.1
-dvc[gdrive]~=3.0.1
+dvc ~= 3.39.0
+dvc[gs] 
+dvc[gdrive]
+google-api-python-client ~= 2.113.0
 # The next three I had to install manually to get `datasets` to work.
 multiprocess ~= 0.70.15
 xxhash ~= 3.4.1
