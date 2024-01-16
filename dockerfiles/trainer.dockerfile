@@ -9,6 +9,7 @@ RUN mkdir outputs/
 
 #Copy data/ make sure all files are on the device
 COPY data/ data/
+COPY conf/ conf/
 
 # ToDO : add data integartion with DVC
 

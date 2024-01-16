@@ -75,11 +75,7 @@ if [ $push == "y" ]; then
     docker push docker.io/$DOCKER_USERNAME/$IMAGE_NAME:$deploy_TAG
 fi
 
-if [ $remove == "y" ]; then
-    #remove the deploy container
-    docker stop docker.io/$DOCKER_USERNAME/$IMAGE_NAME:$deploy_TAG
-    docker rmi docker.io/$DOCKER_USERNAME/$IMAGE_NAME:$deploy_TAG
-fi
+
 
 #Build the train container
 docker build --file dockerfiles/trainer.dockerfile --build-arg BASE_IMAGE=base\
@@ -91,12 +87,14 @@ if [ $push == "y" ]; then
 fi
 
 if [ $remove == "y" ]; then
+    #remove the deploy container
+    docker stop docker.io/$DOCKER_USERNAME/$IMAGE_NAME:$deploy_TAG
+    docker rmi docker.io/$DOCKER_USERNAME/$IMAGE_NAME:$deploy_TAG
+
     #remove the train container
     docker stop docker.io/$DOCKER_USERNAME/$IMAGE_NAME:$Train_TAG
     docker rmi docker.io/$DOCKER_USERNAME/$IMAGE_NAME:$Train_TAG
-fi
 
-if [ $remove == "y" ]; then
     #remove the base container
     docker rmi base
 fi
