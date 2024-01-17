@@ -72,3 +72,21 @@ The directory structure of the project looks like this:
 Created using [mlops_template](https://github.com/SkafteNicki/mlops_template),
 a [cookiecutter template](https://github.com/cookiecutter/cookiecutter) for getting
 started with Machine Learning Operations (MLOps).
+
+# Profiling
+
+In order to profile training of the model, run the `profile_training.py` script.
+This is a Hydra script and requires any training config.
+The full command is therefore
+```bash
+python mlopstinystories/profile_training.py --config-name debug
+```
+where `debug` is a config that trains for only 50 steps.
+Note that the script assumes that the raw data has already been downloaded using the `data/fetch_raw_data.py` script.
+
+To view the profiling results, run
+```bash
+tensorboard --logdir=./profiling
+```
+Once you are on the site (should be at `localhost:6006`), the first thing you are presented with is a dashboard with mostly useless information.
+The actually useful information is hidden in the "Views" dropdown on the left side.

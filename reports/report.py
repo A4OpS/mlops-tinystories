@@ -65,6 +65,7 @@ def check():
                 f"Question {index} failed check. Expected number of words to be"
                 f" between {min_length} and {max_length} but got {len(answer)}",
                 TeacherWarning,
+                stacklevel=2,
             )
 
     def image_constrains(answer, index, min_length, max_length):
@@ -74,6 +75,7 @@ def check():
                 f"Question {index} failed check. Expected number of screenshots to be"
                 f" between {min_length} and {max_length} but got {len(links)}",
                 TeacherWarning,
+                stacklevel=2,
             )
 
     def multi_constrains(answer, index, constrains):
@@ -124,7 +126,7 @@ def check():
     if len(answers) != 27:
         raise ValueError("Number of answers are different from the expected 27. Have you filled out every field?")
 
-    for i, (answer, const) in enumerate(zip(answers, question_constrains), start=1):
+    for i, (answer, const) in enumerate(zip(answers, question_constrains, strict=True), start=1):
         const(answer, i)
 
 

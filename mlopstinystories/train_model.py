@@ -1,10 +1,12 @@
 from dataclasses import dataclass
+from typing import Optional
 
 import hydra
 from hydra.core.config_store import ConfigStore
 from pytorch_lightning import Trainer
 from pytorch_lightning.callbacks import ModelCheckpoint
 from pytorch_lightning.loggers import WandbLogger
+from pytorch_lightning.profilers import PyTorchProfiler
 
 from data import TinyStories, TinyStoriesConfig
 from device import get_device
@@ -27,8 +29,7 @@ cs = ConfigStore.instance()
 cs.store(name="train_config", node=TrainModelConfig)
 
 
-@hydra.main(config_path="../conf/train", version_base="1.3")
-def main(config: TrainModelConfig) -> None:
+def train_model(config: TrainModelConfig, profiler:Optional[PyTorchProfiler] = None) -> None:
     device = get_device()
 
     repo_root = hydra.utils.get_original_cwd()
@@ -57,12 +58,16 @@ def main(config: TrainModelConfig) -> None:
         limit_val_batches=config.limit_val_batches,
         log_every_n_steps=config.log_every_n_steps,
         num_sanity_val_steps=2,
+        profiler = profiler,
     )
 
     trainer.fit(model, datamodule=data)
 
     model.save("model1")
 
+@hydra.main(config_path="../conf/train", version_base="1.3")
+def main(config: TrainModelConfig) -> None:
+    train_model(config)
 
 if __name__ == "__main__":
     main()
