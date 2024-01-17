@@ -10,11 +10,11 @@ If you have questions to this guide contact Andreas Raaskov.
 We have tried to automate the workflow of our docker containers but at the times of this writing the task is not done. 
 
 Running the bash script:
-BuildPush.bash should automatically build containers and push them to your docker repository. In order to push too your docker repository make sure this folder has a .env file with the following format:
+BuildPush.bash should automatically build containers and push them to your docker repository. In order to push too your docker repository make sure this folder has a `.env` file with the following format:
 
 ```
 DOCKER_USERNAME=<your docker username> 
-DOCKER_TOKEN=<Your docker token>
+DOCKER_TOKEN=<your docker token>
 ```
 
 In the github action folder there is also a yaml setup for a github action that requres you docker credentials is a github secret.
@@ -74,7 +74,7 @@ andreasraaskovdtu/mlops-tinystories:trainer
 ## Running interactively
 For debugging make an interactive container by commenting out the last line in the docker build (remove the entry point).
 
-You can now open the container whith the inteactive flag -it.
+You can now open the container whith the inteactive flag `-it`.
 
 ```
 docker run --rm --gpus all -it  andreasraaskovdtu/mlops-tinystories:trainer

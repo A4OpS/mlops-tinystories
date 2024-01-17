@@ -1,9 +1,9 @@
 # This is a basic dockerfile used for debugging and manual testing/trainning
 
 #How to run this dockerfile
-# 1. ensure that docker is running
-# 2. Build the container: docker build -f dockerfiles\base.dockerfile . -t base:latest
-# 3. Run the container in interactive mode:docker run --gpus all -it --entrypoint sh base_cuda:latest
+# 1. Ensure that docker is running
+# 2. Build the container: `docker build -f dockerfiles\base.dockerfile . -t base:latest`
+# 3. Run the container in interactive mode: `docker run --gpus all -it --entrypoint sh base:latest`
 
 # Get base image
 FROM python:3.10-slim
