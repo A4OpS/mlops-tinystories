@@ -1,0 +1,20 @@
+steps:
+  # Step to build the Docker image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/my-image', '.']
+
+# Define the source location in your repository
+# Replace 'your-repository-name' and 'path/to/dockerfile' as needed
+source:
+  repoSource:
+    repoName: 'MLOPS-TINYSTORIES'
+    branchName: 'production'  # You can specify a branch, tag, or commit
+    dir: 'dockerfiles/base'  # Directory where the Dockerfile is located
+
+# Define substitutions, like project ID
+substitutions:
+  _PROJECT_ID: 'tinystories-mlops'
+
+# Specify images to be stored in Container Registry
+images:
+  - 'gcr.io/$PROJECT_ID/my-image'
