@@ -9,7 +9,7 @@ source:
   repoSource:
     repoName: 'MLOPS-TINYSTORIES'
     branchName: 'production'  # You can specify a branch, tag, or commit
-    dir: './dockerfiles/base'  # Directory where the Dockerfile is located
+    dir: 'dockerfiles'  # Directory where the Dockerfile is located
 
 # Define substitutions, like project ID
 substitutions:
