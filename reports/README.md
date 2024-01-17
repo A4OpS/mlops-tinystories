@@ -258,7 +258,14 @@ We used both brances and pull requests in our project. At the beginning of the p
 >
 > Answer:
 
-We have x seperate files for our CI. The first one we included was ruff for every merge to main branch. To avoid introducing bugs into the main branch we also included the test should be passed before a merge to main. SOMETING WITH DOCKER?
+We have x seperate files for our CI. The first one we included was ruff for every merge to main branch. To avoid introducing bugs into the main branch we also included the test should be passed before a merge to main.
+
+Tried to do continues integration of docker containers using github actions and mangaed to write a DockerBuild.yaml file that integrate with github action to automatically build a docker image and push it to a dockerhub that can be accused thug: 
+`docker pull andreasraaskovdtu/mlops-tinystories:6a9208c034d2188ff4d0a6157efef563e7805a73`  
+
+Unfortunately the free compute at Github could not handle the CUDA container because lag of space.
+
+Did we set it up in google cloud instead?
 
 
 ## Running code and tracking experiments
@@ -328,6 +335,8 @@ For experiment logging we used Weights and Bias. After we ran an experiment
 > Answer:
 
 --- question 15 fill here ---
+
+We relatively quickly got docker containers running on CPU, however, we spend a lot of time on the CUDA docker container since each container was around 26 GB which made them hard to work with. In order to save download speed we made a bash script that first created a base container with all the projects dependencies, then we used the base container to create a train container that had access to the data set and the config files in order to rapidly train new models. We also created a deploy container that can run the model. 
 
 ### Question 16
 
