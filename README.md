@@ -88,3 +88,5 @@ To view the profiling results, run
 ```bash
 tensorboard --logdir=./profiling
 ```
+Once you are on the site (should be at `localhost:6006`), the first thing you are presented with is a dashboard with mostly useless information.
+The actually useful information is hidden in the "Views" dropdown on the left side.
