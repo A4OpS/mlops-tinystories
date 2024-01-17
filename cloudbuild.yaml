@@ -1,7 +1,7 @@
 steps:
   # Step to build the Docker image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/$PROJECT_ID/my-image', '.']
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/base', '.']
 
 # Define the source location in your repository
 # Replace 'your-repository-name' and 'path/to/dockerfile' as needed
@@ -17,4 +17,4 @@ substitutions:
 
 # Specify images to be stored in Container Registry
 images:
-  - 'gcr.io/$PROJECT_ID/my-image'
+  - 'gcr.io/$PROJECT_ID/base'
