@@ -1,5 +1,6 @@
 defaults:
   - process_data_config
+  - _self_
 
 data_config: {
   total_ratio: 0.005,
