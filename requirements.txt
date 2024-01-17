@@ -19,3 +19,6 @@ uvicorn[standard] ~= 0.25.0
 
 #I got an error saying that I need tochvision but don't know where we are using it.
 torchvision ~= 0.16.1
+
+# I got an error that was fixed by installing this.
+chardet ~= 5.2.0
