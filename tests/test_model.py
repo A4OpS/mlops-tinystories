@@ -51,4 +51,4 @@ def test_train():
 
     repo_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     print(repo_root)
-    _ = train_model(config, repo_root)
+    _ = train_model(config = config, repo_root = repo_root, logger = False)

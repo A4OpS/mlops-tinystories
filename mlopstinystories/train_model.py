@@ -28,7 +28,7 @@ cs = ConfigStore.instance()
 cs.store(name="train_config", node=TrainModelConfig)
 
 
-def train_model(config: TrainModelConfig, repo_root: str, profiler: PyTorchProfiler | None = None) -> TinyStoriesModel:
+def train_model(config: TrainModelConfig, repo_root: str, profiler: PyTorchProfiler | None = None, logger: bool = True) -> TinyStoriesModel:
     device = get_device()
 
     data = TinyStories(repo_root, device.torch(), config.data_config)
@@ -46,7 +46,7 @@ def train_model(config: TrainModelConfig, repo_root: str, profiler: PyTorchProfi
         mode="min",
     )
     trainer = Trainer(
-        logger=WandbLogger(project="mlops-tinystories"),
+        logger=WandbLogger(project="mlops-tinystories") if logger else False,
         accelerator=device.lightning(),
         max_epochs=config.max_epochs,
         callbacks=[checkpoint_callback],
