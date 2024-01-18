@@ -493,6 +493,10 @@ All other uses were negligible.
 
 [this figure](figures/overview.png)
 
+There are two modes of using our module: as a developer or as a user. For the developer, we used GitHub for version control of the code. Working on separate branches, we implemented precommits in addition to the commits. The pre-commit makes sure that Ruff is happy and that the coding is up to the PEP8 Python standard. 
+
+A pull request is made before any code can be pushed to the main branch. For this to pass we set up several requirements: good coding practice with Ruff and testing the primal functions with pytest. It also requires another developer on the team to approve the push. From this, a docker container can be made and connected to GCP in order to train the model. From the local machine, we can assess the experiments with logging and handling of the model configuration done with weights and biases and hydra, respectively. We trained the model locally on a computer, as we did not succeed in implementing this part of the pipeline. When the best model is found, it is attached to a docker container that has a cloud run. This calls also apon an API script based on fast API. The user can then, through the cloud, access the model and, through an input, receive the output from the model. 
+
 ### Question 26
 
 > **Discuss the overall struggles of the project. Where did you spend most time and what did you do to overcome these**
