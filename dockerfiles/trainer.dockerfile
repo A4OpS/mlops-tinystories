@@ -13,4 +13,4 @@ cOPY conf/ conf/
 
 # ToDO : add data integartion with DVC
 
-#ENTRYPOINT ["python", "-u", "mlopstinystories/train_model.py"]
+ENTRYPOINT ["python", "-u", "mlopstinystories/train_model.py"]
