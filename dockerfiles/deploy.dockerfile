@@ -1,7 +1,5 @@
 #Docker file for deploying the model
-ARG BASE_IMAGE
-FROM $BASE_IMAGE
-
+FROM docker.io/albertgarde/base:latest
 EXPOSE 8080 
 
 COPY models/model_quick models/model
