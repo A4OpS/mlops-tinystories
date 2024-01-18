@@ -19,3 +19,6 @@ torch-tb-profiler ~= 0.4.3
 
 # test coverage
 coverage ~= 7.4.0
+
+# pre-commit
+pre-commit ~= 3.6.0

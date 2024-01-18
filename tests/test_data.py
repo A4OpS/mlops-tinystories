@@ -7,14 +7,12 @@ from pytorch_lightning import LightningDataModule
 from torch.utils.data import DataLoader
 from transformers import PreTrainedTokenizerFast
 
-from mlopstinystories import data
-from mlopstinystories.data import PROCESSED_DATA_PATH, RAW_DATA_PATH, TinyStories, TinyStoriesConfig
+from data import PROCESSED_DATA_PATH, RAW_DATA_PATH, TinyStories, TinyStoriesConfig, fetch_raw_data
 
-# Intergration test for data module
 
 # Test fetching of raw data
 def fetch_raw_data_test():
-    data.fetch_raw_data()
+    fetch_raw_data()
     # Test files in data directory
     assert os.path.exists(RAW_DATA_PATH), "Raw data directory does not exists"
     assert os.path.exists(
@@ -50,7 +48,6 @@ def fetch_raw_data_test():
     # Possible test to do: [https://github.com/albertsgarde/mlops-tinystories/issues/42]
     #     - Test if the dataset_dict.json corresponds to the subfolders in data/raw
     #     - Test if the state.json has the correct number of files in both train and validation folder
-
 
 
 # Test loading/fetching of data module
