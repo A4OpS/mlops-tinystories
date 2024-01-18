@@ -19,20 +19,11 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'us-central1-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/Deploy:latest']
 
-# Define the source location in your repository
-source:
-  repoSource:
-    repoName: 'MLOPS-TINYSTORIES'
-    branchName: 'production'  # You can specify a branch, tag, or commit
-    dir: 'dockerfiles'  # Directory where the Dockerfile is located
+
 
 # Define substitutions, like project ID
 substitutions:
   _PROJECT_ID: 'mlops-tiny-stories'
   _REPO_NAME: 'cpu'
 
-# Specify images to be stored in Artifact Registry
-images:
-  - 'eu.artifact-registry.googleapis.com/$PROJECT_ID/base'
-  - 'eu.artifact-registry.googleapis.com/$PROJECT_ID/train:latest'
-  - 'eu.artifact-registry.googleapis.com/$PROJECT_ID/mlops-tinystories:deploy'
+
