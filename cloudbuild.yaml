@@ -10,6 +10,14 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'gcr.io/$PROJECT_ID/train:latest']
 
+    # Build the deploy container
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '--file', 'dockerfiles/deploy.dockerfile', '--build-arg', 'BASE_IMAGE=gcr.io/$PROJECT_ID/base', '--tag', 'gcr.io/$PROJECT_ID/mlops-tinystories:deploy']
+
+    # Push the deploy container
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/mlops-tinystories:deploy']
+
 # Define the source location in your repository
 # Replace 'your-repository-name' and 'path/to/dockerfile' as needed
 source:
