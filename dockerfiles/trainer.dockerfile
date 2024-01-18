@@ -8,8 +8,8 @@ FROM $BASE_IMAGE
 RUN mkdir outputs/
 
 #Copy data/ make sure all files are on the device
-COPY data/ data/
-COPY conf/ conf/
+#COPY data/ data/
+cOPY conf/ conf/
 
 # ToDO : add data integartion with DVC
 
