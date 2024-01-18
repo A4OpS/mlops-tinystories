@@ -3,6 +3,8 @@ from http import HTTPStatus
 from typing import Dict, Optional
 
 from fastapi import FastAPI, Request, Response
+from fastapi.responses import RedirectResponse
+from fastapi.staticfiles import StaticFiles
 from transformers import PreTrainedTokenizerFast
 from transformers.generation import GenerationConfig
 
@@ -73,11 +75,17 @@ async def initialize(app: FastAPI):
 
 app = FastAPI(lifespan=initialize)
 
+app.mount("/static", StaticFiles(directory="frontend"), name="static")
 
-@app.get("/", status_code=HTTPStatus.OK)
-def read_root():
-    """Health check."""
-    return HTTPStatus.OK.phrase
+
+@app.get("/")
+async def read_index():
+    return RedirectResponse(url="/static/index.html")
+
+
+@app.get("/favicon.ico")
+async def read_favicon():
+    return RedirectResponse(url="/static/favicon.ico")
 
 
 @app.get("/generate/{model_path}", status_code=HTTPStatus.OK)
