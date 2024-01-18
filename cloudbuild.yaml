@@ -12,7 +12,7 @@ steps:
 
     # Build the deploy container
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '--file', 'dockerfiles/deploy.dockerfile', '--build-arg', 'BASE_IMAGE=gcr.io/$PROJECT_ID/base', '--tag', 'gcr.io/$PROJECT_ID/mlops-tinystories:deploy']
+    args: ['build','-t', 'gcr.io/$PROJECT_ID/mlops-tinystories:deploy','-f', 'dockerfiles/deploy.dockerfile', '--build-arg', 'BASE_IMAGE=gcr.io/$PROJECT_ID/base', '.']
 
     # Push the deploy container
   - name: 'gcr.io/cloud-builders/docker'
