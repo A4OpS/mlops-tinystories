@@ -196,7 +196,7 @@ As part of continuous integration, we added a GitHub action that checks all comm
 >
 > Answer:
 
-We have over 30 unittests implemented in three files. We test the data, the model and if the model can be trained. We test when getting the raw data and if the data is processed correctly. For getting the raw data, we test if all relevant directories exist and have been created properly. We also test if all raw files actually contain some data. For processing the data we test if a dataloader is created and also test that it is not empty. The model is also tested, to ensure the input and output is the correct format, and if the model can calculate gradients. 
+We have over 30 unittests implemented in three files. We test the data, the model and if the model can be trained. We test when getting the raw data and if the data is processed correctly. For getting the raw data, we test if all relevant directories exist and have been created properly. We also test if all raw files actually contain some data. For processing the data we test if a dataloader is created and also test that it is not empty. The model is also tested, to ensure the input and output is the correct format, and if the model can calculate gradients.
 
 ### Question 8
 
@@ -262,8 +262,8 @@ Our entire dataset takes up 2 GB's of space, which meant where ever we ran our t
 
 We have 3 seperate files for our CI. The first one we included was ruff for every merge to main branch. To avoid introducing bugs into the main branch we also included the test should be passed before a merge to main. We also run pytest when trying to merge into main where different parts of the data is tested. Here again all tests should pass before a merge into main is possible.
 An example of a triggered workflow can be seen here: <https://github.com/A4OpS/mlops-tinystories/actions/runs/7568697468>*
-We tried to do continues integration of docker containers using github actions and mangaed to write a DockerBuild.yaml file that integrates with github action to automatically build a docker image and push it to a dockerhub that can be accessed through: 
-`docker pull andreasraaskovdtu/mlops-tinystories:6a9208c034d2188ff4d0a6157efef563e7805a73`  
+We tried to do continues integration of docker containers using github actions and mangaed to write a DockerBuild.yaml file that integrates with github action to automatically build a docker image and push it to a dockerhub that can be accessed through:
+`docker pull andreasraaskovdtu/mlops-tinystories:6a9208c034d2188ff4d0a6157efef563e7805a73`
 
 Unfortunately the free compute at Github could not handle the CUDA container due to lack of space. We tried instead to set up the automatic building of containers in GCP.
 
@@ -374,7 +374,7 @@ A PyTorchProfiler was wrapped around our training loop to analyze if any optimiz
 
 In GCP we used the compute engine to run experiments on a GPU. By cloning the repo into the VM instance we were able to save the different configurations and track the progress of the experiment on W&B.
 We also used the Bucket on GCP to keep the data and the models on there. The idea is then to keep the best model that has been trained in the bucket.
-We also used the Cloud Functions services to set up deployment of the best model.
+We also used the Cloud Run services to set up deployment of the a specified pretrainedmodel.
 
 ### Question 18
 
@@ -399,7 +399,7 @@ Due to problems with getting our containers functioning properly, we also did no
 >
 > Answer:
 
-[Bucket figure](figures/bucket.png) 
+[Bucket figure](figures/bucket.png)
 
 ### Question 20
 
@@ -433,7 +433,9 @@ Due to problems with getting our containers functioning properly, we also did no
 >
 > Answer:
 
-We did manage to deploy our model locally serving the model locally and also testing it with a few prompts. Afterwards we started on trying to deploy the model on the cloud...
+We did manage to deploy our model locally serving the model locally and also testing it with a few prompts. Afterwards we started on trying to deploy the model on the cloud using a cloud run. The model can be accessed here: <https://tinystories-deploy-cucyneamrq-ez.a.run.app/static/index.html>*
+The model is deployed by choosing a container from docker hub which then runs the code that can run inference on the chosen model.
+When opening this site you will be greeted with a simple interface to use the model. On this site you can enter a prompt and submit it to the model. The model will then try to finish the sentence and write the output below.
 
 ### Question 23
 
@@ -448,7 +450,7 @@ We did manage to deploy our model locally serving the model locally and also tes
 >
 > Answer:
 
---- question 23 fill here ---
+Since we implemented our model on the cloud then GCP automatically has some monitoring setup for the Cloud Run. The metrics that GCP monitor for us tell us a lot about how our model is used. Metrics that give us information about the requests (count, latencies, concurrent uses etc.). For this dummy model the metrics is not providing us with any valuable information, however for a real model with the intention of actually using it these metrics could be usefull in monitoring if the cloud run would need to be upgraded with compute power. We could also keep track of the CPU and memory usage of the container and see if the container can keep up with all requests.
 
 ### Question 24
 
