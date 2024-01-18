@@ -2,6 +2,7 @@ steps:
   # Step to build the base image
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/base', '-f', './dockerfiles/base.dockerfile', '.']
+    name: 'us-central1-docker.pkg.dev/$PROJECT_ID/base'
     
   # Step to build the train image
   - name: 'gcr.io/cloud-builders/docker'
