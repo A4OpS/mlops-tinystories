@@ -1,5 +1,4 @@
 from dataclasses import dataclass
-from typing import Optional
 
 import hydra
 from hydra.core.config_store import ConfigStore
@@ -23,16 +22,13 @@ class TrainModelConfig:
     limit_val_batches: int = 10
     log_every_n_steps: int = 1
 
-
 cs = ConfigStore.instance()
 
 cs.store(name="train_config", node=TrainModelConfig)
 
-
-def train_model(config: TrainModelConfig, profiler:Optional[PyTorchProfiler] = None) -> None:
+def train_model(config: TrainModelConfig,repo_root: str,
+                profiler: PyTorchProfiler|None = None) -> None:
     device = get_device()
-
-    repo_root = hydra.utils.get_original_cwd()
 
     data = TinyStories(repo_root, device.torch(), config.data_config)
 
@@ -63,11 +59,14 @@ def train_model(config: TrainModelConfig, profiler:Optional[PyTorchProfiler] = N
 
     trainer.fit(model, datamodule=data)
 
-    model.save("model1")
+    return model
+
 
 @hydra.main(config_path="../conf/train", version_base="1.3")
 def main(config: TrainModelConfig) -> None:
-    train_model(config)
+    repo_root = hydra.utils.get_original_cwd()
+    model = train_model(config = config, repo_root = repo_root)
+    model.save("model1")
 
 if __name__ == "__main__":
     main()

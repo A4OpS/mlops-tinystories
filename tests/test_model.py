@@ -1,8 +1,7 @@
 import os
 
 import torch
-from train_model import TrainModelConfig
-from train_model import main as train_model
+from train_model import TrainModelConfig, train_model
 from transformers.modeling_outputs import CausalLMOutputWithPast
 
 from data import TinyStories, fetch_raw_data
@@ -49,7 +48,10 @@ def test_train():
     config = TrainModelConfig()
     config.max_steps = 2
     config.batch_size = 1
+
+    repo_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    print(repo_root)
     try:
-        train_model(os.getcwd(),config)
+        train_model(config, repo_root)
     except Exception as err:
         raise AssertionError("Training failed") from err
