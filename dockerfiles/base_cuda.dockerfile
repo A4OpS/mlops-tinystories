@@ -17,8 +17,6 @@ RUN apt update && \
 #Copy data/ make sure all files are on the device 
 #ToDo: Integate with DVC 
 COPY requirements.txt requirements.txt
-COPY pyproject.toml pyproject.toml
-COPY mlopstinystories/ mlopstinystories/
 
 
 # Install python dependencies
@@ -28,7 +26,10 @@ COPY mlopstinystories/ mlopstinystories/
 #RUN pip install -r requirements.txt --no-cache-dir -v
 
 #Command that install dependencies in the requirements.txt file and cache them
-RUN --mount=type=cache,target=~/pip/.cache pip install -r requirements.txt --no-cache-dir
+RUN pip install -r requirements.txt --no-cache-dir
+
+COPY pyproject.toml pyproject.toml
+COPY mlopstinystories/ mlopstinystories/
 
 #Command that install the project in the current directory (pyproject.toml)
 RUN pip install . --no-deps --no-cache-dir -v
