@@ -22,3 +22,7 @@ jobs:
           pytest --cache-clear tests/ > pytest-coverage.txt
       - name: Comment coverage
         uses: coroo/pytest-coverage-commentator@v1.0.2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          coverage_file: pytest-coverage.txt
+
