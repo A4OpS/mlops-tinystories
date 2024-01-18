@@ -26,4 +26,7 @@ jobs:
 
       - name: Comment coverage
         uses: coroo/pytest-coverage-commentator@v1.0.2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          report: pytest-coverage.txt
      
