@@ -36,12 +36,12 @@ class TinyStoriesConfig:
         data_loader_batch_size (int): The batch size to use for the dataloaders.
     """
 
-    total_ratio: float
-    validation_ratio: float
-    test_ratio: float
-    max_length_text: int
-    max_length: int
-    data_loader_batch_size: int
+    total_ratio: float = 0.005
+    validation_ratio: float = 0.1
+    test_ratio: float = 0.05
+    max_length_text: int = 1024
+    max_length: int = 256
+    data_loader_batch_size: int = 4
 
 
 class TinyStories(LightningDataModule):
