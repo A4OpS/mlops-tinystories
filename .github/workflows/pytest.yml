@@ -23,4 +23,7 @@ jobs:
       - name: Generate Coverage Report
         run: |
           coverage report -m
-      
+
+      - name: Comment coverage
+        uses: coroo/pytest-coverage-commentator@v1.0.2
+     
