@@ -267,6 +267,8 @@ We tried to do continues integration of docker containers using github actions a
 
 Unfortunately the free compute at Github could not handle the CUDA container due to lack of space. We tried instead to set up the automatic building of containers in GCP.
 
+The script cloudbuild in production branch is ran by a Google cloud build trigger to build the containers in GCP.We tried to set it up to save the images in the artifact registry but could't get it to work so we save the images in the container registry instead.   
+
 ## Running code and tracking experiments
 
 > In the following section we are interested in learning more about the experimental setup for running your code and
@@ -340,6 +342,8 @@ We relatively quickly got docker containers running on CPU, however, we spend a 
 docker run path:trainer --config-name <name>
 We also created a deploy container that can run the model, which was also used to deploy the model on GCP.
 One of the docker files can be found here: <https://hub.docker.com/layers/andreasraaskovdtu/mlops-tinystories/da094e9ae607afc3d5217438d4f93ae3c5f32ab9/images/sha256-749a7a1e2c3883d01e4234fee92db3ff663182eb4430ec56a9adc57ef61feb15?context=explore>*
+
+
 
 ### Question 16
 
@@ -472,7 +476,7 @@ Since we implemented our model on the cloud then GCP automatically has some moni
 > Answer:
 
 s194323 used $9 credits in trying to get the compute engine to run experiments.
-s183969 used $7.5 credits for compute engine experiments and a tiny bit more for deploying our model.
+s183969 used $7.5 credits for compute engine experiments and a tiny bit more for deploying our model. S183901 used 10.12 DKK to test continues integration of docker containers.
 All other uses were negligible.
 
 ## Overall discussion of project
