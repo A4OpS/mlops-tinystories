@@ -1,22 +1,22 @@
 steps:
   # Step to build the base image
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/$PROJECT_ID/base', '-f', './dockerfiles/base.dockerfile', '.']
+  - name: 'eu.gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'eu.gcr.io/$PROJECT_ID/base', '-f', './dockerfiles/base.dockerfile', '.']
     
   #Step to build the train image
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/$PROJECT_ID/train:latest', '-f', './dockerfiles/trainer.dockerfile','--build-arg','BASE_IMAGE=gcr.io/$PROJECT_ID/base', '.']
+  - name: 'eu.gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'eu.gcr.io/$PROJECT_ID/train:latest', '-f', './dockerfiles/trainer.dockerfile','--build-arg','BASE_IMAGE=eu.gcr.io/$PROJECT_ID/base', '.']
   # Step to push the image to Google Container Registry
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/$PROJECT_ID/train:latest']
+  - name: 'eu.gcr.io/cloud-builders/docker'
+    args: ['push', 'eu.gcr.io/$PROJECT_ID/train:latest']
 
     # Build the deploy container
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['build','-t', 'gcr.io/$PROJECT_ID/mlops-tinystories:deploy','-f', 'dockerfiles/deploy.dockerfile', '--build-arg', 'BASE_IMAGE=gcr.io/$PROJECT_ID/base', '.']
+#  - name: 'gcr.io/cloud-builders/docker'
+#    args: ['build','-t', 'eu.gcr.io/$PROJECT_ID/mlops-tinystories:deploy','-f', 'dockerfiles/deploy.dockerfile', '--build-arg', 'BASE_IMAGE=eu.gcr.io/$PROJECT_ID/base', '.']
 
     # Push the deploy container
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/$PROJECT_ID/mlops-tinystories:deploy']
+#  - name: 'gcr.io/cloud-builders/docker'
+#    args: ['push', 'eu.gcr.io/$PROJECT_ID/mlops-tinystories:deploy']
 
 # Define the source location in your repository
 # Replace 'your-repository-name' and 'path/to/dockerfile' as needed
