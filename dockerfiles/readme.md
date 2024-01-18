@@ -53,7 +53,7 @@ https://hub.docker.com/repository/docker/andreasraaskovdtu/mlops-tinystories-cud
 
 for GPU images.
 
-## Running tain container.
+## Running train container.
 
 A fully functional train container pulled from the repositor should run with the command.  
 
