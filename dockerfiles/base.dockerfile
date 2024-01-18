@@ -27,7 +27,7 @@ WORKDIR /
 #RUN pip install -r requirements.txt --no-cache-dir
 
 #Command that install dependencies in the requirements.txt file and cache them
-RUN --mount=type=cache,target=~/pip/.cache pip install -r requirements.txt --no-cache-dir
+RUN pip install -r requirements.txt --no-cache-dir
 
 #Command that install the project in the current directory (pyproject.toml)
 RUN pip install . --no-deps --no-cache-dir
