@@ -90,3 +90,14 @@ tensorboard --logdir=./profiling
 ```
 Once you are on the site (should be at `localhost:6006`), the first thing you are presented with is a dashboard with mostly useless information.
 The actually useful information is hidden in the "Views" dropdown on the left side.
+
+# Pre-commit
+
+To enable pre-commit run:
+pre-commit install
+
+Now pre-commit will run when commiting. This will run pre-commit on all changed files. To run pre-commit on all files run:
+pre-commit run --all-files
+
+If you don't want to use pre-commit anymore run:
+pre-commit uninstall
