@@ -8,9 +8,21 @@ FROM $BASE_IMAGE
 RUN mkdir outputs/
 
 #Copy data/ make sure all files are on the device
-COPY data/ data/
 COPY conf/ conf/
 
-# ToDO : add data integartion with DVC
+# copy in the "control" file
+COPY dockerfiles/entry.sh . 
 
-#ENTRYPOINT ["python", "-u", "mlopstinystories/train_model.py"]
+# dvc
+RUN dvc init --no-scm
+COPY .dvc/config .dvc
+RUN dvc config core.no_scm true
+COPY .dvcignore .
+COPY data.dvc .
+
+RUN chmod +x entry.sh
+
+
+# ENTRYPOINT ["python", "-u", "mlopstinystories/train_model.py"]
+ENTRYPOINT [ "/entry.sh" ]
+# CMD ["python", "-u", "mlopstinystories/train_model.py"]
