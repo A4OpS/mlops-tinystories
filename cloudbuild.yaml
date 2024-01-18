@@ -1,25 +1,25 @@
 steps:
   # Step to build the base image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/$PROJECT_ID/base', '-f', './dockerfiles/base.dockerfile', '.']
+    args: ['build', '-t', 'eu.artifact-registry.googleapis.com/$PROJECT_ID/base', '-f', './dockerfiles/base.dockerfile', '.']
     
-  #Step to build the train image
+  # Step to build the train image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/$PROJECT_ID/train:latest', '-f', './dockerfiles/trainer.dockerfile','--build-arg','BASE_IMAGE=gcr.io/$PROJECT_ID/base', '.']
-  # Step to push the image to Google Container Registry
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/$PROJECT_ID/train:latest']
+    args: ['build', '-t', 'eu.artifact-registry.googleapis.com/$PROJECT_ID/train:latest', '-f', './dockerfiles/trainer.dockerfile', '--build-arg', 'BASE_IMAGE=eu.artifact-registry.googleapis.com/$PROJECT_ID/base', '.']
 
-    # Build the deploy container
+  # Step to push the train image to Google Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build','-t', 'gcr.io/$PROJECT_ID/mlops-tinystories:deploy','-f', 'dockerfiles/deploy.dockerfile', '--build-arg', 'BASE_IMAGE=gcr.io/$PROJECT_ID/base', '.']
+    args: ['push', 'eu.artifact-registry.googleapis.com/$PROJECT_ID/train:latest']
 
-    # Push the deploy container
+  # Build the deploy container
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/$PROJECT_ID/mlops-tinystories:deploy']
+    args: ['build', '-t', 'eu.artifact-registry.googleapis.com/$PROJECT_ID/mlops-tinystories:deploy', '-f', 'dockerfiles/deploy.dockerfile', '--build-arg', 'BASE_IMAGE=eu.artifact-registry.googleapis.com/$PROJECT_ID/base', '.']
+
+  # Push the deploy container
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'eu.artifact-registry.googleapis.com/$PROJECT_ID/mlops-tinystories:deploy']
 
 # Define the source location in your repository
-# Replace 'your-repository-name' and 'path/to/dockerfile' as needed
 source:
   repoSource:
     repoName: 'MLOPS-TINYSTORIES'
@@ -30,6 +30,8 @@ source:
 substitutions:
   _PROJECT_ID: 'tinystories-mlops'
 
-# Specify images to be stored in Container Registry
+# Specify images to be stored in Artifact Registry
 images:
-  - 'gcr.io/$PROJECT_ID/base'
+  - 'eu.artifact-registry.googleapis.com/$PROJECT_ID/base'
+  - 'eu.artifact-registry.googleapis.com/$PROJECT_ID/train:latest'
+  - 'eu.artifact-registry.googleapis.com/$PROJECT_ID/mlops-tinystories:deploy'
