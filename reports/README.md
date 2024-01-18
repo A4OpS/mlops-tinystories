@@ -401,7 +401,7 @@ Due to problems with getting our containers functioning properly, we also did no
 >
 > Answer:
 
-[Bucket figure](figures/bucket.png)
+![Bucket figure](figures/bucket.png)
 
 ### Question 20
 
@@ -411,17 +411,19 @@ Due to problems with getting our containers functioning properly, we also did no
 > Answer:
 
 GCP container registry will be deprecated soon, so we use the Artifact Registry as much as possible.
-[Artifact registry](figures/artifact-registry.png)
+![Artifact registry](figures/artifact-registry.png)
 
 ### Question 21
 
 > **Upload one image of your GCP cloud build history, so we can see the history of the images that have been build in**
 > **your project. You can take inspiration from [this figure](figures/build.png).**
->
+> 
 > Answer:
 
 This is the cloud build history for s183901. They spent a lot of time trying to get things to work so there are a lot of failures.
-[Cloud build history s183901](figures/cloud-build-history-s183901.png)
+![Cloud build history s183901](figures/cloud-build-history-s183901.png)
+
+![Cloud Build history shared project](figures/cloud-build.png)
 
 ### Question 22
 
@@ -491,7 +493,7 @@ All other uses were negligible.
 >
 > Answer:
 
-[this figure](figures/overview.png)
+![this figure](figures/overview.png)
 
 ### Question 26
 
@@ -505,8 +507,9 @@ All other uses were negligible.
 >
 > Answer:
 
-Overall, the biggest challenge with this project for our group was everything regarding deployment and the cloud. From trying to build containers to having our containers and our code and dvc collaberating with GCP.
-We had a lot of problems building the containers and also making sure they worked afterwards by trying to run the images on other computers. The reason for this was that building the containers took very long to build, which meant that debugging this process took a very long time.
+Overall, the biggest challenge with this project for our group was everything regarding deployment and the cloud. From trying to build containers to having our containers and our code and dvc collaborating with GCP.  
+We had a lot of problems building the containers and also making sure they worked afterwards by trying to run the images on other computers. The reason for this was that building the containers took very long to build, which meant that debugging this process took a very long time. Later in the project we got better at using base-images we created with our requirements and some debugging/interactive tools.
+
 For running experiments on the compute engine, we also ran into trouble with our experiments dying or running into a wall without any proper warnings/errors. This made finding the reason for why the VM's could not run our code very hard. The troubles of using this compute engine also meant we were not able to run large experiments quickly.
 
 ### Question 27
@@ -528,5 +531,5 @@ Student s194323 was in charge of setting up the profiler and analyzing the outpu
 Student s194368 was in charge of developing unit tests for the data, for the model and for the training.
 Student s183969 was in charge of setting up the cookiecutter template, setting up the data, model and training script. The student also set up the CI in our GitHub repository and integrated hydra configurations into our training code.
 Student s183901 was in charge of setting up our docker containers and figuring out how to implement it as a part of CI in GCP.
-Student s194248 was in charge of settting up the dvc and afterwards setting up dvc in GCP.
+Student s194248 was in charge of settting up the dvc for data and model sharing and afterwards integrating dvc in docker images for GCP. Later helped training in the cloud.
 Everybody contributed to: reviewing pull requests on github, adhering to coding practices, different parts of deploying on the cloud.
