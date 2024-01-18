@@ -213,6 +213,8 @@ We have 3 unittests implemented in three files. We test the data, the model and 
 
 The measured code coverage we got is 90%. This includes all of the files that are needed to run the tests, which means there are some python files in our repository that is not included in the coverage percentage. We are a little bit away from 100%. We found that when writing unit tests, then we kept on thinking of new ways to test our code. We ended up at some point not writing anymore unit tests. So even though we have a high code coverage, then the fact that we did not have enough time to write all the unit tests we wanted shows that there is still a chance that our code could contains errors.
 
+In addition, even if all our code wwas "tested" there might still be oversights in the tests themselves that could let bugs through, which is a hard thing to plan against.
+
 ### Question 9
 
 > **Did you workflow include using branches and pull requests? If yes, explain how. If not, explain how branches and**
@@ -226,7 +228,7 @@ The measured code coverage we got is 90%. This includes all of the files that ar
 >
 > Answer:
 
-We used both brances and pull requests in our project. At the beginning of the project, an issue was made for all items seen on the project checklist. When a team member would start working on an issue they would create a new branch to work on. The issue would also be assigned to that team member to help us keep track of who works on what. When the issue/checklist item was done and working, then the team member would commit and create a pull request in order to merge that branch with the main branch. We set up a rule that one other team member has to review and accept that pull request before the merge is done. When and if the request was accepted and merged into main then the issue could also be closed.
+We used both branches and pull requests in our project. At the beginning of the project, an issue was made for all items seen on the project checklist. When a team member would start working on an issue they would create a new branch to work on. The issue would also be assigned to that team member to help us keep track of who works on what. When the issue/checklist item was done and working, then the team member would commit and create a pull request in order to merge that branch with the main branch. We set up a rule that one other team member has to review and accept that pull request before the merge is done. When and if the request was accepted and merged into main then the issue could also be closed.
 
 ### Question 10
 
@@ -241,10 +243,8 @@ We used both brances and pull requests in our project. At the beginning of the p
 >
 > Answer:
 
-We did implement dvc but we did not use it for managing our data. The data for this project was downloaded using an API and when training a model we could alter the hydra configurations to control how much data was used in training and validation. We only used dvc to share model files needed for deployment.
-Through the hydra configurations we were able to have a lot of control of what data we would train on. If this was not the case, then dvc could have helped us keep track of different versions of data we trained on.
-Our entire dataset takes up 2 GB's of space, which meant where ever we ran our training all the data would be able to be kept in memory. If this was not the case, then more use of dvc to manage the data would probably have been usefull.
-
+We implemented dvc for storing data and sharing models on google cloud storage. The initial data is downloaded using an API and when training a model we could alter the hydra configurations to control how much data was used in training and validation.  
+Through the hydra configurations we were able to have a lot of control of what portio of data we would train on. Our data was "static" for the most part, so we did not implement any versioning for the data. Models were trained a couple times, but there were no bigger versioning of the different models either. If we had gotten to tune hyperparameters and such, versioning the models would be a good idea.  
 
 ### Question 11
 
@@ -401,6 +401,7 @@ Due to problems with getting our containers functioning properly, we also did no
 >
 > Answer:
 
+As the data was hashed it is a bit non-sensical to try and understand what is actually stored. In short we stored the raw data files, which were text short-stories, and model configurations and weights for use in deployment.
 ![Bucket figure](figures/bucket.png)
 
 ### Question 20
@@ -422,7 +423,7 @@ GCP container registry will be deprecated soon, so we use the Artifact Registry 
 
 This is the cloud build history for s183901. They spent a lot of time trying to get things to work so there are a lot of failures.
 ![Cloud build history s183901](figures/cloud-build-history-s183901.png)
-
+Moving to a shared project on GCP, we again ran into more issues before getting succesful images built.
 ![Cloud Build history shared project](figures/cloud-build.png)
 
 ### Question 22
