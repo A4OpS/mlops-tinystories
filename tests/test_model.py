@@ -9,7 +9,6 @@ from models import ModelNotFoundError, TinyStoriesModel, TinyStoriesModelConfig
 
 
 def test_model():
-
     config = TinyStoriesModelConfig()
 
     # check attrubutes of config
@@ -30,15 +29,16 @@ def test_model():
     # Standard input
     input_ids = TinyStories.create_tokenizer()(
         "The quick brown fox jumps over the lazy dog", return_tensors="pt"
-        ).input_ids
+    ).input_ids
 
     # check model output
     output = model(input_ids)
-    assert isinstance(output,CausalLMOutputWithPast)
+    assert isinstance(output, CausalLMOutputWithPast)
     # Shape logits: batch size x sequence length (x vocab size)
-    assert output.logits.shape[:2] == torch.Size([1,9]), "logits shape incorrect"
+    assert output.logits.shape[:2] == torch.Size([1, 9]), "logits shape incorrect"
     assert output.logits.requires_grad is True, "logits should be trainable (requires grad)"
     assert output.past_key_values is not None, "past_key_values should not be None"
+
 
 def test_train():
     # fetch data
@@ -51,4 +51,4 @@ def test_train():
 
     repo_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     print(repo_root)
-    _ = train_model(config = config, repo_root = repo_root, logger = False)
+    _ = train_model(config=config, repo_root=repo_root, logger=False)

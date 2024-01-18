@@ -28,7 +28,9 @@ cs = ConfigStore.instance()
 cs.store(name="train_config", node=TrainModelConfig)
 
 
-def train_model(config: TrainModelConfig, repo_root: str, profiler: PyTorchProfiler | None = None, logger: bool = True) -> TinyStoriesModel:
+def train_model(
+    config: TrainModelConfig, repo_root: str, profiler: PyTorchProfiler | None = None, logger: bool = True
+) -> TinyStoriesModel:
     device = get_device()
 
     data = TinyStories(repo_root, device.torch(), config.data_config)

@@ -50,7 +50,6 @@ def fetch_raw_data_test():
     #     - Test if the state.json has the correct number of files in both train and validation folder
 
 
-
 # Test loading/fetching of data module
 def data_module_test():
     def dataloader_test(data_loader: DataLoader[List[torch.Tensor]]):
@@ -106,4 +105,3 @@ def data_module_test():
 def test_data():
     fetch_raw_data_test()
     data_module_test()
-
