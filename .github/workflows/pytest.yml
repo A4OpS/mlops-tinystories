@@ -17,16 +17,8 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           pip install -r requirements_dev.txt
-      - name: Test with pytest
+      - name: Build coverage file
         run: |
-          coverage run -m pytest -v
-      - name: Generate Coverage Report
-        run: |
-          coverage report -m > pytest-coverage.txt
-
+        pytest --cache-clear --cov=app test/ > pytest-coverage.txt
       - name: Comment coverage
         uses: coroo/pytest-coverage-commentator@v1.0.2
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          report: pytest-coverage.txt
-     
