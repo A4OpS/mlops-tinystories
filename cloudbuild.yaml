@@ -1,23 +1,23 @@
 steps:
   # Step to build the base image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'eu.gcr.io/$PROJECT_ID/base', '-f', './dockerfiles/base.dockerfile', '.']
+    args: ['build', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/base', '-f', './dockerfiles/base.dockerfile', '.']
     
   # Step to build the train image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'eu.gcr.io/$PROJECT_ID/train:latest', '-f', './dockerfiles/trainer.dockerfile', '--build-arg', 'BASE_IMAGE=eu.gcr.io/$PROJECT_ID/base', '.']
+    args: ['build', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/train:latest', '-f', './dockerfiles/trainer.dockerfile', '--build-arg', 'BASE_IMAGE=us-central1-docker.pkg.dev/$PROJECT_ID/base', '.']
 
   # Step to push the train image to Google Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'eu.gcr.io/$PROJECT_ID/train:latest']
+    args: ['push', 'us-central1-docker.pkg.dev/$PROJECT_ID/train:latest']
 
   # Build the deploy container
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'eu.gcr.io/$PROJECT_ID/mlops-tinystories:deploy', '-f', 'dockerfiles/deploy.dockerfile', '--build-arg', 'BASE_IMAGE=eu.gcr.io/$PROJECT_ID/base', '.']
+    args: ['build', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/mlops-tinystories:deploy', '-f', 'dockerfiles/deploy.dockerfile', '--build-arg', 'BASE_IMAGE=us-central1-docker.pkg.dev/$PROJECT_ID/base', '.']
 
   # Push the deploy container
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'eu.gcr.io/$PROJECT_ID/mlops-tinystories:deploy']
+    args: ['push', 'us-central1-docker.pkg.dev/$PROJECT_ID/mlops-tinystories:deploy']
 
 # Define the source location in your repository
 source:
@@ -28,7 +28,7 @@ source:
 
 # Define substitutions, like project ID
 substitutions:
-  _PROJECT_ID: 'tinystories-mlops'
+  _PROJECT_ID: 'mlops-tiny-stories'
 
 # Specify images to be stored in Artifact Registry
 images:
