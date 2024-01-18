@@ -495,6 +495,8 @@ All other uses were negligible.
 > Answer:
 
 ![this figure](figures/overview.png)
+We start off by experimenting locally on our machines for what model setup works and the scoping of data loading should be. Our training uses Hydra for configuration handling and weights and bieases for monitoring the training. From this we can pick out a best model that can be used for experimenting with deployment. Our devs branches use issue based branching, where we iterate on our ideas and have to review each others pull requrests which also goes through mandatory checking. Github actions is responsible for this. In addition a "deployment" branch is followed in google cloud Build Triggers, that should build images of our newest models upon pushing to this branch. These images are then uploaded to either dickerhub (earlier) or automatically to Artificts Registry so they can be deployed in the cloud run service. A user intereacts with our FastAPI endpoint, where a quite simplistic but effective website is found that can show the generated output.
+
 
 ### Question 26
 
