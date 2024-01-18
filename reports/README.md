@@ -196,7 +196,7 @@ As part of continuous integration, we added a GitHub action that checks all comm
 >
 > Answer:
 
-We have over 30 unittests implemented in three files. We test the data, the model and if the model can be trained. We test when getting the raw data and if the data is processed correctly. For getting the raw data, we test if all relevant directories exist and have been created properly. We also test if all raw files actually contain some data. For processing the data we test if a dataloader is created and also test that it is not empty. The model is also tested, to ensure the input and output is the correct format, and if the model can calculate gradients.
+We have 3 unittests implemented in three files. We test the data, the model and if the model can be trained. We test when getting the raw data and if the data is processed correctly. For getting the raw data, we test if all relevant directories exist and have been created properly. We also test if all raw files actually contain some data. For processing the data we test if a dataloader is created and also test that it is not empty. The model is also tested, to ensure the input and output is the correct format, and if the model can calculate gradients.
 
 ### Question 8
 
@@ -260,7 +260,7 @@ Our entire dataset takes up 2 GB's of space, which meant where ever we ran our t
 >
 > Answer:
 
-We have 3 seperate files for our CI. The first one we included was ruff for every merge to main branch. To avoid introducing bugs into the main branch we also included the test should be passed before a merge to main. We also run pytest when trying to merge into main where different parts of the data is tested. Here again all tests should pass before a merge into main is possible.
+We have 3 separate files for our CI. The first one we included was ruff for every merge to main branch. To avoid introducing bugs into the main branch we also included the test should be passed before a merge to main. We also run pytest when trying to merge into main where different parts of the data is tested. Here again all tests should pass before a merge into main is possible.
 An example of a triggered workflow can be seen here: <https://github.com/A4OpS/mlops-tinystories/actions/runs/7568697468>*
 We tried to do continues integration of docker containers using github actions and mangaed to write a DockerBuild.yaml file that integrates with github action to automatically build a docker image and push it to a dockerhub that can be accessed through:
 `docker pull andreasraaskovdtu/mlops-tinystories:6a9208c034d2188ff4d0a6157efef563e7805a73`
@@ -373,8 +373,10 @@ A PyTorchProfiler was wrapped around our training loop to analyze if any optimiz
 > Answer:
 
 In GCP we used the compute engine to run experiments on a GPU. By cloning the repo into the VM instance we were able to save the different configurations and track the progress of the experiment on W&B.
-We also used the Bucket on GCP to keep the data and the models on there. The idea is then to keep the best model that has been trained in the bucket.
-We also used the Cloud Run services to set up deployment of the a specified pretrainedmodel.
+We also used the Bucket on GCP for our DVC storage.
+Artifact Registry was used to store our docker images.
+Cloud run is used to deploy our model. Unfortunately this does not support CUDA, but for deployment, CPU is good enough for now.
+Cloud build is used to build our docker images and push them to Artifact Registry.
 
 ### Question 18
 
@@ -408,7 +410,8 @@ Due to problems with getting our containers functioning properly, we also did no
 >
 > Answer:
 
---- question 20 fill here ---
+GCP container registry will be deprecated soon, so we use the Artifact Registry as much as possible.
+[Artifact registry](figures/artifact-registry.png)
 
 ### Question 21
 
@@ -417,7 +420,8 @@ Due to problems with getting our containers functioning properly, we also did no
 >
 > Answer:
 
---- question 21 fill here ---
+This is the cloud build history for s183901. They spent a lot of time trying to get things to work so there are a lot of failures.
+[Cloud build history s183901](figures/cloud-build-history-s183901.png)
 
 ### Question 22
 
@@ -464,7 +468,9 @@ Since we implemented our model on the cloud then GCP automatically has some moni
 >
 > Answer:
 
-s194323 used 9 credits in trying to get the compute engine to run experiments.
+s194323 used $9 credits in trying to get the compute engine to run experiments.
+s183969 used $7.5 credits for compute engine experiments and a tiny bit more for deploying our model.
+All other uses were negligible.
 
 ## Overall discussion of project
 
@@ -485,7 +491,7 @@ s194323 used 9 credits in trying to get the compute engine to run experiments.
 >
 > Answer:
 
---- question 25 fill here ---
+[this figure](figures/overview.png)
 
 ### Question 26
 
@@ -518,9 +524,9 @@ For running experiments on the compute engine, we also ran into trouble with our
 >
 > Answer:
 
-Student s194323 (Aleksander) was in charge of setting up the profiler and analyzing the output to see if any optimizations were needed. This student also tried running experiments on the compute engine in GCP.
-Student s194368 (Alexandra) was in charge of developing unit tests for the data, for the model and for the training.
-Student s183969 (Albert) was in charge of setting up the cookiecutter template, setting up the data, model and training script. The student also set up the CI in our GitHub repository, integrated hydra configurations into our training code.
-Student s183901 (Andreas) was in charge of setting up our docker containers and figuring out how to implement it as a part of CI in GCP.
-Student s194248 (Simon) was in charge of settting up the dvc and afterwards setting up dvc in GCP.
+Student s194323 was in charge of setting up the profiler and analyzing the output to see if any optimizations were needed. This student also tried running experiments on the compute engine in GCP.
+Student s194368 was in charge of developing unit tests for the data, for the model and for the training.
+Student s183969 was in charge of setting up the cookiecutter template, setting up the data, model and training script. The student also set up the CI in our GitHub repository and integrated hydra configurations into our training code.
+Student s183901 was in charge of setting up our docker containers and figuring out how to implement it as a part of CI in GCP.
+Student s194248 was in charge of settting up the dvc and afterwards setting up dvc in GCP.
 Everybody contributed to: reviewing pull requests on github, adhering to coding practices, different parts of deploying on the cloud.
