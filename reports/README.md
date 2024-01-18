@@ -196,8 +196,7 @@ As part of continuous integration, we added a GitHub action that checks all comm
 >
 > Answer:
 
-We have 24 unittests implemented these cover two aspects: the data and the model. We test when getting the raw data and if the data is processed correctly. For getting the raw data, we test if all relevant directories exist and have been created properly. We also test if all raw files actually contain some data. For processing the data we test if a dataloader is created and also test that it is not empty. The model is also testes, to ensure the input and output is the correct format, and if the model can calculate gradients. 
-
+We have over 30 unittests implemented in three files. We test the data, the model and if the model can be trained. We test when getting the raw data and if the data is processed correctly. For getting the raw data, we test if all relevant directories exist and have been created properly. We also test if all raw files actually contain some data. For processing the data we test if a dataloader is created and also test that it is not empty. The model is also tested, to ensure the input and output is the correct format, and if the model can calculate gradients. 
 
 ### Question 8
 
@@ -212,7 +211,7 @@ We have 24 unittests implemented these cover two aspects: the data and the model
 >
 > Answer:
 
---- question 8 fill here ---
+The measured code coverage we got is 90%. This includes all of the files that are needed to run the tests, which means there are some python files in our repository that is not included in the coverage percentage. We are a little bit away from 100%. We found that when writing unit tests, then we kept on thinking of new ways to test our code. We ended up at some point not writing anymore unit tests. So even though we have a high code coverage, then the fact that we did not have enough time to write all the unit tests we wanted shows that there is still a chance that our code could contains errors.
 
 ### Question 9
 
@@ -242,7 +241,10 @@ We used both brances and pull requests in our project. At the beginning of the p
 >
 > Answer:
 
---- question 10 fill here ---
+We did implement dvc but we did not use it for managing our data. The data for this project was downloaded using an API and when training a model we could alter the hydra configurations to control how much data was used in training and validation. We only used dvc to share model files needed for deployment.
+Through the hydra configurations we were able to have a lot of control of what data we would train on. If this was not the case, then dvc could have helped us keep track of different versions of data we trained on.
+Our entire dataset takes up 2 GB's of space, which meant where ever we ran our training all the data would be able to be kept in memory. If this was not the case, then more use of dvc to manage the data would probably have been usefull.
+
 
 ### Question 11
 
@@ -258,15 +260,12 @@ We used both brances and pull requests in our project. At the beginning of the p
 >
 > Answer:
 
-We have x seperate files for our CI. The first one we included was ruff for every merge to main branch. To avoid introducing bugs into the main branch we also included the test should be passed before a merge to main.
-
-Tried to do continues integration of docker containers using github actions and mangaed to write a DockerBuild.yaml file that integrate with github action to automatically build a docker image and push it to a dockerhub that can be accused thug: 
+We have 3 seperate files for our CI. The first one we included was ruff for every merge to main branch. To avoid introducing bugs into the main branch we also included the test should be passed before a merge to main. We also run pytest when trying to merge into main where different parts of the data is tested. Here again all tests should pass before a merge into main is possible.
+An example of a triggered workflow can be seen here: <https://github.com/A4OpS/mlops-tinystories/actions/runs/7568697468>*
+We tried to do continues integration of docker containers using github actions and mangaed to write a DockerBuild.yaml file that integrates with github action to automatically build a docker image and push it to a dockerhub that can be accessed through: 
 `docker pull andreasraaskovdtu/mlops-tinystories:6a9208c034d2188ff4d0a6157efef563e7805a73`  
 
-Unfortunately the free compute at Github could not handle the CUDA container because lag of space.
-
-Did we set it up in google cloud instead?
-
+Unfortunately the free compute at Github could not handle the CUDA container due to lack of space. We tried instead to set up the automatic building of containers in GCP.
 
 ## Running code and tracking experiments
 
@@ -285,9 +284,9 @@ Did we set it up in google cloud instead?
 >
 > Answer:
 
-We used config files for our experiments, where we choose tohandled with hydra. The config file name was then included was a argparser. It worked the following way:
+We used config files for our experiments, where we choose to handle it with hydra. The config file name was then included was as an argparser. It worked the following way:
 python train_model --config-name quick
-where the different configs had a folder making it easier to log what experiments that had been performed. 
+where the different configs had a folder making it easier to log what experiments that had been performed. These config files gave us control over how much data to train and validate on, the hyperparameters in the model architecture and different parameters in our training loop.
 
 ### Question 13
 
@@ -302,7 +301,8 @@ where the different configs had a folder making it easier to log what experiment
 >
 > Answer:
 
-For experiment logging we used Weights and Bias. After we ran an experiment 
+For this a combination of weights and biases and hydra was used. Weight and biases was used to keep track of how the learning progressed, namely how the training and validation loss progressed during training. Hydra would save the configuration in a generated folder based on date and timestamp of training. In W&B one could then compare the train and validation losses from the different experiments to find the better performing experiments.
+To reproduce an experiment, a team member could compare the stimestamps from W&B and hydra, find the relevant hydra folder and get the configuration from that yaml file.
 
 ### Question 14
 
@@ -319,7 +319,9 @@ For experiment logging we used Weights and Bias. After we ran an experiment
 >
 > Answer:
 
---- question 14 fill here ---
+We have included the log from W&B from one of our experiments in [this figure](figures/W&B.png). This is the experiment for the deployed model. In the figure four graphs are shown. The two most important graphs are two most left ones in the top. In the graph seen in the top row all to the left, we logged the validation loss for the experiment. In this experiment it was calculated and logged every 200 steps. In the graph seen in the top row second most to the left, we have logged the training loss every 5 steps. With the training loss it is important to check if it is decreasing and converging. We see that the training loss converges quite quickly and afterwards the optimizer is stuck in some minimum.
+Comparing the training loss and the validation loss is also important. If the training loss kept decreasing while there was no improvement in the validation loss, then this would suggest that the model is overfitting.
+The last two graphs show how long we are in the experiment, tracking which epoch we are executing in each step and how many times we have logged data compared to the number of steps in the training.
 
 ### Question 15
 
@@ -334,9 +336,10 @@ For experiment logging we used Weights and Bias. After we ran an experiment
 >
 > Answer:
 
---- question 15 fill here ---
-
-We relatively quickly got docker containers running on CPU, however, we spend a lot of time on the CUDA docker container since each container was around 26 GB which made them hard to work with. In order to save download speed we made a bash script that first created a base container with all the projects dependencies, then we used the base container to create a train container that had access to the data set and the config files in order to rapidly train new models. We also created a deploy container that can run the model. 
+We relatively quickly got docker containers running on CPU, however, we spend a lot of time on the CUDA docker container since each container was around 26 GB which made them hard to work with. In order to save download speed we made a bash script that first created a base container with all the projects dependencies, then we used the base container to create a train container that had access to the data set and the config files in order to rapidly train new models. To run the docker container for training one had to include the config file as an argparse:
+docker run path:trainer --config-name <name>
+We also created a deploy container that can run the model, which was also used to deploy the model on GCP.
+One of the docker files can be found here: <https://hub.docker.com/layers/andreasraaskovdtu/mlops-tinystories/da094e9ae607afc3d5217438d4f93ae3c5f32ab9/images/sha256-749a7a1e2c3883d01e4234fee92db3ff663182eb4430ec56a9adc57ef61feb15?context=explore>*
 
 ### Question 16
 
@@ -351,7 +354,7 @@ We relatively quickly got docker containers running on CPU, however, we spend a 
 >
 > Answer:
 
-For debugging in this project...
+Due to using lightning and transformers framework, very little debugging was needed when running the code locally. In that case simple print statements was used to fix simple bugs.
 A PyTorchProfiler was wrapped around our training loop to analyze if any optimization was needed. After inspecting the time spent on certain steps in the training, it was found that there was immediate need for any optimizations. Much of our code is setup by using different frameworks like lightning and transformers package from huggingface. Since most of our code relies on these well established frameworks, it does not come as a suprise that our was already somewhat optimized.
 
 ## Working in the cloud
@@ -369,7 +372,9 @@ A PyTorchProfiler was wrapped around our training loop to analyze if any optimiz
 >
 > Answer:
 
---- question 17 fill here ---
+In GCP we used the compute engine to run experiments on a GPU. By cloning the repo into the VM instance we were able to save the different configurations and track the progress of the experiment on W&B.
+We also used the Bucket on GCP to keep the data and the models on there. The idea is then to keep the best model that has been trained in the bucket.
+We also used the Cloud Functions services to set up deployment of the best model.
 
 ### Question 18
 
@@ -384,7 +389,8 @@ A PyTorchProfiler was wrapped around our training loop to analyze if any optimiz
 >
 > Answer:
 
---- question 18 fill here ---
+We used the compute engine to interactively run experiments on the VM instances. We used VM instances with the Tesla v100 GPU. We tried to set up so we could run different experiments using the compute enginge, however our training script would often stop working/running without any error or warnings messages. This made debugging extremely hard. Especially considering that we could run our training script on a local laptop GPU. This also resulted in us not having enough time to find a configuration that produced a working model.
+Due to problems with getting our containers functioning properly, we also did not have the time to test running containers in the compute engine.
 
 ### Question 19
 
@@ -393,7 +399,7 @@ A PyTorchProfiler was wrapped around our training loop to analyze if any optimiz
 >
 > Answer:
 
---- question 19 fill here ---
+[Bucket figure](figures/bucket.png) 
 
 ### Question 20
 
@@ -427,7 +433,7 @@ A PyTorchProfiler was wrapped around our training loop to analyze if any optimiz
 >
 > Answer:
 
---- question 22 fill here ---
+We did manage to deploy our model locally serving the model locally and also testing it with a few prompts. Afterwards we started on trying to deploy the model on the cloud...
 
 ### Question 23
 
@@ -456,7 +462,7 @@ A PyTorchProfiler was wrapped around our training loop to analyze if any optimiz
 >
 > Answer:
 
---- question 24 fill here ---
+s194323 used 9 credits in trying to get the compute engine to run experiments.
 
 ## Overall discussion of project
 
@@ -491,7 +497,9 @@ A PyTorchProfiler was wrapped around our training loop to analyze if any optimiz
 >
 > Answer:
 
---- question 26 fill here ---
+Overall, the biggest challenge with this project for our group was everything regarding deployment and the cloud. From trying to build containers to having our containers and our code and dvc collaberating with GCP.
+We had a lot of problems building the containers and also making sure they worked afterwards by trying to run the images on other computers. The reason for this was that building the containers took very long to build, which meant that debugging this process took a very long time.
+For running experiments on the compute engine, we also ran into trouble with our experiments dying or running into a wall without any proper warnings/errors. This made finding the reason for why the VM's could not run our code very hard. The troubles of using this compute engine also meant we were not able to run large experiments quickly.
 
 ### Question 27
 
@@ -508,8 +516,9 @@ A PyTorchProfiler was wrapped around our training loop to analyze if any optimiz
 >
 > Answer:
 
-Student s194323 (Aleksander) was in charge of setting up the profiler and analyzing the output to see if any optimizations were needed.
-Student s194368 (Alexandra) was in charge of developing unit tests for the data and for the model.
+Student s194323 (Aleksander) was in charge of setting up the profiler and analyzing the output to see if any optimizations were needed. This student also tried running experiments on the compute engine in GCP.
+Student s194368 (Alexandra) was in charge of developing unit tests for the data, for the model and for the training.
 Student s183969 (Albert) was in charge of setting up the cookiecutter template, setting up the data, model and training script. The student also set up the CI in our GitHub repository, integrated hydra configurations into our training code.
-Student s183901 (Andreas) was in charge of setting up our docker containers and figuring out how to implement it as a part of CI.
-Student s194248 (Simon) was in charge of settting up the data in GCP.
+Student s183901 (Andreas) was in charge of setting up our docker containers and figuring out how to implement it as a part of CI in GCP.
+Student s194248 (Simon) was in charge of settting up the dvc and afterwards setting up dvc in GCP.
+Everybody contributed to: reviewing pull requests on github, adhering to coding practices, different parts of deploying on the cloud.
