@@ -51,7 +51,4 @@ def test_train():
 
     repo_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     print(repo_root)
-    try:
-        train_model(config, repo_root)
-    except Exception as err:
-        raise AssertionError("Training failed") from err
+    _ = train_model(config, repo_root)
