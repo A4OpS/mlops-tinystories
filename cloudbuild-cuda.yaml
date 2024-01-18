@@ -16,7 +16,7 @@ steps:
     args: ['build', '-t', 'gcr.io/$PROJECT_ID/$REPO_NAME/deploy:latest', '-f', 'dockerfiles/deploy.dockerfile', '--build-arg', 'BASE_IMAGE=gcr.io/$PROJECT_ID/base', '.']
 
   # Push the deploy container
-  - name: 'gcr.io/$PROJECT_ID/$REPO_NAME/base'
+  - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'gcr.io/$PROJECT_ID/$REPO_NAME/deploy:latest']
 
 
