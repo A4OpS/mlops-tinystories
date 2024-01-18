@@ -1,4 +1,5 @@
 """Replication of the Tiny Stories paper."""
-from .train import TrainModelConfig, train_model
+from .train_model import TrainModelConfig
+from .train_model import main as train_model
 
 __all__ = ["train_model", "TrainModelConfig"]

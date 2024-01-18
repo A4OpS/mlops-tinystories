@@ -1,11 +1,12 @@
 import os
 
 import torch
+from train_model import TrainModelConfig
+from train_model import main as train_model
 from transformers.modeling_outputs import CausalLMOutputWithPast
 
-from mlopstinystories import TrainModelConfig, train_model
-from mlopstinystories.data import TinyStories, fetch_raw_data
-from mlopstinystories.models import ModelNotFoundError, TinyStoriesModel, TinyStoriesModelConfig
+from data import TinyStories, fetch_raw_data
+from models import ModelNotFoundError, TinyStoriesModel, TinyStoriesModelConfig
 
 
 def test_model():

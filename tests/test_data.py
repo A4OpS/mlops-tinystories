@@ -1,4 +1,5 @@
 import os
+import sys
 from glob import glob
 from typing import List
 
@@ -7,14 +8,14 @@ from pytorch_lightning import LightningDataModule
 from torch.utils.data import DataLoader
 from transformers import PreTrainedTokenizerFast
 
-from mlopstinystories import data
-from mlopstinystories.data import PROCESSED_DATA_PATH, RAW_DATA_PATH, TinyStories, TinyStoriesConfig
 
-# Intergration test for data module
+from data import RAW_DATA_PATH, PROCESSED_DATA_PATH, TinyStories, TinyStoriesConfig, fetch_raw_data
+
+
 
 # Test fetching of raw data
 def fetch_raw_data_test():
-    data.fetch_raw_data()
+    fetch_raw_data()
     # Test files in data directory
     assert os.path.exists(RAW_DATA_PATH), "Raw data directory does not exists"
     assert os.path.exists(
@@ -108,3 +109,4 @@ def data_module_test():
 def test_data():
     fetch_raw_data_test()
     data_module_test()
+
