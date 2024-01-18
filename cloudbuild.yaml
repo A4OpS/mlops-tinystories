@@ -1,7 +1,11 @@
 steps:
   # Step to build the Docker image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/$PROJECT_ID/base', '.']
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/my-base-image', '-f', './dockerfiles/base.dockerfile', '.']
+
+  # Step to push the image to Google Container Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/my-base-image']
 
 # Define the source location in your repository
 # Replace 'your-repository-name' and 'path/to/dockerfile' as needed
