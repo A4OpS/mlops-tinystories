@@ -22,7 +22,7 @@ jobs:
           coverage run -m pytest -v
       - name: Generate Coverage Report
         run: |
-          coverage report -m
+          coverage report -m > pytest-coverage.txt
 
       - name: Comment coverage
         uses: coroo/pytest-coverage-commentator@v1.0.2
