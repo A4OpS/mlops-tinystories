@@ -1,0 +1,27 @@
+steps:
+  # Step to build the base image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/base-cuda', '-f', './dockerfiles/base.dockerfile', '.']
+    
+  # Step to build the train image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/$REPO_NAME/train-cuda:latest', '-f', './dockerfiles/trainer.dockerfile', '--build-arg', 'BASE_IMAGE=gcr.io/$PROJECT_ID/base-cuda', '.']
+
+  # Step to push the train image to Google Artifact Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/$REPO_NAME/train-cuda:latest']
+
+  # Build the deploy container
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/$REPO_NAME/deploy-cuda:latest', '-f', 'dockerfiles/deploy.dockerfile', '--build-arg', 'BASE_IMAGE=gcr.io/$PROJECT_ID/base-cuda', '.']
+
+  # Push the deploy container
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/$REPO_NAME/deploy-cuda:latest']
+
+
+
+# Define substitutions, like project ID
+substitutions:
+  _PROJECT_ID: 'mlops-tiny-stories'
+  _REPO_NAME: 'cpu'
